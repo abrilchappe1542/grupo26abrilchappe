@@ -161,36 +161,27 @@ void menuPunto4(){
 
 
 void menuPunto5(){
-    char *numero;
-    char *numeroConPuntos;
+    char numeroIngresado[100]; 
     int seguir = 1;
 
     while(seguir == 1){
         bool chequeo = false;
 
-        while (!chequeo) {
-            numero = ingresa_palabra("Ingrese un numero entero sin puntos:\t");
-            chequeo = (esDigito(numero) && soloEspacios(numero));
-            if (!chequeo) {
-                system("cls");
-                printf(">> Entrada no valida, ingrese un entero!\n ACLARACION!! numeros positivos sin el '+' al principio.\n\n");
-                free(numero);
-            }
-        }
-
-        numeroConPuntos = agregarSeparadorMiles(numero);
-        printf("El numero con puntos es: %s\n", numeroConPuntos);
+        printf("Ingrese un numero entero (puede ser negativo): ");
+        ingresarNumeroStringSeguro(numeroIngresado, 100); 
+            
+        char *numeroFormateado = agregarSeparadorMiles(numeroIngresado);
+            
+        printf("\nResultado:\n");
+        printf("El numero con puntos es: %s\n", numeroFormateado);
 
         printf(".\n.\n.\n>>>> Desea ingresar otro valor?\n");
         seguir = preguntarContinuar();
 
-        free(numero);
-        free(numeroConPuntos);
+        free(numeroFormateado);
         system("cls");
     }
-
 }
-
 
 void menuPunto6(){
     char *n;
