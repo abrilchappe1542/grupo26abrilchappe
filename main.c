@@ -1,4 +1,6 @@
 #include "menu.h"
+#include "libs/validaciones/headers/validaciones.h"
+
 
 int main() {
     int opcion;
