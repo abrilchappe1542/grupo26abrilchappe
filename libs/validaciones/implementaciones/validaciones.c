@@ -437,3 +437,48 @@ int intersarEspacios(char* poli, int pos){
 
     return ++pos;
 }
+
+
+void ingresarNumeroStringSeguro(char destino[], int tamanoMaximo) { //punto5
+    char entrada[200]; 
+    bool esValido = false;
+
+    while (!esValido) {
+        esValido = true;
+
+        fgets(entrada, sizeof(entrada), stdin);
+        entrada[strcspn(entrada, "\n")] = '\0'; 
+
+        int longitud = strlen(entrada);
+
+        if (longitud == 0) {
+            printf("Error: No ingresaste nada. Intenta de nuevo: ");
+            esValido = false;
+            continue; 
+        }
+
+        if (longitud == 1 && entrada[0] == '-') {
+            printf("Error: Ingresaste solo un signo. Escribe un numero: ");
+            esValido = false;
+            continue; 
+        }
+
+        for (int i = 0; i < longitud; i++) {
+            
+            if (i == 0 && entrada[i] == '-') {
+                continue;
+            }
+
+            if (!isdigit(entrada[i])) {
+                printf("Error: Solo se permiten numeros (sin espacios ni letras). Intenta de nuevo: ");
+                esValido = false;
+                break; 
+            }
+        }
+
+        if (esValido) {
+            strncpy(destino, entrada, tamanoMaximo - 1);
+            destino[tamanoMaximo - 1] = '\0'; 
+        }
+    }
+}
