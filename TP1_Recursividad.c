@@ -1,22 +1,31 @@
 //#include "TP1_Recursividad.h"
 #include "tp_1_recursividad.h"
+#include <ctype.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include "libs\validaciones\headers\validaciones.h"
+
 //Ejercicio 1
-bool palindromoResolucion(char* string,int i,int f){
-    if (i>=f){
-        return true;
+bool palindromoaux(char *cadena, int inicio, int fin, bool bandera){
+    if ((inicio >= fin) || (!bandera))
+    {
+        return bandera;
     }
-    else if(*(string + i) != *(string + f)){
-        return false;
+    if (cadena[inicio] != cadena[fin]) 
+    {
+        bandera = false;
     }
-        return palindromoResolucion(string, i + 1, f - 1);
+    return palindromoaux(cadena, inicio + 1, fin - 1, bandera);
 }
 
-bool palindromo(char* string){
 
-    int inicio = 0, final = strlen(string) - 1;
-    bool resultado = palindromoResolucion(string, inicio, final);
-
-    return resultado;
+bool palindromo (char * cadena){
+    int longitud = strlen(cadena); 
+    bool bandera = true;
+    bool res = palindromoaux(cadena,0,(longitud - 1),bandera);
+    return res;
 }
 
 
