@@ -63,47 +63,61 @@ float division(int m, int n){
 
 
 //Ejercicio 5
-void solucionSeparadorMiles(char numero[],char resultado[],int largo,int posicion){
-    if(largo<0){
-        resultado[posicion]='\0';
+void milesaux(char numero[],char *nuevoNumero, int contador, int i, int j,int limite){
+    if (i == limite)
+    {
         return;
     }
-    resultado[posicion]=numero[largo];
-        if((strlen(numero)-largo)%3==0 && largo >0 && numero[largo - 1] != '-'){
-            resultado[posicion+1]= '.';
-            return solucionSeparadorMiles(numero,resultado,largo-1,posicion+2);
-        }
-        else{
-            return solucionSeparadorMiles(numero,resultado,largo-1,posicion+1);
+    
+    if (contador == 3)
+    {
+        nuevoNumero[j] = '.';
+        milesaux(numero,nuevoNumero,0, i, j-1,limite);         //no retrocedo en el numero ya que solamente tengo que modificar en el nuevo numero
     }
-}
-void inviertocifra(char num_invertido[],char resultado[],int largo,int posicion){
-    if(largo<0){
-        num_invertido[posicion]='\0';
-        return;
+    else
+    {
+        nuevoNumero[j] = numero[i];
+        milesaux(numero,nuevoNumero,contador+1,i-1,j-1,limite);
     }
-    num_invertido[posicion]=resultado[largo];
-    return inviertocifra(num_invertido,resultado,largo-1,posicion+1);
+    
 }
 
 
 char * agregarSeparadorMiles(char numero[]){
-    //invocar solucionSeparadorMiles
-    //if(numero[0]=='-'){ len+1  }
-    char* resultado_con_puntos;
-    int len = strlen(numero) - 1;
-    int puntos = (len - 1)/3;        // un punto cada tres dígitos desde la derecha, excepto antes del primer grupo (-1).
-    resultado_con_puntos = (char*)malloc((puntos + len + 1) * sizeof(char));   //ya reserva memoria teniendo en cuenta la cantidad de puntos
+    int limite = -1;         //si es positivo el numero, entonces que vea todo hasta llegar al final
+    if (numero[0] == '-')
+    {
+        limite = 0;         //si es negativo, que vea hasta antes del -
+    }
 
-    solucionSeparadorMiles(numero, resultado_con_puntos, len, 0);
-    //invocar inviertocifra
-    int len_resultado_con_puntos = strlen(resultado_con_puntos);
-    char* resultado_final = (char*)malloc((len_resultado_con_puntos + 1) * sizeof(char));
-    len = len_resultado_con_puntos - 1;
-    inviertocifra(resultado_final, resultado_con_puntos,len,0);
-    //free(resultado_con_puntos);
-    return resultado_final;
+    int longitud = strlen(numero);
+    int cantdigitos;
+
+    if (limite == 0)       //el numero es negativo
+    { 
+        cantdigitos = longitud - 1; //descuento el -    
+    }
+    else
+    {
+        cantdigitos = longitud;
+    }
+    
+    
+    int cantidadpuntos = (cantdigitos - 1) / 3;
+    int nuevalong = longitud + cantidadpuntos;
+    char *nuevoNunero = (char *)malloc((nuevalong+1) * sizeof(char));
+    nuevoNunero[nuevalong] = '\0';
+    if (limite == 0)
+    {
+        nuevoNunero[0] = '-';
+    }
+    
+    milesaux(numero,nuevoNunero,0,longitud-1,nuevalong-1,limite);
+
+
+    return nuevoNunero;
 }
+
 
 
 
