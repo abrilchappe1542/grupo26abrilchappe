@@ -482,3 +482,20 @@ void ingresarNumeroStringSeguro(char destino[], int tamanoMaximo) { //punto5
         }
     }
 }
+
+void ingresarpalindromo(char original[], char limpia[]) { //tp1 punto1
+    int i = 0;
+    int j = 0;
+
+    while (original[i] != '\0') {
+        
+        if (isalnum(original[i])) {
+            limpia[j] = tolower(original[i]);
+            j++;
+        }
+        
+        i++;
+    }
+
+    limpia[j] = '\0';
+}
