@@ -7,16 +7,16 @@ int main() {
 
     do {
         printf("\n=== MENU PRINCIPAL ===\n");
-        printf("1. Ejercicio 1 \n");
-        printf("2. Ejercicio 2 \n");
-        printf("3. Ejercicio 3 \n");
-        printf("4. Ejercicio 4 \n");
-        printf("5. Ejercicio 5 \n");
-        printf("6. Ejercicio 6 \n");
-        printf("7. Ejercicio 7:\n");
-        printf("8. Ejercicio 8:\n");
-        printf("9. Ejercicio 9:\n");
-        printf("10. Ejercicio 10:\n");
+        printf("1. Ejercicio 1 -> Palindromo \n");
+        printf("2. Ejercicio 2 -> Producto\n");
+        printf("3. Ejercicio 3 -> Fibonacci\n");
+        printf("4. Ejercicio 4 -> Division\n");
+        printf("5. Ejercicio 5 -> Separador de miles\n");
+        printf("6. Ejercicio 6 -> Mafia china\n");
+        printf("7. Ejercicio 7 -> Onda digital\n");
+        printf("8. Ejercicio 8 -> Subconjuntos\n");
+        printf("9. Ejercicio 9 -> DivisiblePor7\n");
+        printf("10.Ejercicio 10 -> Explosion\n");
         printf("0. Salir\n");
         printf("> Seleccione una opcion: ");
         opcion = ingresoDatosNumericosPositivos("\nEntrada erronea.\n-> ");
