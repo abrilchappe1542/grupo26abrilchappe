@@ -370,9 +370,12 @@ void menuPunto10(){
         }
         int n_int=atoi(n);
         int b_int=atoi(b);
-        if (b_int>=n_int){
-            printf("La bomba debe ser menor al Numero explosivo.\n");
+        if (b_int <= 1){
+            printf("El numero no puede ser menor o igual a 1, se genera un bucle infinito ya que no se puede achicar la bomba dividiendo por 1.");
         }
+        else if (b_int>=n_int){
+            printf("La bomba debe ser menor al Numero explosivo.\n");
+        }        
         else{
             resultado = explosion(n_int, b_int);
         }
