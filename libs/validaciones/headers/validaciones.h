@@ -21,6 +21,8 @@ bool esFlotante(const char *c);
 
 bool esFlotantePositivo(const char *c);
 
+void ingresarNumeroStringSeguro(char destino[], int tamanoMaximo);
+
 
 /* >>>>> VALIDACIONES DE STRINGS <<<<< */
 
