@@ -1,5 +1,5 @@
 #include "menu.h"
-#include "libs/validaciones/headers/validaciones.h"
+#include "../libs/validaciones/headers/validaciones.h"
 
 
 void menuPunto1(){
@@ -58,16 +58,17 @@ void menuPunto2(){
         chequeo = false;
 
         while (!chequeo){
-            n = ingresa_palabra("Ingrese el multiplicador 'n':\n-> ");
-            chequeo = (esDigito(n) && soloEspacios(n));
+            d = ingresa_palabra("Ingrese una cantidad de decimales 'd':\n-> ");
+            chequeo = (esDigito(d) && soloEspacios(d) && noEsCero(d));
             if(!chequeo){
                 system("cls");
-                printf(">> Entrada no valida, ingrese un entero!\n-> ");
-                free(n);
+                printf(">> Entrada no valida, ingrese un entero!\n");
+                free(d);
+                d = NULL;
             }
         }
 
-        resultado = producto(atoi(m), atoi(n));
+        resultado = division(atoi(m), atoi(n),atoi(d));
         printf("\n%s * %s = %d\n", m, n, resultado);
 
         printf(".\n.\n.\n>>>> Desea realizar otra multiplicacion?\n");
