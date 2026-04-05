@@ -489,7 +489,7 @@ void ingresarpalindromo(char original[], char limpia[]) { //tp1 punto1
 
     while (original[i] != '\0') {
         
-        if (isalnum(original[i])) {
+        if (isalnum(original[i]) || original[i] == ' ') {
             limpia[j] = tolower(original[i]);
             j++;
         }
