@@ -1,10 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include <stdbool.h>
-#include <ctype.h>
-#include "../libs/validaciones/headers/validaciones.h"
-
 
 #ifndef TP1_Recursividad
 #define TP1_Recursividad
@@ -31,9 +25,10 @@ int terminoSeridFibonacci(int k);
 //Ejercicio 4
 /*4.	Dados los números enteros m y n, construir una función recursiva que devuelva el 
 cociente de ambos, calculando el mismo mediante restas sucesivas. Se deberá tener en cuenta que en el caso 
-de que la división no sea exacta, se devolverán hasta 4 cifras decimales (si es necesario). */
+de que la división no sea exacta, se devolverán hasta d cifras decimales (si es necesario), donde d es un 
+valor de 1 a 10 a ingresar como precisión de la división. */
 
-float division(int m, int n);
+float division(int m, int n, int d);
 
 
 //Ejercicio 5
