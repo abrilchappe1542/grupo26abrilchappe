@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
-#include "libs\validaciones\headers\validaciones.h"
+#include "../libs/validaciones/headers/validaciones.h"
 
 //Ejercicio 1
 bool palindromoaux(char *cadena, int inicio, int fin, bool bandera){
