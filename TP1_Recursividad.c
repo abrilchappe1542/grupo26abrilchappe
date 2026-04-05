@@ -65,8 +65,8 @@ float divisionConCifras(int m, int n, int limitecifra){
     return 0;
 }
             
-float division(int m, int n){
-    return divisionConCifras(m, n, 5);
+float division(int m, int n, int d){
+    return divisionConCifras(m, n, d);
 }
 
 
