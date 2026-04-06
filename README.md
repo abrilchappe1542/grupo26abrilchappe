@@ -12,7 +12,7 @@ Curso de Programación 2, Universidad Nacional de Lujan
 
 Chappe Abril Eugenia // Legajo: 206104 //
 
-D’Aurizio Ignacio Manuel // Legajo: 196649 //
+D’Aurizio Ignacio Manuel // Legajo: 196649 // imdaurizio@gmail.com
 
 Mulka Lucas Hernan // Legajo: 165273 // Lhmlk.4@gmail.com
 
