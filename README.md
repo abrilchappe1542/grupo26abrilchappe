@@ -16,7 +16,7 @@ D’Aurizio Ignacio Manuel // Legajo: 196649 // imdaurizio@gmail.com
 
 Mulka Lucas Hernan // Legajo: 165273 // Lhmlk.4@gmail.com
 
-Navarro Sergio Alexis // Legajo: 200848 //
+Navarro Sergio Alexis // Legajo: 200848 // alexisnavarro1618@gmail.com
 
 Penela Juan Pablo // Legajo: 195189 // juanppenela@gmail.com
 
