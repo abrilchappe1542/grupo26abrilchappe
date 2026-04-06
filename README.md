@@ -11,11 +11,17 @@ Curso de Programación 2, Universidad Nacional de Lujan
 ## Alumnos:
 
 Chappe Abril Eugenia // Legajo: 206104 //
+
 D’Aurizio Ignacio Manuel // Legajo: 196649 //
+
 Mulka Lucas Hernan // Legajo: 165273 // Lhmlk.4@gmail.com
+
 Navarro Sergio Alexis // Legajo: 200848 //
+
 Penela Juan Pablo // Legajo: 195189 // juanppenela@gmail.com
+
 Ríos Waicman Justo Mateo // Legajo: 200815 // justomrios@gmail.com
+
 Salmi Salvador // Legajo: 200905 // salvadorsalmi@gmail.com
 
 
