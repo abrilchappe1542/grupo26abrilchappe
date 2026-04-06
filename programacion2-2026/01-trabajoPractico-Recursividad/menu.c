@@ -20,11 +20,11 @@ void menuPunto1(){
         bandera = palindromo(palabralimpia);  
         
         if(bandera == true){
-            printf("La palabra o frase %s, es un palindromo\n",palabralimpia);
+            printf("La palabra o frase %s, es un palindromo\n",palabra);
         }
 
         else if(bandera == false){
-            printf("La palabra o frase %s, NO es un palindromo\n",palabralimpia);
+            printf("La palabra o frase %s, NO es un palindromo\n",palabra);
         }
 
         printf(".\n.\n.\n>>>> Desea ingresar otro valor?\n");
