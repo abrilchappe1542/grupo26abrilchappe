@@ -132,29 +132,21 @@ void menuPunto4(){
 
         system("cls");
         chequeo = false;
+        
+        while (!chequeo){
+            n = ingresa_palabra("Ingrese un divisor 'n':\n-> ");
+            chequeo = (esDigito(n) && soloEspacios(n) && noEsCero(n));
+            if(!chequeo){
+                system("cls");
+                printf(">> Entrada no valida, ingrese un entero!\n");
+                free(n);
+                n = NULL;
+            }
+        }
+        
+        system("cls");
+        chequeo = false;
 
-        while (!chequeo){
-            n = ingresa_palabra("Ingrese un divisor 'n':\n-> ");
-            chequeo = (esDigito(n) && soloEspacios(n) && noEsCero(n));
-            if(!chequeo){
-                system("cls");
-                printf(">> Entrada no valida, ingrese un entero!\n");
-                free(n);
-                n = NULL;
-            }
-        }
-        
-        while (!chequeo){
-            n = ingresa_palabra("Ingrese un divisor 'n':\n-> ");
-            chequeo = (esDigito(n) && soloEspacios(n) && noEsCero(n));
-            if(!chequeo){
-                system("cls");
-                printf(">> Entrada no valida, ingrese un entero!\n");
-                free(n);
-                n = NULL;
-            }
-        }
-        
         while (!chequeo){
             d = ingresa_palabra("Ingrese una cantidad de decimales 'd':\n-> ");
             chequeo = (esDigito(d) && soloEspacios(d) && noEsCero(d));
@@ -167,17 +159,17 @@ void menuPunto4(){
         }
 
         resultado = division(atoi(m), atoi(n),atoi(d));
-        printf("\n%d / %d = %f\n", atoi(m), atoi(n), resultado);
+        printf("\n%d / %d = %.*f\n", atoi(m), atoi(n),atoi(d), resultado);
 
         printf(".\n.\n.\n.\n>>>> Desea calcular otra division?\n");
         seguir = preguntarContinuar();
 
         free(m);
         free(n);
+        free(d);
         system("cls");
     }
 }
-
 
 void menuPunto5(){
     char numeroIngresado[100]; 
