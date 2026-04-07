@@ -10,7 +10,7 @@ Curso de Programación 2, Universidad Nacional de Lujan
 ## N° de grupo: 26
 ## Alumnos:
 
-Chappe Abril Eugenia // Legajo: 206104 //
+Chappe Abril Eugenia // Legajo: 206104 // aechappe.cnsc@gmail.com
 
 D’Aurizio Ignacio Manuel // Legajo: 196649 // imdaurizio@gmail.com
 
