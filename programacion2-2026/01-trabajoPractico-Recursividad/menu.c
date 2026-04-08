@@ -387,6 +387,7 @@ void menuPunto10(){
         if (b_int <= 1)
         {
             printf("El numero no puede ser menor o igual a 1, se genera un bucle infinito ya que no se puede achicar la bomba dividiendo por 1.");
+            printf("\nResultado = [-1]\n");
         }
         
         else if (b_int>=n_int){
