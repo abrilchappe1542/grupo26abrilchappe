@@ -309,7 +309,7 @@ void menuPunto8(){
         continuar = preguntarContinuar();
 
     } while (continuar == 1); 
-
+    system("cls");
 }
 
 
@@ -343,8 +343,8 @@ void menuPunto9(){
             printf("Ingrese 1 para SI o 0 para NO: ");
             while (getchar() != '\n');
         }
+        system("cls");
         while (getchar() != '\n');
-        printf("\n\n");
     }
 }
 
