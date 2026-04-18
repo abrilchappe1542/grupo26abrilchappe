@@ -19,3 +19,35 @@ ResultadosMul multiplo(Lista l1, Lista l2){
     }
     return multiplo_resultado;
 }
+
+//ejercicio 4:
+void CompararListas(Lista l1, Lista l2){
+    int contador_l1 = 0;
+    int contador_l2 = 0;
+    Iterador ite1 = iterador(l1);
+    Iterador ite2 = iterador(l2);
+    TipoElemento nodo1;
+    TipoElemento nodo2;
+
+    while (hay_siguiente(ite1) && hay_siguiente(ite2)){
+        nodo1 = siguiente(ite1);
+        nodo2 = siguiente(ite2);
+        
+        if (nodo1->clave > nodo2->clave){
+            contador_l1++;
+        } 
+        else if (nodo2->clave > nodo1->clave){
+            contador_l2++;
+        }
+    }
+
+    if (contador_l1 > contador_l2){
+        printf("L1 > L2\n");
+    } 
+    else if (contador_l2 > contador_l1){
+        printf("L1 < L2\n");
+    } 
+    else{
+        printf("L1 = L2\n");
+    }
+}
