@@ -1,6 +1,12 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <stdbool.h>
-#include "listas.h"
-#include "tipo_elemento.h"
+#include <ctype.h>
+#include <math.h>
+#include "../libs/validaciones/headers/validaciones.h"
+#include "../libs/listas/headers/listas.h"
+#include "../libs/tipoElemento/headers/tipo_elemento.h"
 
 #ifndef TP_2_Listas
 #define TP_2_Listas

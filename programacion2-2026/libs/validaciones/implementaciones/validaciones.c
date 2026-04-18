@@ -1,6 +1,13 @@
-#include "../headers/validaciones.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include <stdbool.h>
 #include <time.h>
-static const int TAMANIO_MAXIMO = 100;
+#include "../../listas/headers/listas.h"
+#include "../../tipoElemento/headers/tipo_elemento.h"
+#include "../headers/validaciones.h"
+
 bool esDigito(const char *c){
     if( strlen(c)>1 && (c[0] == '-') ) {
         c++;
@@ -105,6 +112,7 @@ bool masDeUnCaracter(char* string){
     }
     return resultado;
 }
+
 
 bool contieneEspacios(const char *c){
     for (int i = 0; c[i] != '\0'; i++) {
@@ -498,4 +506,25 @@ void ingresarpalindromo(char original[], char limpia[]) { //tp1 punto1
     }
 
     limpia[j] = '\0';
+}
+
+
+/*-----------------------------------------------------------
+  >>>>>>>>>>>>>>>>>>>>>>     LISTAS    <<<<<<<<<<<<<<<<<<<<<
+-----------------------------------------------------------*/
+
+Lista l_cargar(int cantidad){
+    Lista list = l_crear();
+    int num, guia = 0;
+    TipoElemento nodo;
+
+    while(!l_es_llena(list) && guia<cantidad){
+        printf("  | CLAVE NODO %d | ->\t", guia+1);
+        num = ingresoDatosNumericos("Ingrese una clave valida!");
+        nodo = te_crear(num);
+        l_agregar(list, nodo);
+        guia++;
+    }
+
+    return list;
 }

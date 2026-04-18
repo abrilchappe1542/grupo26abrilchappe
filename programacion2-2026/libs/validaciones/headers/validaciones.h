@@ -1,3 +1,6 @@
+#ifndef VALIDACIONES_H
+#define VALIDACIONES_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -5,8 +8,9 @@
 #include <ctype.h>
 #include <math.h>
 #include <time.h>
+#include "../../listas/headers/listas.h"
+#include "../../tipoElemento/headers/tipo_elemento.h"
 
-#define VALIDACIONES_H
 
 
 /* >>>>> VALIDACIONES DE STRINGS DE NUMEROS <<<<< */
@@ -73,4 +77,14 @@ int leerEnteroPositivo(const char* mensaje);
 void reemplazarComasPorPuntos(char *c);
 
 void mostrarComparacion(int respuesta); 
+
+
+
+/*-----------------------------------------------------------
+  >>>>>>>>>>>>>>>>>>>>>>     LISTAS    <<<<<<<<<<<<<<<<<<<<<
+-----------------------------------------------------------*/
+
+Lista l_cargar(int nodos); // Carga por teclado la lista según la cantidad recibida.
+
+#endif
 
