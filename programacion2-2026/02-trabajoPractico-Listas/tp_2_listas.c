@@ -23,7 +23,9 @@ ResultadosMul multiplo(Lista l1, Lista l2){
 //ejercicio 4:
 void CompararListas(Lista l1, Lista l2){
     int contador_l1 = 0;
-    int contador_l2 = 0;
+    int contador_l2 = 0;                 //contadores
+    int contador_iguales = 0; 
+
     Iterador ite1 = iterador(l1);
     Iterador ite2 = iterador(l2);
     TipoElemento nodo1;
@@ -36,18 +38,20 @@ void CompararListas(Lista l1, Lista l2){
         if (nodo1->clave > nodo2->clave){
             contador_l1++;
         } 
-        else if (nodo2->clave > nodo1->clave){
-            contador_l2++;
+        else if (nodo1->clave < nodo2->clave){   //comparaciones
+            contador_l2++; 
+        }
+        else if (nodo1->clave == nodo2->clave){
+            contador_iguales++;
         }
     }
-
     if (contador_l1 > contador_l2){
         printf("L1 > L2\n");
     } 
-    else if (contador_l2 > contador_l1){
+    else if (contador_l2 > contador_l1){     //resultados
         printf("L1 < L2\n");
     } 
-    else{
+    else if (contador_l1 == contador_l2){
         printf("L1 = L2\n");
     }
 }
