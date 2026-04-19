@@ -1,4 +1,14 @@
 #include "menu.h"
+#include "..\libs\listas\headers\listas.h"
+#include "..\libs\tipoElemento\headers\tipo_elemento.h"
+#include "..\libs\validaciones\headers\validaciones.h"
+#include "tp_2_listas.h"
+#include <ctype.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+
 
 int main() {
     int opcion;
