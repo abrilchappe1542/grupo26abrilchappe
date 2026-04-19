@@ -1,5 +1,15 @@
 #include "menu.h"
+#include "..\libs\listas\headers\listas.h"
+#include "..\libs\tipoElemento\headers\tipo_elemento.h"
+#include "..\libs\validaciones\headers\validaciones.h"
+#include "tp_2_listas.h"
+#include <ctype.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
 
+//Cuando suban el 2, subo el menu
 
 //menu punto 3:
 void menuPunto3(){
