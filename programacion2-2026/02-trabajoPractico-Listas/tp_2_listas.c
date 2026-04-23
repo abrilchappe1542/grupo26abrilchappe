@@ -47,7 +47,7 @@ void CompararListas(Lista l1, Lista l2){
     else if (contador_l2 > contador_l1){     //resultados
         printf("L1 < L2\n");
     } 
-    else if (contador_l1 == contador_l2){
+    else{
         printf("L1 = L2\n");
     }
 }
