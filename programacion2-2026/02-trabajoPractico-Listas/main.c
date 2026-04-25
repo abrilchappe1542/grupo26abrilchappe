@@ -17,6 +17,7 @@ int main() {
         printf("\n=== MENU PRINCIPAL ===\n");
         printf("3. Ejercicio 3 \n");
         printf("4. Ejercicio 4 \n");
+        printf("6. Ejercicio 6 \n");
         printf("0. Salir\n");
         printf("> Seleccione una opcion: ");
         opcion = ingresoDatosNumericosPositivos("\nEntrada erronea.\n-> ");
@@ -28,6 +29,9 @@ int main() {
                 break;
             case 4:
                 menuPunto4();
+                break;
+            case 6:
+                menuPunto6();
                 break;
             case 0:
                 printf("Saliendo...\n");

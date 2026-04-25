@@ -152,3 +152,42 @@ void menuPunto4(){
 //         system("cls");    
 //     }
 // }
+
+//menu punto 6
+void menuPunto6(){
+    Lista lista1, lista2;
+    int cantidad_elem1;
+    int cantidad_elem2;
+    int seguir = 1;
+    bool resultado;
+    
+    while(seguir == 1){
+        printf("Ingrese la cantidad de elementos a cargar en la lista 1\n-> ");
+        cantidad_elem1 = ingresoDatosNumericosNoCero("Ingrese un numero valido!");
+        printf("Ingrese la cantidad de elementos a cargar en la lista 2\n-> ");
+        cantidad_elem2 = ingresoDatosNumericosNoCero("Ingrese un numero valido!");
+
+        printf("\nCargar lista 1: \n");
+        lista1 = l_cargar(cantidad_elem1);
+        printf("\nCargar lista 2: \n");
+        lista2 = l_cargar(cantidad_elem2);
+
+        printf("\nLISTA 1 \n");
+        l_mostrar(lista1);
+        printf("\nLISTA 2 \n");
+        l_mostrar(lista2);
+
+        resultado = esSublista(lista1, lista2);
+
+        if(resultado == true){
+            printf("La lista 2 es sublista de la lista 1\n");
+        }
+        else{
+            printf("La lista 2 NO es sublista de la lista 1\n");
+        }
+        printf("La complejidad algoritmica de la solucion es cuadratica");
+
+        seguir = preguntarContinuar();
+        system("cls");
+    }
+}
