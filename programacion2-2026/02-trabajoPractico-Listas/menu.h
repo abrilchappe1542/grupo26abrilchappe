@@ -4,4 +4,5 @@
 
 void menuPunto3();
 void menuPunto4();
+void menuPunto6();
 #endif // MENU_H
