@@ -24,6 +24,9 @@ int main() {
         system("cls");
 
         switch (opcion) {
+            case 2: 
+                menuPunto2();
+                break;
             case 3:
                 menuPunto3();
                 break;
