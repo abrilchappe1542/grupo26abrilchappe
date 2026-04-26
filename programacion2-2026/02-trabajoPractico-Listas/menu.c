@@ -9,63 +9,56 @@
 #include <string.h>
 #include <math.h>
 
+//menu punto 2
+void menuPunto2() {
+    Lista l1, l2, lresA, lresB, lresC;
+    ResultadoValorMinimo resvm;
+    int seguir = 1;
+    int cantidad;
 
-// void menuPunto2(){
-//     Lista l1,l2, lresA,lresB,lresC;
-//     Resultados res2;
-//     ResultadoValorMaximo resvm;
-//     int seguir = 1;
-//     int cantidad;
-//     while (seguir == 1)
-//     {
-//         printf("Ingrese la cantidad de elementos a ingresar en las listas\n-> ");
-//         cantidad= ingresoDatosNumericosNoCero("Ingrese un numero valido!");
+    while (seguir == 1) {
+        printf("Ingrese la cantidad de elementos para las listas: ");
+        cantidad = ingresoDatosNumericosNoCero("Ingresa un numero valido!");
 
-//         printf("\nCargamos lista 1:\n");
-//         l1 = l_cargar(cantidad);
-//         printf("\nCargamos lista 2:\n");
-//         l2 = l_cargar(cantidad);
+        printf("\nCargando Lista 1...");
+        l1 = l_cargar(cantidad);
+        printf("\nCargando Lista 2...");
+        l2 = l_cargar(cantidad);
         
-//         //MUESTRO LAS LISTAS CARGADAS
-//         printf("\nLISTA 1: \n");
-//         l_mostrar(l1);
-//         printf("\nLISTA 2: \n");
-//         l_mostrar(l2);
     
-//         //EJERCICIO A
-//         printf("\nEJERCICIO 2A\n");
-//         lresA = verElementosQueNoSeRepiten(l1,l2);
-//         printf("\nLa lista con elementos de L1 que no estan en l2 es:\n");
-//         l_mostrar(lresA);
-        
-//         //EJERCICIO B
-//         printf("\nEJERCICIO 2B\n");
-//         lresB = verElementosQueNoSeRepiten(l1,l2);
-//         printf("\nLa lista con elementos de L2 que no estan en L1 es:\n");
-//         l_mostrar(lresB);
-        
-//         //EJERCICIO C
-//         printf("\nEJERCICIO 2C\n");
-//         lresC = verElementosRepetidos(l1,l2);
-//         printf("\nLa lista con elementos de L1 que se repiten en L2 es:\n");
-//         l_mostrar(lresC);
-        
-        
-//         //EJERCICIO D
-//         printf("\nEJERCICIO 2D\n");
-//         res2 = promedioAmbasListas(l1,l2);
-//         printf("\nEl promedio de L1 es: %.2f \nEl promedio de L2 es: %.2f\n", res2.resultado1, res2.resultado2);
-        
-//         //EJERCICIO E
-//         printf("\nEJERCICIO 2D\n");
-//         resvm = valorMaximo(l1,l2);
-//         printf("El valor minimo es %d en la posicion %d de la lista %d\n", resvm.valor, resvm.pos, resvm.lista);
+        printf("\nLISTA 1: "); l_mostrar(l1);
+        printf("\nLISTA 2: "); l_mostrar(l2);
 
-//         seguir = preguntarContinuar();
-//         system("cls");
-//     }
-    
-// }
+        
+        printf("\n2.A Elementos de L1 que no estan en L2: ");
+        lresA = verElementosQueNoSeRepiten(l1, l2);
+        l_mostrar(lresA);
+
+        
+        printf("\n2.B Elementos de L2 que no estan en L1: ");
+        lresB = verElementosQueNoSeRepiten(l2, l1); 
+        l_mostrar(lresB);
+
+      
+        printf("\n2.C Elementos comunes en ambas listas: ");
+        lresC = verElementosRepetidos(l1, l2);
+        l_mostrar(lresC);
+
+        
+        printf("\n2.D Promedios:");
+        printf("\n*Promedio L1: %.2f", promedio(l1));
+        printf("\n*Promedio L2: %.2f\n", promedio(l2));
+
+        
+        printf("\n2.E Valores minimos encontrados:");
+        resvm = valorMinimo(l1, l2);
+        printf("\n*L1: Minimo %d (Posicion %d)", resvm.valor, resvm.pos);
+        printf("\n*L2: Minimo %d (Posicion %d)\n", resvm.valor_2, resvm.pos_2);
+
+        seguir = preguntarContinuar();
+        system("cls");
+    }
+}
 
 
 //menu punto 3:
@@ -152,42 +145,3 @@ void menuPunto4(){
 //         system("cls");    
 //     }
 // }
-
-//menu punto 6
-void menuPunto6(){
-    Lista lista1, lista2;
-    int cantidad_elem1;
-    int cantidad_elem2;
-    int seguir = 1;
-    bool resultado;
-    
-    while(seguir == 1){
-        printf("Ingrese la cantidad de elementos a cargar en la lista 1\n-> ");
-        cantidad_elem1 = ingresoDatosNumericosNoCero("Ingrese un numero valido!");
-        printf("Ingrese la cantidad de elementos a cargar en la lista 2\n-> ");
-        cantidad_elem2 = ingresoDatosNumericosNoCero("Ingrese un numero valido!");
-
-        printf("\nCargar lista 1: \n");
-        lista1 = l_cargar(cantidad_elem1);
-        printf("\nCargar lista 2: \n");
-        lista2 = l_cargar(cantidad_elem2);
-
-        printf("\nLISTA 1 \n");
-        l_mostrar(lista1);
-        printf("\nLISTA 2 \n");
-        l_mostrar(lista2);
-
-        resultado = esSublista(lista1, lista2);
-
-        if(resultado == true){
-            printf("La lista 2 es sublista de la lista 1\n");
-        }
-        else{
-            printf("La lista 2 NO es sublista de la lista 1\n");
-        }
-        printf("La complejidad algoritmica de la solucion es cuadratica");
-
-        seguir = preguntarContinuar();
-        system("cls");
-    }
-}
