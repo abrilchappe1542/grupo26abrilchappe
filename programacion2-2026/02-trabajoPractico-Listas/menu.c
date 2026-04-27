@@ -209,6 +209,14 @@ void menuPunto6(){
         printf("\nCargar lista 2: \n");
         lista2 = l_cargar(cantidad_elem2);
 
+        if (cantidad_elem1 < cantidad_elem2)
+        {
+            printf("La lista 1 no puede ser mas chica que la lista 2\nVolve a ingresar...\n");
+            seguir = preguntarContinuar();
+            system("cls");
+            continue; 
+        }
+        
         printf("\nLISTA 1 \n");
         l_mostrar(lista1);
         printf("\nLISTA 2 \n");
