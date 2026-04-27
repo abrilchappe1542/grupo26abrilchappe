@@ -119,6 +119,33 @@ void menuPunto4(){
     }
 }
 
+void menuPunto5(){
+    //Lista list1;
+    Lista list1 = l_crear();
+    int seguir = 1;
+    while(seguir == 1){
+        list1=hacerPolinomio(list1);
+        //l_mostrar(list1);
+        printf("Ingrese el rango para evaluar el polinomio:\n");
+        printf("Ingrese el limite inferior (x): ");
+        float x = ingresoDatosFloat("Debe ser un numero valido! Ingrese el valor del limite inferior (x): ");
+        printf("Ingrese el limite superior (y): ");
+        float y = ingresoDatosFloat("Debe ser un numero valido! Ingrese el valor del limite superior (y): ");
+        printf("Ingrese el valor del sumando: ");
+        float sumando = ingresoDatosFloat("Debe ser un numero valido! Ingrese el valor del sumando: ");
+        Lista rango = calcularRango(list1, x, y, sumando);
+        printf("Resultados del rango:\n");
+        //l_mostrar(rango);
+
+        Iterador it = iterador(rango);
+        while(hay_siguiente(it)){
+            float c = *(float*)siguiente(it)->valor;
+            printf("%f\n", c);
+        }
+        seguir = preguntarContinuar();
+        system("cls");  
+        }
+
 
 //void menuPunto6(){
 //     Lista list1, list2;
