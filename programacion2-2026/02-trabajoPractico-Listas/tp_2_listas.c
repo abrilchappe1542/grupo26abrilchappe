@@ -58,16 +58,18 @@ float promedio(Lista l)
 ResultadoValorMinimo valorMinimo(Lista l1, Lista l2)
 {
     ResultadoValorMinimo res;
-    res.valor = 999999;    //valores genericos para empezar a buscar 
-    res.pos = -1;
-    res.valor_2 = 999999;
-    res.pos_2 = -1;
+    TipoElemento elem, elem2;    
+    
+    res.valor = l_recuperar(l1,1)->clave;     
+    res.pos = 1;
+    res.valor_2 = l_recuperar(l2,1)->clave;
+    res.pos_2 = 1;
 
     Iterador it1 = iterador(l1);  //nos ponemos en el primer elemento de la lista 1
     int pos_actual = 1;
     while(hay_siguiente(it1))
     {
-        TipoElemento elem = siguiente(it1);
+        elem = siguiente(it1);
         if(elem->clave < res.valor)  //vamos buscando el elemento menor con el if
         {
             res.valor = elem->clave;        //si encontramos un menor, lo guardamos en el struct
@@ -79,16 +81,17 @@ ResultadoValorMinimo valorMinimo(Lista l1, Lista l2)
     pos_actual = 1;                 //reseteamos la pos actual
     while(hay_siguiente(it2))       
     {
-        TipoElemento elem = siguiente(it2);
-        if(elem->clave < res.valor_2)     //buscamos el menor de la lista 2
+        elem2 = siguiente(it2);
+        if(elem2->clave < res.valor_2)     //buscamos el menor de la lista 2
         {
-            res.valor_2 = elem->clave;    //si encontramos lo guardamos en el struct
+            res.valor_2 = elem2->clave;    //si encontramos lo guardamos en el struct
             res.pos_2 = pos_actual;
         }
         pos_actual++;
     }
     return res;
 }
+
 
 
 //ejercicio 3:
