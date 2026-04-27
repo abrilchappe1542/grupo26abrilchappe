@@ -14,47 +14,91 @@ void menuPunto2() {
     Lista l1, l2, lresA, lresB, lresC;
     ResultadoValorMinimo resvm;
     int seguir = 1;
-    int cantidad;
+    int cantidad, cantidad2;
+    char opcion;
 
     while (seguir == 1) {
-        printf("Ingrese la cantidad de elementos para las listas: ");
+        // --- 1. CARGA DE LISTAS (Variables y Dinámicas) ---
+        printf("=== CARGA DE DATOS PARA EL EJERCICIO 2 ===\n");
+        printf("Ingrese la cantidad de elementos para la lista 1: ");
         cantidad = ingresoDatosNumericosNoCero("Ingresa un numero valido!");
-
-        printf("\nCargando Lista 1...");
+        printf("\nCargando Lista 1...\n");
         l1 = l_cargar(cantidad);
-        printf("\nCargando Lista 2...");
-        l2 = l_cargar(cantidad);
+
+        printf("\nIngrese la cantidad de elementos para la lista 2: ");
+        cantidad2 = ingresoDatosNumericosNoCero("Ingresa un numero valido!");
+        printf("\nCargando Lista 2...\n");
+        l2 = l_cargar(cantidad2);
         
-    
         printf("\nLISTA 1: "); l_mostrar(l1);
         printf("\nLISTA 2: "); l_mostrar(l2);
 
-        
-        printf("\n2.A Elementos de L1 que no estan en L2: ");
-        lresA = verElementosQueNoSeRepiten(l1, l2);
-        l_mostrar(lresA);
+        // --- 2. MENÚ DE OPCIONES DEL PUNTO 2 ---
+        printf("\n=== OPCIONES DEL EJERCICIO 2 ===\n");
+        printf("A. Elementos de L1 que no estan en L2\n");
+        printf("B. Elementos de L2 que no estan en L1\n");
+        printf("C. Elementos comunes en ambas listas\n");
+        printf("D. Promedios de ambas listas\n");
+        printf("E. Valores minimos encontrados\n");
+        printf("\nElija una opcion (A, B, C, D o E): ");
+        fflush(stdin);         
+        scanf(" %c", &opcion);
+        // Convertimos a mayúscula por si el usuario ingresa minúsculas
+        if(opcion >= 'a' && opcion <= 'z') opcion = opcion - 32; 
 
-        
-        printf("\n2.B Elementos de L2 que no estan en L1: ");
-        lresB = verElementosQueNoSeRepiten(l2, l1); 
-        l_mostrar(lresB);
+        // --- 3. SWITCH DE EJECUCIÓN ---
+        switch (opcion) {
+            case 'A':
+                printf("\n2.A Elementos de L1 que no estan en L2: \n");
+                lresA = verElementosQueNoSeRepiten(l1, l2);
+                if (l_es_vacia(lresA)) { //
+                    printf("La lista esta vacia, todos los valores de L1 estan en L2\n");
+                } else {
+                    l_mostrar(lresA); //
+                }
+                break;
 
-      
-        printf("\n2.C Elementos comunes en ambas listas: ");
-        lresC = verElementosRepetidos(l1, l2);
-        l_mostrar(lresC);
+            case 'B':
+                printf("\n2.B Elementos de L2 que no estan en L1: \n");
+                // Excelente reutilización de la función invirtiendo los parámetros
+                lresB = verElementosQueNoSeRepiten(l2, l1); 
+                if (l_es_vacia(lresB)) { //
+                    printf("La lista esta vacia, todos los valores de L2 estan en L1\n");
+                } else {
+                    l_mostrar(lresB); //
+                }
+                break;
 
-        
-        printf("\n2.D Promedios:");
-        printf("\n*Promedio L1: %.2f", promedio(l1));
-        printf("\n*Promedio L2: %.2f\n", promedio(l2));
+            case 'C':
+                printf("\n2.C Elementos comunes en ambas listas: \n");
+                lresC = verElementosRepetidos(l1, l2);
+                if (l_es_vacia(lresC)) { //
+                    printf("No hay elementos comunes entre las listas.\n");
+                } else {
+                    l_mostrar(lresC); //
+                }
+                break;
 
-        
-        printf("\n2.E Valores minimos encontrados:");
-        resvm = valorMinimo(l1, l2);
-        printf("\n*L1: Minimo %d (Posicion %d)", resvm.valor, resvm.pos);
-        printf("\n*L2: Minimo %d (Posicion %d)\n", resvm.valor_2, resvm.pos_2);
+            case 'D':
+                printf("\n2.D Promedios:\n");
+                printf("*Promedio L1: %.2f\n", promedio(l1));
+                printf("*Promedio L2: %.2f\n", promedio(l2));
+                break;
 
+            case 'E':
+                printf("\n2.E Valores minimos encontrados:\n");
+                resvm = valorMinimo(l1, l2);
+                printf("*L1: Minimo %d (Posicion %d)\n", resvm.valor, resvm.pos);
+                printf("*L2: Minimo %d (Posicion %d)\n", resvm.valor_2, resvm.pos_2);
+                break;
+
+            default:
+                printf("\nOpcion invalida.\n");
+                break;
+        }
+
+        // --- 4. CONTROL DE REINICIO ---
+        printf("\n------------------------------------------------\n");
         seguir = preguntarContinuar();
         system("cls");
     }
