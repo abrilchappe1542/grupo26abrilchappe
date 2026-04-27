@@ -508,44 +508,6 @@ void ingresarpalindromo(char original[], char limpia[]) { //tp1 punto1
     limpia[j] = '\0';
 }
 
-float evaluarPolinomio(Lista list, float x ){
-    Iterador i1 = iterador(list);
-    Iterador i2 = iterador(list);
-    float valor;
-    float sumando;
-    sumando = 0;
-    while (hay_siguiente(i1)){
-        valor = *(float*)siguiente(i2)->valor * pow(x,siguiente(i1)->clave);
-        sumando += valor;}
-    return sumando;
-}
-
-Lista calcularRango(Lista list, double x, double y, double sumando){
-    Lista listaRango = l_crear();
-    double i = x;
-    int c = 0;
-    while (i<=y && !l_es_llena(listaRango)){
-        c+=1;
-        float resultado = evaluarPolinomio(list, i);
-        float* valor = malloc(sizeof(float));
-        *valor = resultado;
-        TipoElemento elem = te_crear_con_valor(c, valor);
-        l_agregar(listaRango, elem);
-        i+=sumando;
-    }
-    return listaRango;
-}
-
-Lista hacerPolinomio(Lista list){
-//void hacerPolinomio(Lista list){
-   int cantidad;
-    printf("Ingrese la cantidad de elementos a cargar en las listas\n-> ");
-    cantidad = ingresoDatosNumericosNoCero("Ingrese un numero valido!");
-    printf("\nCargamos lista\n");
-    list = l_cargar_con_valores(cantidad, list);
-    return list;
-}
-
 
 /*-----------------------------------------------------------
   >>>>>>>>>>>>>>>>>>>>>>     LISTAS    <<<<<<<<<<<<<<<<<<<<<
