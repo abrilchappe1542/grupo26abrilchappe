@@ -76,7 +76,14 @@ int leerEnteroPositivo(const char* mensaje);
 
 void reemplazarComasPorPuntos(char *c);
 
-void mostrarComparacion(int respuesta); 
+void mostrarComparacion(int respuesta);
+
+float evaluarPolinomio(Lista list, float x ); //Recibe una lista (clave: exponente y valor: coef del polinomio) y un valor de x para evaluarlo en ese punto; retorna el valor del polinomio en ese punto
+
+Lista calcularRango(Lista list, double x, double y, double sumando);
+
+Lista hacerPolinomio(Lista list); 
+
 
 
 
@@ -85,6 +92,11 @@ void mostrarComparacion(int respuesta);
 -----------------------------------------------------------*/
 
 Lista l_cargar(int nodos); // Carga por teclado la lista según la cantidad recibida.
+
+Lista l_cargar_con_valores(int nodos, Lista list); // Carga por teclado la lista según la cantidad recibida, pero además de la clave, carga un valor float para cada nodo.
+
+
+
 
 #endif
 
