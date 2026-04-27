@@ -78,12 +78,6 @@ void reemplazarComasPorPuntos(char *c);
 
 void mostrarComparacion(int respuesta);
 
-float evaluarPolinomio(Lista list, float x ); //Recibe una lista (clave: exponente y valor: coef del polinomio) y un valor de x para evaluarlo en ese punto; retorna el valor del polinomio en ese punto
-
-Lista calcularRango(Lista list, double x, double y, double sumando);
-
-Lista hacerPolinomio(Lista list); 
-
 
 
 
