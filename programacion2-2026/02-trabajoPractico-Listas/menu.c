@@ -189,7 +189,7 @@ void menuPunto5(){
         seguir = preguntarContinuar();
         system("cls");  
         }
-
+}
 
 void menuPunto6(){
     Lista lista1, lista2;
