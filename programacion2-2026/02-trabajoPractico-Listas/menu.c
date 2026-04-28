@@ -166,9 +166,9 @@ void menuPunto4(){
 
 void menuPunto5(){
     //Lista list1;
-    Lista list1 = l_crear();
     int seguir = 1;
     while(seguir == 1){
+        Lista list1 = l_crear();
         hacerPolinomio(list1);
         //l_mostrar(list1);
         printf("Ingrese el rango para evaluar el polinomio:\n");
