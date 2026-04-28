@@ -154,7 +154,7 @@ int CompararListas(Lista l1, Lista l2){
 void hacerPolinomio(Lista list){
    int cantidad;
     printf("Ingrese la cantidad de elementos a cargar en las listas\n-> ");
-    cantidad = ingresoDatosNumericosNoCero("Ingrese un numero valido!");
+    cantidad = ingresoDatosNumericosNoCero("Ingrese un numero valido!\n");
     printf("\nCargamos lista\n");
     int num, guia = 0;
     float * coeficiente;
@@ -162,10 +162,10 @@ void hacerPolinomio(Lista list){
 
     while(!l_es_llena(list) && guia<cantidad){
         printf("  | EXPONENTES %d | ->\t", guia+1);
-        num = ingresoDatosNumericosPositivos("Ingrese un exponente entero positivo!");
+        num = ingresoDatosNumericosPositivos("Ingrese un exponente entero positivo!\n");
         coeficiente = malloc(sizeof(float));
         printf ("  | COEFICIENTES %d |->\t", guia+1);
-        * coeficiente = ingresoDatosFloat("Ingrese un coeficiente valido!");
+        * coeficiente = ingresoDatosFloat("Ingrese un coeficiente valido!\n");
         nodo = te_crear_con_valor(num, coeficiente);
         l_agregar(list, nodo);
         guia++;
