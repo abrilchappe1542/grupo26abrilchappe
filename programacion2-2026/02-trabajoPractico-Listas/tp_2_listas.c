@@ -162,9 +162,9 @@ void hacerPolinomio(Lista list){
 
     while(!l_es_llena(list) && guia<cantidad){
         printf("  | EXPONENTES %d | ->\t", guia+1);
-        num = ingresoDatosNumericos("Ingrese un exponente entero positivo!");
+        num = ingresoDatosNumericosPositivos("Ingrese un exponente entero positivo!");
         coeficiente = malloc(sizeof(float));
-        printf ("  | COEFICIENTES %d |\t", guia+1);
+        printf ("  | COEFICIENTES %d |->\t", guia+1);
         * coeficiente = ingresoDatosFloat("Ingrese un coeficiente valido!");
         nodo = te_crear_con_valor(num, coeficiente);
         l_agregar(list, nodo);
