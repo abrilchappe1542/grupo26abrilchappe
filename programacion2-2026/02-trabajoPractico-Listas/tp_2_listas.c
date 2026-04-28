@@ -170,6 +170,7 @@ void hacerPolinomio(Lista list){
         l_agregar(list, nodo);
         guia++;
     }
+}
 
 
 float evaluarPolinomio(Lista list, float x ){
@@ -200,3 +201,27 @@ Lista calcularRango(Lista list, double x, double y, double sumando){
     return listaRango;
 }
 
+bool esSublista(Lista l1, Lista l2){
+    Iterador iterr1 = iterador(l1);
+    Iterador iterr2 = iterador(l2);
+    TipoElemento nodo1;
+    TipoElemento nodo2;
+    bool encontrado = false;
+
+    while(hay_siguiente(iterr2)){
+        nodo2 = siguiente(iterr2);
+        iterr1 = iterador(l1);
+        encontrado = false;
+        while(hay_siguiente(iterr1)){
+            nodo1 = siguiente(iterr1);
+            if(nodo2->clave == nodo1->clave){
+                encontrado = true;
+                break;
+            }
+        }
+        if(encontrado == false){
+            return false;
+        }
+    }
+    return encontrado;
+}
