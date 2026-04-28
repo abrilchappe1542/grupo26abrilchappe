@@ -117,16 +117,17 @@ void menuPunto3(){
 
 
         printf("\nCargamos lista 1:\n");
-        list1 = l_cargar(cantidad);
+        list1 = l_cargar_sin_ceros(cantidad, 1);
+        fflush(stdin);
         printf("\nCargamos lista 2:\n");
         list2 = l_cargar(cantidad);
-
+        
         printf("\nLISTA 1: \n");
         l_mostrar(list1);
         printf("\nLISTA 2: \n");
         l_mostrar(list2);
 
-        printf("|\n|\n|__RESULTADOS DE LOS ANALISIS (si son multiplos, si hay un escalar y cual):\n");
+        printf("|\n|\n|\nRESULTADOS DE LOS ANALISIS (si son multiplos, si hay un escalar y cual):\n");
         resp = multiplo(list1, list2);
         printf(resp.esMultiplo? "\nLista 2 es multiplo de Lista 1":"\nLista 2 NO es multiplo de Lista 1");
         printf(resp.escalar? "\nExiste un numero escalar: %d":"\nNO existe un numero escalar", resp.numEscalar);
