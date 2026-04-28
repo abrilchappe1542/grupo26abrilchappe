@@ -64,6 +64,9 @@ double ingresoDatosFloat(char *mensaje_error); // Facilita el ingreso y la valid
 double ingresoDatosFloatPositivos(char *mensaje_error); // Facilita el ingreso y la validacion de valores float positivos >= 0.
 
 void ingresarpalindromo(char original[], char limpia[]);
+
+Lista l_cargar_sin_ceros(int cantidad, int numero_lista);
+
 /* >>>>> HERRAMIENTAS <<<<< */
 
 char* sacarEspacios(char* ); // Elimina los espacios de un string.
