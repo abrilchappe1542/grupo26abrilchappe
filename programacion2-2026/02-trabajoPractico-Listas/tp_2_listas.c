@@ -95,35 +95,23 @@ ResultadoValorMinimo valorMinimo(Lista l1, Lista l2)
 
 
 //ejercicio 3:
-void menuPunto3(){
-    ResultadosMul resp;
-    Lista list1, list2;
-    int cantidad, seguir = 1;
-
-    while(seguir == 1){
-        printf("Ingrese la cantidad de elementos a ingresar en las listas\n-> ");
-        cantidad= ingresoDatosNumericosNoCero("Ingrese un numero valido!");
-
-
-        printf("\nCargamos lista 1:\n");
-        list1 = l_cargar_sin_ceros(cantidad, 1);
-        fflush(stdin);
-        printf("\nCargamos lista 2:\n");
-        list2 = l_cargar(cantidad);
-        
-        printf("\nLISTA 1: \n");
-        l_mostrar(list1);
-        printf("\nLISTA 2: \n");
-        l_mostrar(list2);
-
-        printf("|\n|\n|\nRESULTADOS DE LOS ANALISIS (si son multiplos, si hay un escalar y cual):\n");
-        resp = multiplo(list1, list2);
-        printf(resp.esMultiplo? "\nLista 2 es multiplo de Lista 1":"\nLista 2 NO es multiplo de Lista 1");
-        printf(resp.escalar? "\nExiste un numero escalar: %d":"\nNO existe un numero escalar", resp.numEscalar);
-
-        seguir = preguntarContinuar();
-        system("cls");
+ResultadosMul multiplo(Lista l1, Lista l2){
+    TipoElemento nodo1 = l_recuperar(l1,1), nodo2 = l_recuperar(l2,1);
+    int x=nodo2->clave/nodo1->clave;
+    ResultadosMul multiplo_resultado = { .esMultiplo = true, .escalar = true, .numEscalar = x };
+    Iterador ite =iterador(l1), ite2 =iterador(l2);
+    while(hay_siguiente(ite)){
+        nodo1=siguiente(ite);
+        nodo2=siguiente(ite2);
+        if ((nodo2->clave%nodo1->clave) != 0){
+            multiplo_resultado.esMultiplo = false, multiplo_resultado.escalar = false, multiplo_resultado.numEscalar = 0;
+            return multiplo_resultado;
+        }
+        if (nodo2->clave/nodo1->clave != x){
+            multiplo_resultado.escalar = false;
+        }
     }
+    return multiplo_resultado;
 }
 
 //ejercicio 4:
