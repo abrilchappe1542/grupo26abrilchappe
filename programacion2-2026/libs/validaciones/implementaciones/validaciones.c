@@ -548,3 +548,30 @@ Lista l_cargar_con_valores(int cantidad, Lista list){//Carga una lista con clave
 
     return list;
 }
+
+Lista l_cargar_sin_ceros(int cantidad, int numero_lista) {
+    Lista l = l_crear(); 
+    int valor;
+    TipoElemento te; 
+    
+    for (int i = 0; i < cantidad; i++) {
+        int numero_valido = 0;
+        
+        do {
+            // Le mostramos al usuario exactamente en qué posición está
+            printf("  Valor %d -> ", i + 1);
+            scanf("%d", &valor);
+            
+            if (valor == 0) {
+                printf("No se puede ingresar 0 porque se rompe el programa. Intente con otro numero para esa posicion.\n");
+            } else {
+                numero_valido = 1; 
+            }
+            
+        } while (numero_valido == 0);
+        
+        l_insertar(l, te_crear(valor), i + 1); 
+    }
+    
+    return l;
+}
