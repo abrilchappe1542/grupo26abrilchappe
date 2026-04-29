@@ -18,7 +18,7 @@ void menuPunto2() {
     char opcion;
 
     while (seguir == 1) {
-        // --- 1. CARGA DE LISTAS (Variables y Dinámicas) ---
+       
         printf("=== CARGA DE DATOS PARA EL EJERCICIO 2 ===\n");
         printf("Ingrese la cantidad de elementos para la lista 1: ");
         cantidad = ingresoDatosNumericosNoCero("Ingresa un numero valido!");
@@ -33,7 +33,6 @@ void menuPunto2() {
         printf("\nLISTA 1: "); l_mostrar(l1);
         printf("\nLISTA 2: "); l_mostrar(l2);
 
-        // --- 2. MENÚ DE OPCIONES DEL PUNTO 2 ---
         printf("\n=== OPCIONES DEL EJERCICIO 2 ===\n");
         printf("A. Elementos de L1 que no estan en L2\n");
         printf("B. Elementos de L2 que no estan en L1\n");
@@ -43,39 +42,37 @@ void menuPunto2() {
         printf("\nElija una opcion (A, B, C, D o E): ");
         fflush(stdin);         
         scanf(" %c", &opcion);
-        // Convertimos a mayúscula por si el usuario ingresa minúsculas
+
         if(opcion >= 'a' && opcion <= 'z') opcion = opcion - 32; 
 
-        // --- 3. SWITCH DE EJECUCIÓN ---
         switch (opcion) {
             case 'A':
                 printf("\n2.A Elementos de L1 que no estan en L2: \n");
                 lresA = verElementosQueNoSeRepiten(l1, l2);
-                if (l_es_vacia(lresA)) { //
+                if (l_es_vacia(lresA)) { 
                     printf("La lista esta vacia, todos los valores de L1 estan en L2\n");
                 } else {
-                    l_mostrar(lresA); //
+                    l_mostrar(lresA); 
                 }
                 break;
 
             case 'B':
                 printf("\n2.B Elementos de L2 que no estan en L1: \n");
-                // Excelente reutilización de la función invirtiendo los parámetros
                 lresB = verElementosQueNoSeRepiten(l2, l1); 
-                if (l_es_vacia(lresB)) { //
+                if (l_es_vacia(lresB)) { 
                     printf("La lista esta vacia, todos los valores de L2 estan en L1\n");
                 } else {
-                    l_mostrar(lresB); //
+                    l_mostrar(lresB); 
                 }
                 break;
 
             case 'C':
                 printf("\n2.C Elementos comunes en ambas listas: \n");
                 lresC = verElementosRepetidos(l1, l2);
-                if (l_es_vacia(lresC)) { //
+                if (l_es_vacia(lresC)) { 
                     printf("No hay elementos comunes entre las listas.\n");
                 } else {
-                    l_mostrar(lresC); //
+                    l_mostrar(lresC);
                 }
                 break;
 
@@ -97,8 +94,8 @@ void menuPunto2() {
                 break;
         }
 
-        // --- 4. CONTROL DE REINICIO ---
         printf("\n------------------------------------------------\n");
+        fflush(stdin);
         seguir = preguntarContinuar();
         system("cls");
     }
