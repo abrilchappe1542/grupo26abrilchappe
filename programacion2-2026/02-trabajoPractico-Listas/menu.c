@@ -155,7 +155,7 @@ void menuPunto4(){
 
         printf("|\n|\n|__RESULTADO DE LA COMPARACION:\n");
         CompararListas(list1, list2);
-        printf("La complejidad algoritmica de la solucion es lineal, ya que utiliza un solo ciclo while para recorrer ambas listas simultaneamente en una sola pasada");
+        printf("La complejidad algoritmica de la solucion es lineal O(n), ya que utiliza un solo ciclo while para recorrer ambas listas simultaneamente en una sola pasada");
         seguir = preguntarContinuar();
         system("cls");
     }
