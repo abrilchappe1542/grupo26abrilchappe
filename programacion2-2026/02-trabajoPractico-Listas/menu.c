@@ -204,9 +204,7 @@ void menuPunto6(){
         
         printf("Ingrese la cantidad de elementos a cargar en la lista 2\n-> ");
         cantidad_elem2 = ingresoDatosNumericosNoCero("Ingrese un numero valido!");
-        printf("\nCargar lista 2: \n");
-        lista2 = l_cargar(cantidad_elem2);
-
+        
         if (cantidad_elem1 < cantidad_elem2)
         {
             printf("La lista 1 no puede ser mas chica que la lista 2\nVolve a ingresar...\n");
@@ -214,6 +212,11 @@ void menuPunto6(){
             system("cls");
             continue; 
         }
+        
+        printf("\nCargar lista 2: \n");
+        lista2 = l_cargar(cantidad_elem2);
+
+        
         
         printf("\nLISTA 1 \n");
         l_mostrar(lista1);
