@@ -231,7 +231,7 @@ void menuPunto6(){
         else{
             printf("La lista 2 NO es sublista de la lista 1\n");
         }
-        printf("La complejidad algoritmica de la solucion es cuadratica");
+        printf("La complejidad algoritmica de la solucion es O(n^2) porque la funcion utiliza dos bucles while anidados los cuales dependen del tamaño del problema");
 
         seguir = preguntarContinuar();
         system("cls");
