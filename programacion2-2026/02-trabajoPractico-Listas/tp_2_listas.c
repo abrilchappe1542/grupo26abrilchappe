@@ -141,12 +141,15 @@ int CompararListas(Lista l1, Lista l2){
     }
     if (contador_l1 > contador_l2){
         printf("L1 > L2\n");
+        return 1;
     } 
     else if (contador_l2 > contador_l1){     //resultados
         printf("L1 < L2\n");
+        return 2;
     } 
     else if (contador_l1 == contador_l2){
         printf("L1 = L2\n");
+        return 0;
     }
 }
 
