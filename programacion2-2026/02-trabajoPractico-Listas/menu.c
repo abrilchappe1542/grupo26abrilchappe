@@ -137,7 +137,7 @@ void menuPunto3(){
 //menu punto 4:
 void menuPunto4(){
     Lista list1, list2;
-    int cantidad, seguir = 1;
+    int cantidad, seguir = 1, resultado;
 
     while(seguir == 1){
         printf("Ingrese la cantidad de elementos a cargar en las listas\n-> ");
@@ -154,7 +154,8 @@ void menuPunto4(){
         l_mostrar(list2);
 
         printf("|\n|\n|__RESULTADO DE LA COMPARACION:\n");
-        CompararListas(list1, list2);
+        resultado = CompararListas(list1, list2);
+        mostrarComparacion(resultado);
         printf("La complejidad algoritmica de la solucion es lineal O(n), ya que utiliza un solo ciclo while para recorrer ambas listas simultaneamente en una sola pasada");
         seguir = preguntarContinuar();
         system("cls");
