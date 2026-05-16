@@ -1,8 +1,14 @@
 #ifndef TP_PILAS_H
 #define TP_PILAS_H
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include <math.h>
 #include <stdbool.h>
-#include "../libs/pilas/pilas.h"
+#include "../libs/pilas/headers/pilas.h"
+#include "../libs/validaciones/headers/validaciones.h"
+#include "../libs/tipoElemento/headers/tipo_elemento.h"
 
 /**
     2.	Dada una pila cargada con valores al azar realizar los siguientes ejercicios:

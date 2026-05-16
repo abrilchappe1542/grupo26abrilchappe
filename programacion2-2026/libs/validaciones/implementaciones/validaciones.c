@@ -575,3 +575,39 @@ Lista l_cargar_sin_ceros(int cantidad, int numero_lista) {
     
     return l;
 }
+
+
+/*-----------------------------------------------------------
+  >>>>>>>>>>>>>>>>>>>>>>     PILAS    <<<<<<<<<<<<<<<<<<<<<
+-----------------------------------------------------------*/
+
+Pila p_cargar(int cantidad){
+    Pila pilon = p_crear();
+    int num, guia = 0;
+    TipoElemento nodo;
+    if(cantidad == 0){
+        return pilon;
+    }
+    while(!p_es_llena(pilon) && guia<cantidad){
+        printf("  | CLAVE NODO %d | ->\t", guia+1);
+        num = ingresoDatosNumericos("Ingrese una clave valida!");
+        nodo = te_crear(num);
+        p_apilar(pilon, nodo);
+        guia++;
+    }
+
+    return pilon;
+}
+
+Pila p_intercambio(Pila auxiliar, Pila p_original){
+    TipoElemento nodo,nodo1;
+    if(p_es_vacia(auxiliar)){
+        return NULL;
+    }
+    while(p_es_vacia(auxiliar)!=true){
+        nodo=p_desapilar(auxiliar);
+        nodo1=te_crear(nodo->clave);
+        p_apilar(p_original,nodo1);
+    }
+    return p_original;
+}
