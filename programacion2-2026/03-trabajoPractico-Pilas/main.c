@@ -12,9 +12,27 @@ void main() {
         system("cls");
 
         switch (opcion) {
+            //case 2:
+                //menuPunto2();
+                //break;
+            //case 3:
+                //menuPunto3();
+                //break;
+            //case 4:
+              //  menuPunto4();
+                //break;
+            //case 5:
+              //  menuPunto5();
+                //break;
+            case 6:
+                menuPunto6();
+                break;
             case 7:
                 menuPunto7();
                 break;
+            //case 8:
+                //menuPunto8();
+                //break;
             case 0:
                 printf("Saliendo...\n");
                 system("pause");
