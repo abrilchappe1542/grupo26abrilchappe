@@ -1,5 +1,13 @@
 #include "menu.h"
-
+#include "..\libs\pilas\headers\pilas.h"
+#include "..\libs\tipoElemento\headers\tipo_elemento.h"
+#include "..\libs\validaciones\headers\validaciones.h"
+#include "tp_3_pilas.h"
+#include <ctype.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
 void menuPunto6(){
     Pila p;
 
@@ -21,11 +29,8 @@ void menuPunto6(){
     }
 
     int valor = ingresoDatosNumericos("Ese valor no es posible ingresar. Porfavor ingresa un numero valido");
-    Pila pres = p_ej6_eliminarclaveRecursivo(p,valor);
-
-    printf("Que queres ejecutar?\n->(1) Iterativo\n(2)-> Recursivon\n");
-    int Ite_o_Rec = ingresoIntLimitado("Ese valor no es posible, ingresa un valor valido (1. Ite, 2. Rec)",1,2);
-
+    Pila pres = p_ej6_eliminarclave(p,valor);
+    
     printf("La pila sin el valor %d quedo asi:\n|\n|",valor);
     p_mostrar(p);
 
@@ -35,7 +40,6 @@ void menuPunto6(){
     system("cls");
     }
 }
-
 // EJERCICIO 7
 void menuPunto7(){
     Pila pilon1, pilon2, p_resultado;
