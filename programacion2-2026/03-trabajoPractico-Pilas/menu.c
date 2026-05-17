@@ -69,3 +69,41 @@ void menuPunto7(){
         system("cls");
     }
 }
+
+// EJERCICIO 7
+void menuPunto8(){
+    Pila p, pres;
+    bool seguir = 1;
+    int cantidad;
+    while (seguir == 1)
+    {
+        printf("Ingrese la cantidad de elementos a cargar en las pilas (max 10)\n-> ");
+        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, 10);
+
+        if (cantidad == 0)
+        {
+            printf("La pila ingresada esta vacia, no se ejecutara la funcion.");
+        }
+        
+        else
+        {
+            printf("\nCargamos pila 1:\n");
+            p = p_cargar(cantidad);
+    
+            printf("\nPILA 1: \n");
+            p_mostrar(p);
+    
+            pres = p_ej8_sacarrepetidos(p);
+            TipoElemento elem;
+            while (!p_es_vacia(pres))
+            {
+                elem = p_desapilar(pres);
+                printf("\nEl valor %d aparece %d veces.",elem->clave,elem->valor);        
+            }    
+        }
+        
+        seguir = preguntarContinuar();
+        system("cls");        
+    }
+    
+}
