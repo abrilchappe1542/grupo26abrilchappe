@@ -81,3 +81,48 @@ Pila p_ej7_elementoscomunes(Pila p1, Pila p2){
     p_intercambio(aux1,p1);
     return en_comun;//complejidad cuadratica
 }
+
+//8
+Pila p_ej8_sacarrepetidos(Pila p) {
+    Pila paux = p_crear();       
+    Pila pres = p_crear();       
+    Pila pres_aux = p_crear();   
+    TipoElemento elem, elem_res;
+    bool encontrado;
+
+    while (!p_es_vacia(p)) {
+        elem = p_desapilar(p);
+        p_apilar(paux, elem); 
+
+        encontrado = false;
+        
+        while (!p_es_vacia(pres)) {     //busco si en pres la clave ya existia
+            elem_res = p_desapilar(pres);
+            
+            if (elem_res->clave == elem->clave) {   //ya existia en pres
+                int cantidad_actual = (int)(long long)elem_res->valor;
+                p_apilar(pres_aux, te_crear_con_valor(elem->clave, (void*)(long long)(cantidad_actual + 1)));                
+                encontrado = true;
+                break; //corto la ejecucion porque aca no tengo que bsucar mas si hay repetidos
+            } 
+            else {
+                p_apilar(pres_aux, elem_res);       //en caso de que no sea igual, lo guardo en la aux
+            }
+        }
+    
+        // el numero no estaba repetido, lo guardo por primera vez
+        if (!encontrado) {
+            p_apilar(pres_aux, te_crear_con_valor(elem->clave, (void*)(long)1));
+        }
+
+        while (!p_es_vacia(pres_aux)) {
+            p_apilar(pres, p_desapilar(pres_aux));
+        }
+    }
+
+    while (!p_es_vacia(paux)) {
+        p_apilar(p, p_desapilar(paux));
+    }
+
+    return pres;
+}
