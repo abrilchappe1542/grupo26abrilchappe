@@ -31,13 +31,7 @@ Pila p_ej6_eliminarclave(Pila p, int clave){
         elem = p_desapilar(paux2);
         p_apilar(p,elem);
     }
-    while (!p_es_vacia(paux))
-    {
-        elem = p_desapilar(paux);
-        p_apilar(pauxres,elem);         //aca hago la lista para retornar en el mismo orden
-    }
-    return pauxres;
-    //agregar al main = printf("La complejidad algoritmica de la funcion iterativa como de la recursiva es de orden lineal O(n) teniendo en cuenta las tads ya que el tiempo de ejecucion se ajustara en base al tamanio del programa")
+    return paux;
 }
 
 //---------------------------------------------------DE FORMA RECURSIVA----------------------------------
