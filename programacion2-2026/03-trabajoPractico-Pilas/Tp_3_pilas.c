@@ -36,24 +36,25 @@ Pila p_ej6_eliminarclave(Pila p, int clave){
 
 //---------------------------------------------------DE FORMA RECURSIVA----------------------------------
 
-void p_ej6_eliminarclaveRecursivoAux(Pila p, int clave){
+void p_ej6_eliminarclaveRecursivoAux(Pila p, int clave,Pila pres){
     if (p_es_vacia(p))
     {
         return;
     }
     TipoElemento elem = p_desapilar(p);
-    p_ej6_eliminarclaveRecursivoAux(p,clave);
+    p_ej6_eliminarclaveRecursivoAux(p,clave,pres);
 
+    p_apilar(p,elem);
     if (elem->clave != clave)
     {
-        p_apilar(p,elem);
+        p_apilar(pres,elem); //reconstruyo la lista;
     }
-    p_apilar(p,elem); //reconstruyo la lista;
 }
 
 Pila p_ej6_eliminarclaveRecursivo(Pila p, int clave){
-    p_ej6_eliminarclaveRecursivoAux(p,clave);
-    return p;
+    Pila pres = p_crear();
+    p_ej6_eliminarclaveRecursivoAux(p,clave,pres);
+    return pres;
 }
 
 
