@@ -6,6 +6,7 @@
 //void menuPunto4();
 //void menuPunto5();
 void menuPunto6();
+Pila p_ej6_eliminarclaveRecursivo(Pila p, int clave);
 void menuPunto7();
 //void menuPunto8();
 #endif // MENU_H
