@@ -137,6 +137,46 @@ int p_ej2_cantidadelementos(Pila p){
 }
 
 
+//Punto 4
+char*  p_ej4_cambiarbase(int nrobasedecimal, int nrootrabase){
+    if (nrootrabase < 2 || nrootrabase > 16){return NULL;};
+    Pila R = p_crear();
+    int a;
+    if (nrobasedecimal <0){
+        a = (nrobasedecimal * -1);
+    }
+    else { a = nrobasedecimal;};
+    while (a >= nrootrabase){
+        int b = 0;
+        if (a%nrootrabase < 10){
+            b = a%nrootrabase + 48;} 
+        else {
+            b = a%nrootrabase + 55;
+        }
+        p_apilar(R, te_crear(b));
+        a = a/nrootrabase;
+    }
+    if (a < 10){
+        a = a + 48;} 
+    else {
+        a = a + 55;
+    }
+    p_apilar(R, te_crear(a));
+    char* texto = (char*)malloc(sizeof(char)*100);
+    int i = 0;
+    if (nrobasedecimal < 0){
+        texto[i] = '-';
+        i++;
+    }
+    while (!p_es_vacia(R)){
+        TipoElemento elem = p_desapilar(R);
+        texto[i] = elem->clave;
+        i++;
+    }
+    texto[i] = '\0';
+    return texto;
+}
+
 //punto 5
 Pila p_ej5_invertir(Pila p) {
     Pila p_res = p_crear();
