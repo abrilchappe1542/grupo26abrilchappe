@@ -8,6 +8,24 @@
 #include <string.h>
 #include <math.h>
 
+//punto 5
+Pila p_ej5_invertir(Pila p) {
+    Pila p_res = p_crear();
+    Pila p_aux = p_crear();
+    TipoElemento elem;
+
+    while (!p_es_vacia(p)) {
+        elem = p_desapilar(p);
+        p_apilar(p_res, elem);
+        p_apilar(p_aux, elem);
+    }
+
+    while (!p_es_vacia(p_aux)) {
+        p_apilar(p, p_desapilar(p_aux));
+    }
+
+    return p_res;
+}
 
 
 //punto 6
