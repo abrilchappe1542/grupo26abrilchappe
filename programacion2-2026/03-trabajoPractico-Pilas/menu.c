@@ -9,6 +9,26 @@
 #include <string.h>
 #include <math.h>
 
+//EJERCICIO 4
+void menuPunto4(){
+    int nrobasedecimal, nrootrabase;
+    char* resultado;
+    bool seguir = 1;
+
+    while(seguir == 1){
+        printf("Ingrese un numero en base decimal: \n-> ");
+        nrobasedecimal = ingresoDatosNumericos("\nEntrada erronea.\n-> ");
+        printf("Ingrese la base a la que desea convertir (entre 2 y 16): \n-> ");
+        nrootrabase = ingresoIntLimitado("\nEntrada erronea.\n-> ", 2, 16);
+        resultado = p_ej4_cambiarbase(nrobasedecimal, nrootrabase);
+        printf("El numero %d en base %d es: %s\n", nrobasedecimal, nrootrabase, resultado);
+        free(resultado);
+        printf("\n\nCOMPLEJIDAD ALGORITMICA:\nEsta funcion es de orden logaritmico: O(log(n)) donde n es el numero en base decimal.");
+        seguir = preguntarContinuar();
+        system("cls");
+    }
+}
+
 // EJERCICIO 5
 void menuPunto5() {
     Pila p, p_invertida;
