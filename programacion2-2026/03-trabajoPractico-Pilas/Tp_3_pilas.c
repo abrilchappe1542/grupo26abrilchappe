@@ -8,6 +8,135 @@
 #include <string.h>
 #include <math.h>
 
+
+//punto 2
+//pnt. A
+bool p_ej2_existeclave(Pila p, int clave){
+    Pila p_aux = p_crear();
+    bool existe_clave = false;
+    while(!p_es_vacia(p) && !existe_clave){  //corta si se vacia la pila o si se encuentra la clave, para no recorrer de mas
+        TipoElemento elem = p_desapilar(p);
+        if (elem->clave == clave){
+            existe_clave = true;
+        }
+        p_apilar(p_aux, elem);
+    }
+    while(!p_es_vacia(p_aux)){
+        TipoElemento elem1 = p_desapilar(p_aux);
+        p_apilar(p, elem1);
+    }
+
+    return existe_clave;
+}
+//pnt. B
+Pila p_ej2_colocarelemento(Pila p, int posicionordinal, TipoElemento x){
+    Pila p_aux = p_crear();
+    int pos_actual = 1;
+    while(!p_es_vacia(p) && pos_actual < posicionordinal){
+        TipoElemento elem = p_desapilar(p);
+        p_apilar(p_aux, elem);
+        pos_actual++;
+    }
+    if(pos_actual == posicionordinal){
+        p_apilar(p, x);
+    }
+
+    while(!p_es_vacia(p_aux)){
+        TipoElemento elem1 = p_desapilar(p_aux);
+        p_apilar(p, elem1);
+    }
+    return p;
+}
+
+// pnt. C
+Pila p_ej2_eliminarclave(Pila p, int clave){
+    Pila p_aux = p_crear();
+    bool primera_ocurrencia = false;
+
+    while(!p_es_vacia(p) && (!primera_ocurrencia)){
+        TipoElemento elem = p_desapilar(p);
+        if((elem->clave == clave )){
+            primera_ocurrencia = true;   
+        } else{
+            p_apilar(p_aux, elem);
+        }
+    }
+    while(!p_es_vacia(p_aux)){
+        TipoElemento elem1 = p_desapilar(p_aux);
+        p_apilar(p, elem1);
+    }
+
+    return p;
+}
+
+//pnt. D
+
+Pila p_ej2_intercambiarposiciones(Pila p, int pos1, int pos2){
+    Pila p_aux = p_crear();
+    int pos_actual = 1;
+    TipoElemento e1 = NULL;
+    TipoElemento e2 = NULL;
+    while(!p_es_vacia(p)){
+        TipoElemento elem = p_desapilar(p);
+        if(pos_actual == pos1){
+            e1 = elem;
+        }
+        if (pos_actual == pos2){
+            e2 = elem;
+        }
+        p_apilar(p_aux, elem);  
+        pos_actual++;
+    }
+    pos_actual = pos_actual - 1;
+
+    while(!p_es_vacia(p_aux)){
+        TipoElemento elem1 = p_desapilar(p_aux);
+        if((pos_actual == pos1) && (e2!=NULL)){
+            p_apilar(p, e2);
+        }else if((pos_actual == pos2) && (e1!=NULL)){
+            p_apilar(p, e1);
+        }else{
+            p_apilar(p, elem1);
+        }
+        pos_actual--;
+    }
+    return p;
+}
+
+//pnt. E
+Pila p_ej2_duplicar(Pila p){
+    Pila p_aux = p_crear();
+    
+    while(!p_es_vacia(p)){
+        TipoElemento elem = p_desapilar(p);
+        p_apilar(p_aux, elem);
+    }
+    while(!p_es_vacia(p_aux)){
+        TipoElemento elem1 = p_desapilar(p_aux);
+        p_apilar(p, elem1);
+        TipoElemento clon = te_crear(elem1->clave); //creo otro tipo elemento con el mismo, para apilarlo duplicado
+        p_apilar(p, clon);
+    }
+    return p;
+}
+
+// pnt. F
+int p_ej2_cantidadelementos(Pila p){
+    Pila p_aux = p_crear();
+    int contador = 0;
+    while(!p_es_vacia(p)){
+        TipoElemento elem = p_desapilar(p);
+        contador++;
+        p_apilar(p_aux, elem);
+    }
+    while(!p_es_vacia(p_aux)){
+        TipoElemento elem1 = p_desapilar(p_aux);
+        p_apilar(p, elem1);
+    }
+    return contador;
+}
+
+
 //punto 5
 Pila p_ej5_invertir(Pila p) {
     Pila p_res = p_crear();

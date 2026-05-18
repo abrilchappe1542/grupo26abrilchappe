@@ -1,7 +1,7 @@
 #include "tp_pilas.h"
 #ifndef MENU_H
 #define MENU_H
-//void menuPunto2();
+void menuPunto2();
 //void menuPunto3();
 //void menuPunto4();
 void menuPunto5();

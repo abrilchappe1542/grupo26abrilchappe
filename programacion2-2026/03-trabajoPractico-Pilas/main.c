@@ -1,11 +1,14 @@
 #include "menu.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "../libs/validaciones/headers/validaciones.h"
 
 void main() {
     int opcion;
 
     do {
         printf("\n=== MENU PRINCIPAL ===\n");
-        // printf("2. Ejercicio 2 \n");
+        printf("2. Ejercicio 2 \n");
         // printf("3. Ejercicio 3 \n");
         // printf("4. Ejercicio 4 \n");
         printf("5. Ejercicio 5 \n");
@@ -18,8 +21,8 @@ void main() {
         system("cls");
 
         switch (opcion) {
-            //case 2:
-                //menuPunto2();
+            case 2:
+                menuPunto2();
                 //break;
             //case 3:
                 //menuPunto3();

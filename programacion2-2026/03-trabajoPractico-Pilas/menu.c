@@ -8,6 +8,103 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
+//EJERCICIO 2
+void menuPunto2(){
+    Pila p;
+    int cantidad;
+    int seguir = 1;
+    int opcion;
+    int clave, pos1, pos2, cant_elementos, valor;
+    bool existe;
+    TipoElemento x;
+
+    while(seguir==1){
+        printf("Ingrese la cantidad de elementos a cargar en la pila (max 10)\n-> ");
+        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, 10);
+        
+        printf("\nCargamos pila original:\n");
+        p = p_cargar(cantidad);
+        if (p_es_vacia(p)) {
+            printf("La pila esta vacia.\n");
+        } else {
+            printf("\nPILA ORIGINAL: \n");
+            p_mostrar(p);
+
+            printf("\n--- EJERCICIO 2 ---\n");
+            printf("1. (a) Buscar una clave\n");
+            printf("2. (b) Colocar elemento en posicion ordinal\n");
+            printf("3. (c) Eliminar primera ocurrencia de clave\n");
+            printf("4. (d) Intercambiar posiciones\n");
+            printf("5. (e) Duplicar contenido\n");
+            printf("6. (f) Contar elementos\n");
+            printf("\nElija que inciso probar (1-6): ");
+            
+            opcion = ingresoIntLimitado("Opcion invalida, ingrese entre 1 y 6", 1, 6);
+            printf("\n");
+
+            switch (opcion) {
+                case 1: // punto A
+                    printf("Ingrese la clave a buscar: ");
+                    clave = ingresoDatosNumericos("Por favor ingresa un numero valido");
+                    existe = p_ej2_existeclave(p, clave);
+                    if (existe) {
+                        printf("-> RESULTADO: La clave %d SI existe en la pila.\n", clave);
+                    } else {
+                        printf("-> RESULTADO: La clave %d NO existe en la pila.\n", clave);
+                    }
+                    break;
+
+                case 2: // punto B
+                    printf("Ingrese la posicion ordinal donde insertar: ");
+                    pos1 = ingresoDatosNumericos("Numero invalido");
+                    printf("Ingrese el valor numérico del nuevo elemento: ");
+                    valor = ingresoDatosNumericos("Numero invalido");
+                    
+                    x = te_crear(valor); 
+                    p = p_ej2_colocarelemento(p, pos1, x);
+                    printf("-> RESULTADO DE LA INSERCION:\n");
+                    p_mostrar(p);
+                    break;
+
+                case 3: // punto C
+                    printf("Ingrese la clave de la cual eliminar su primera ocurrencia: ");
+                    clave = ingresoDatosNumericos("Numero invalido");
+                    p = p_ej2_eliminarclave(p, clave);
+                    printf("-> RESULTADO DE LA ELIMINACION:\n");
+                    p_mostrar(p);
+                    break;
+
+                case 4: // punto D
+                    printf("Ingrese la primera posicion ordinal: ");
+                    pos1 = ingresoDatosNumericos("Numero invalido");
+                    printf("Ingrese la segunda posicion ordinal a intercambiar: ");
+                    pos2 = ingresoDatosNumericos("Numero invalido");
+                    p = p_ej2_intercambiarposiciones(p, pos1, pos2);
+                    printf("-> RESULTADO DEL INTERCAMBIO:\n");
+                    p_mostrar(p);
+                    break;
+
+                case 5: // punto E
+                    p = p_ej2_duplicar(p);
+                    printf("-> RESULTADO DE LA DUPLICACION:\n");
+                    p_mostrar(p);
+                    break;
+
+                case 6: // punto F
+                    cant_elementos = p_ej2_cantidadelementos(p);
+                    printf("-> RESULTADO: La pila contiene %d elementos en total.\n", cant_elementos);
+                    break;
+            }
+
+            // Verificacion final que hacen tus compañeros
+            printf("\nVERIFICACION DE PILA ORIGINAL (Si no se modifico, debe estar igual): \n");
+            p_mostrar(p);
+        }
+
+        seguir = preguntarContinuar();
+        system("cls");
+    }
+}
 
 // EJERCICIO 5
 void menuPunto5() {
@@ -106,7 +203,7 @@ void menuPunto7(){
     }
 }
 
-// EJERCICIO 7
+// EJERCICIO 8
 void menuPunto8(){
     Pila p, pres;
     bool seguir = 1;
