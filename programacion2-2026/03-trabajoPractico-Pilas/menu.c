@@ -8,6 +8,42 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
+
+// EJERCICIO 5
+void menuPunto5() {
+    Pila p, p_invertida;
+    int cantidad;
+    int seguir = 1;
+
+    while (seguir == 1) {
+        printf("Ingrese la cantidad de elementos a cargar en la pila (max 10)\n-> ");
+        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, 10);
+        
+        printf("\nCargamos pila original:\n");
+        p = p_cargar(cantidad);
+        
+        if (p_es_vacia(p)) {
+            printf("La pila esta vacia.\n");
+        } else {
+            printf("\nPILA ORIGINAL: \n");
+            p_mostrar(p);
+
+            p_invertida = p_ej5_invertir(p);
+
+            printf("\nPILA INVERTIDA RESULTANTE: \n");
+            p_mostrar(p_invertida);
+
+            printf("\nVERIFICACION DE PILA ORIGINAL (No debe haberse perdido): \n");
+            p_mostrar(p);
+
+            printf("\nCOMPLEJIDAD ALGORITMICA:\nLa funcion es de orden lineal O(n) teniendo en cuenta las TADS. \nSe realizan dos ciclos while que recorren los n elementos de forma secuencial.\n");
+        }
+        
+        seguir = preguntarContinuar();
+        system("cls");
+    }
+}
+
 void menuPunto6(){
     Pila p;
 
