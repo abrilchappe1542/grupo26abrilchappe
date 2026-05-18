@@ -57,7 +57,7 @@ void menuPunto2(){
                 case 2: // punto B
                     printf("Ingrese la posicion ordinal donde insertar: ");
                     pos1 = ingresoDatosNumericos("Numero invalido");
-                    printf("Ingrese el valor numérico del nuevo elemento: ");
+                    printf("Ingrese el valor numerico del nuevo elemento: ");
                     valor = ingresoDatosNumericos("Numero invalido");
                     
                     x = te_crear(valor); 
@@ -275,7 +275,7 @@ void menuPunto8(){
                 printf("\nEl valor %d aparece %d veces.",elem->clave,elem->valor);        
             }    
         }
-        
+        printf("\nLa complejidad algoritmica de este ejercicio es de orden cuadratico O(n*n) ya que con un ciclo recorro la pila original y con otro ciclo anidado recorro la segunda pila donde voy viendo si el numero ya estaba contado");
         seguir = preguntarContinuar();
         system("cls");        
     }
