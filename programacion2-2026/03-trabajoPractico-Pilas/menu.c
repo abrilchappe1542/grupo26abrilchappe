@@ -106,6 +106,40 @@ void menuPunto2(){
     }
 }
 
+//EJERCICIO 3
+void menuPunto3(){
+    Pila p1 = p_crear();
+    Pila p2 = p_crear();
+    int cantidad_elementos_p1_y_p2;
+    int seguir = 1;
+    bool resultado;
+    while(seguir == 1){
+        printf("Ingrese la cantidad de elementos a cargar en la Pila 1 y Pila 2(max 10) \n");
+        cantidad_elementos_p1_y_p2 = ingresoIntLimitado("Ingrese un valor adecuado!", 0, 10);
+        
+        printf("\nCargamos Pila 1:\n");
+        p1 = p_cargar(cantidad_elementos_p1_y_p2);
+        printf("\nCargamos Pila 2:\n");
+        p2 = p_cargar(cantidad_elementos_p1_y_p2);
+
+        printf("\nPILA 1: \n");
+        p_mostrar(p1);
+        printf("\nPILA 2: \n");
+        p_mostrar(p2);
+
+        resultado = p_ej3_iguales(p1, p2);
+        if(resultado == true){
+            printf("\nLas dos pilas son iguales\n");
+        }
+        else{
+            printf("\nLas dos pilas no son iguales\n");
+        }
+        printf("\n\nCOMPLEJIDAD ALGORITMICA:\nEsta funcion es de orden lineal O(n), ya que posee un solo ciclo while el cual depende del tamanio n del problema.\n");
+        seguir = preguntarContinuar();
+        system("cls");
+    }
+}
+
 //EJERCICIO 4
 void menuPunto4(){
     int nrobasedecimal, nrootrabase;
