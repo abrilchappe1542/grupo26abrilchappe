@@ -31,76 +31,114 @@ bool p_ej2_existeclave(Pila p, int clave){
 //pnt. B
 Pila p_ej2_colocarelemento(Pila p, int posicionordinal, TipoElemento x){
     Pila p_aux = p_crear();
-    int pos_actual = 1;
-    while(!p_es_vacia(p) && pos_actual < posicionordinal){
+    Pila p_res = p_crear();
+    while(!p_es_vacia(p)){
         TipoElemento elem = p_desapilar(p);
         p_apilar(p_aux, elem);
-        pos_actual++;
-    }
-    if(pos_actual == posicionordinal){
-        p_apilar(p, x);
     }
 
     while(!p_es_vacia(p_aux)){
         TipoElemento elem1 = p_desapilar(p_aux);
         p_apilar(p, elem1);
+        TipoElemento clon = te_crear(elem1->clave); 
+        p_apilar(p_res, clon); 
     }
-    return p;
+
+    Pila p_aux_insercion = p_crear();
+    int pos_actual = 1;
+    
+    while(!p_es_vacia(p_res) && pos_actual < posicionordinal){
+        TipoElemento elem_res = p_desapilar(p_res);
+        p_apilar(p_aux_insercion, elem_res);
+        pos_actual++;
+    }
+    
+    if(pos_actual == posicionordinal){
+        p_apilar(p_res, x); 
+    }
+
+    while(!p_es_vacia(p_aux_insercion)){
+        TipoElemento elem_res = p_desapilar(p_aux_insercion);
+        p_apilar(p_res, elem_res);
+    }
+
+    return p_res;
 }
 
 // pnt. C
 Pila p_ej2_eliminarclave(Pila p, int clave){
     Pila p_aux = p_crear();
+    Pila p_res = p_crear();
     bool primera_ocurrencia = false;
 
-    while(!p_es_vacia(p) && (!primera_ocurrencia)){
+    while(!p_es_vacia(p)){
         TipoElemento elem = p_desapilar(p);
-        if((elem->clave == clave )){
-            primera_ocurrencia = true;   
-        } else{
-            p_apilar(p_aux, elem);
-        }
+        p_apilar(p_aux, elem);
     }
+
     while(!p_es_vacia(p_aux)){
         TipoElemento elem1 = p_desapilar(p_aux);
         p_apilar(p, elem1);
+
+        if(elem1->clave == clave && !primera_ocurrencia) {
+            primera_ocurrencia = true; 
+        } else {
+            TipoElemento clon = te_crear(elem1->clave);
+            p_apilar(p_res, clon);
+        }
     }
 
-    return p;
+    if((p_es_vacia(p_aux)) && (primera_ocurrencia == false)){
+        printf("\nNo se encontro la Clave a eliminar!\n");
+    }
+    
+    return p_res;
 }
 
 //pnt. D
 
 Pila p_ej2_intercambiarposiciones(Pila p, int pos1, int pos2){
     Pila p_aux = p_crear();
+    Pila p_res = p_crear();
+    while(!p_es_vacia(p)){
+        TipoElemento elem = p_desapilar(p);
+        p_apilar(p_aux, elem);
+    }
+
+    while(!p_es_vacia(p_aux)){
+        TipoElemento elem1 = p_desapilar(p_aux);
+        p_apilar(p, elem1); 
+        TipoElemento clon = te_crear(elem1->clave); 
+        p_apilar(p_res, clon); 
+    }
+    Pila p_aux_int = p_crear(); 
     int pos_actual = 1;
     TipoElemento e1 = NULL;
     TipoElemento e2 = NULL;
-    while(!p_es_vacia(p)){
-        TipoElemento elem = p_desapilar(p);
+    while(!p_es_vacia(p_res)){
+        TipoElemento elem = p_desapilar(p_res);
         if(pos_actual == pos1){
             e1 = elem;
         }
         if (pos_actual == pos2){
             e2 = elem;
         }
-        p_apilar(p_aux, elem);  
+        p_apilar(p_aux_int, elem);  
         pos_actual++;
     }
-    pos_actual = pos_actual - 1;
-
-    while(!p_es_vacia(p_aux)){
-        TipoElemento elem1 = p_desapilar(p_aux);
-        if((pos_actual == pos1) && (e2!=NULL)){
-            p_apilar(p, e2);
-        }else if((pos_actual == pos2) && (e1!=NULL)){
-            p_apilar(p, e1);
-        }else{
-            p_apilar(p, elem1);
+    while(!p_es_vacia(p_aux_int)){
+        TipoElemento elem = p_desapilar(p_aux_int);
+        if(e1 != NULL && e2 != NULL){
+            if(elem == e1){
+                p_apilar(p_res, e2);
+            }else if(elem == e2){
+                p_apilar(p_res, e1);
+            }else{
+                p_apilar(p_res, elem);
+            }
         }
-        pos_actual--;
     }
-    return p;
+    return p_res;
 }
 
 //pnt. E

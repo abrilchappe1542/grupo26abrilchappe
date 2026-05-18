@@ -52,53 +52,69 @@ void menuPunto2(){
                     } else {
                         printf("-> RESULTADO: La clave %d NO existe en la pila.\n", clave);
                     }
+                    printf("\nVERIFICACION DE PILA ORIGINAL:\n");
+                    p_mostrar(p);
                     break;
 
                 case 2: // punto B
                     printf("Ingrese la posicion ordinal donde insertar: ");
                     pos1 = ingresoDatosNumericos("Numero invalido");
+
                     printf("Ingrese el valor numerico del nuevo elemento: ");
                     valor = ingresoDatosNumericos("Numero invalido");
                     
                     x = te_crear(valor); 
-                    p = p_ej2_colocarelemento(p, pos1, x);
+                    Pila p_resultado = p_ej2_colocarelemento(p, pos1, x);
                     printf("-> RESULTADO DE LA INSERCION:\n");
+                    p_mostrar(p_resultado);
+                    printf("\nVERIFICACION DE PILA ORIGINAL:\n");
                     p_mostrar(p);
                     break;
 
                 case 3: // punto C
                     printf("Ingrese la clave de la cual eliminar su primera ocurrencia: ");
                     clave = ingresoDatosNumericos("Numero invalido");
-                    p = p_ej2_eliminarclave(p, clave);
+
+                    Pila p_resultado = p_ej2_eliminarclave(p, clave);
+
                     printf("-> RESULTADO DE LA ELIMINACION:\n");
+                    p_mostrar(p_resultado);
+
+                    printf("\nVERIFICACION DE PILA ORIGINAL:\n");
                     p_mostrar(p);
                     break;
 
                 case 4: // punto D
                     printf("Ingrese la primera posicion ordinal: ");
                     pos1 = ingresoDatosNumericos("Numero invalido");
+
                     printf("Ingrese la segunda posicion ordinal a intercambiar: ");
                     pos2 = ingresoDatosNumericos("Numero invalido");
-                    p = p_ej2_intercambiarposiciones(p, pos1, pos2);
+
+                    p_resultado = p_ej2_intercambiarposiciones(p, pos1, pos2);
                     printf("-> RESULTADO DEL INTERCAMBIO:\n");
+                    p_mostrar(p_resultado);
+
+                    printf("\nVERIFICACION DE PILA ORIGINAL:\n");
                     p_mostrar(p);
                     break;
 
                 case 5: // punto E
-                    p = p_ej2_duplicar(p);
+                    p_resultado = p_ej2_duplicar(p);
                     printf("-> RESULTADO DE LA DUPLICACION:\n");
+                    p_mostrar(p_resultado);
+
+                    printf("\nVERIFICACION DE PILA ORIGINAL:\n");
                     p_mostrar(p);
                     break;
 
                 case 6: // punto F
                     cant_elementos = p_ej2_cantidadelementos(p);
                     printf("-> RESULTADO: La pila contiene %d elementos en total.\n", cant_elementos);
+                    printf("\nVERIFICACION DE PILA ORIGINAL:\n");
+                    p_mostrar(p);
                     break;
             }
-
-            // Verificacion final que hacen tus compañeros
-            printf("\nVERIFICACION DE PILA ORIGINAL (Si no se modifico, debe estar igual): \n");
-            p_mostrar(p);
         }
 
         seguir = preguntarContinuar();
