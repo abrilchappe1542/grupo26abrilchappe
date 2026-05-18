@@ -177,22 +177,43 @@ void menuPunto6(){
     
     if (p_es_vacia(p))
     {
-        printf("La pila esta vacia");
-        return;
+        printf("La pila esta vacia\n");
     }
 
-    int valor = ingresoDatosNumericos("Ese valor no es posible ingresar. Porfavor ingresa un numero valido");
-    Pila pres = p_ej6_eliminarclave(p,valor);
-    
-    printf("La pila sin el valor %d quedo asi:\n|\n|",valor);
-    p_mostrar(p);
+    else
+    {
+        Pila pres;
+        printf("\nLa pila original:\n");
+        p_mostrar(p);
+        printf("\nIngrese el valor que quiere eliminar: ");
+        int valor = ingresoDatosNumericos("Ese valor no es posible ingresar. Porfavor ingresa un numero valido");
+     
+        printf("\nIngrese si quiere el caso (1).Iterativo o (2).Recursivo:");
+        int ite_rec = ingresoIntLimitado("Valor invalido, 1. Iteartivo, 2. Recursivo\n",1,2);
 
-    printf("La complejidad algoritmica de la funcion iterativa como de la recursiva es de orden lineal O(n) teniendo en cuenta las tads ya que el tiempo de ejecucion \nse ajustara en base al tamanio del programa");
+        if (ite_rec == 1)
+        {
+            pres = p_ej6_eliminarclave(p,valor);
+            printf("\nDe forma iterativa\nLa pila sin el valor %d quedo asi:\n|\n|\n",valor);
+            p_mostrar(pres);
+        }
+        else
+        {
+            pres = p_ej6_eliminarclaveRecursivo(p,valor);
+            printf("\nDe forma recursiva\nLa pila sin el valor %d quedo asi:\n|\n|\n",valor);
+            p_mostrar(pres);
+        }
+
+    
+        printf("\nLa complejidad algoritmica de la funcion iterativa como de la recursiva es de orden lineal O(n) teniendo en cuenta las tads ya que el tiempo de ejecucion \nse ajustara en base al tamanio del programa");
+    }
+    
     
     seguir = preguntarContinuar();
     system("cls");
     }
 }
+
 // EJERCICIO 7
 void menuPunto7(){
     Pila pilon1, pilon2, p_resultado;
