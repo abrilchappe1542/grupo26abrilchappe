@@ -11,6 +11,7 @@
 //EJERCICIO 2
 void menuPunto2(){
     Pila p;
+    Pila p_resultado = p_crear();
     int cantidad;
     int seguir = 1;
     int opcion;
@@ -57,16 +58,20 @@ void menuPunto2(){
                     break;
 
                 case 2: // punto B
-                    printf("Ingrese la posicion ordinal donde insertar: ");
-                    pos1 = ingresoDatosNumericos("Numero invalido");
+                    int cantidad = p_ej2_cantidadelementos(p);
+                    
+                    printf("Ingrese la posicion ordinal donde insertar (de 1 a %d): ", cantidad + 1);
+                    pos1 = ingresoIntLimitado("Posicion fuera de rango. Intente de nuevo", 1, cantidad + 1);
 
                     printf("Ingrese el valor numerico del nuevo elemento: ");
                     valor = ingresoDatosNumericos("Numero invalido");
                     
                     x = te_crear(valor); 
-                    Pila p_resultado = p_ej2_colocarelemento(p, pos1, x);
+                    
+                    p_resultado = p_ej2_colocarelemento(p, pos1, x);
                     printf("-> RESULTADO DE LA INSERCION:\n");
                     p_mostrar(p_resultado);
+
                     printf("\nVERIFICACION DE PILA ORIGINAL:\n");
                     p_mostrar(p);
                     break;
@@ -75,7 +80,7 @@ void menuPunto2(){
                     printf("Ingrese la clave de la cual eliminar su primera ocurrencia: ");
                     clave = ingresoDatosNumericos("Numero invalido");
 
-                    Pila p_resultado = p_ej2_eliminarclave(p, clave);
+                    p_resultado = p_ej2_eliminarclave(p, clave);
 
                     printf("-> RESULTADO DE LA ELIMINACION:\n");
                     p_mostrar(p_resultado);
@@ -90,7 +95,7 @@ void menuPunto2(){
 
                     printf("Ingrese la segunda posicion ordinal a intercambiar: ");
                     pos2 = ingresoDatosNumericos("Numero invalido");
-
+                    
                     p_resultado = p_ej2_intercambiarposiciones(p, pos1, pos2);
                     printf("-> RESULTADO DEL INTERCAMBIO:\n");
                     p_mostrar(p_resultado);
