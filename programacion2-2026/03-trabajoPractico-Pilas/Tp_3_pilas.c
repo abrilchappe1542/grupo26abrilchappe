@@ -347,8 +347,9 @@ Pila p_ej8_sacarrepetidos(Pila p) {
             elem_res = p_desapilar(pres);
             
             if (elem_res->clave == elem->clave) {   //ya existia en pres
-                int cantidad_actual = (int)(long long)elem_res->valor;
-                p_apilar(pres_aux, te_crear_con_valor(elem->clave, (void*)(long long)(cantidad_actual + 1)));                
+                int* cantidad_actual = (int*)elem_res->valor;; // Asigna memoria para el contador
+                (*cantidad_actual)++;
+                p_apilar(pres_aux, te_crear_con_valor(elem->clave, elem_res->valor));                
                 encontrado = true;
                 break; //corto la ejecucion porque aca no tengo que bsucar mas si hay repetidos
             } 
@@ -359,7 +360,9 @@ Pila p_ej8_sacarrepetidos(Pila p) {
     
         // el numero no estaba repetido, lo guardo por primera vez
         if (!encontrado) {
-            p_apilar(pres_aux, te_crear_con_valor(elem->clave, (void*)(long)1));
+            int* nueva_cant = (int*) malloc(sizeof(int));
+            *nueva_cant = 1;
+            p_apilar(pres_aux, te_crear_con_valor(elem->clave, nueva_cant));
         }
 
         while (!p_es_vacia(pres_aux)) {
