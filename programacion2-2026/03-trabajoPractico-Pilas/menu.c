@@ -58,10 +58,10 @@ void menuPunto2(){
                     break;
 
                 case 2: // punto B
-                    int cantidad = p_ej2_cantidadelementos(p);
+                    cantidad = p_ej2_cantidadelementos(p);
                     
-                    printf("Ingrese la posicion ordinal donde insertar (de 1 a %d): ", cantidad + 1);
-                    pos1 = ingresoIntLimitado("Posicion fuera de rango. Intente de nuevo", 1, cantidad + 1);
+                    printf("Ingrese la posicion ordinal donde insertar (de 0 a %d): ", cantidad);
+                    pos1 = ingresoIntLimitado("Posicion fuera de rango. Intente de nuevo", 0, cantidad);
 
                     printf("Ingrese el valor numerico del nuevo elemento: ");
                     valor = ingresoDatosNumericos("Numero invalido");
@@ -90,11 +90,12 @@ void menuPunto2(){
                     break;
 
                 case 4: // punto D
-                    printf("Ingrese la primera posicion ordinal: ");
-                    pos1 = ingresoDatosNumericos("Numero invalido");
-
-                    printf("Ingrese la segunda posicion ordinal a intercambiar: ");
-                    pos2 = ingresoDatosNumericos("Numero invalido");
+                    cantidad = p_ej2_cantidadelementos(p);                
+                    printf("Ingrese la primera posicion ordinal donde intercambiar (de 0 a %d): ", cantidad-1);
+                    pos1 = ingresoIntLimitado("Posicion fuera de rango. Intente de nuevo", 0, cantidad-1);
+                    
+                    printf("Ingrese la segunda posicion ordinal donde intercambiar (de 0 a %d): ", cantidad-1);
+                    pos2 = ingresoIntLimitado("Posicion fuera de rango. Intente de nuevo", 0, cantidad-1);
                     
                     p_resultado = p_ej2_intercambiarposiciones(p, pos1, pos2);
                     printf("-> RESULTADO DEL INTERCAMBIO:\n");
@@ -249,14 +250,21 @@ void menuPunto6(){
         if (ite_rec == 1)
         {
             pres = p_ej6_eliminarclave(p,valor);
+            
             printf("\nDe forma iterativa\nLa pila sin el valor %d quedo asi:\n|\n|\n",valor);
             p_mostrar(pres);
+
+            printf("\nVERIFICACION DE PILA ORIGINAL:\n");
+            p_mostrar(p);
         }
         else
         {
             pres = p_ej6_eliminarclaveRecursivo(p,valor);
             printf("\nDe forma recursiva\nLa pila sin el valor %d quedo asi:\n|\n|\n",valor);
             p_mostrar(pres);
+
+            printf("\nVERIFICACION DE PILA ORIGINAL:\n");
+            p_mostrar(p);
         }
 
     
@@ -330,6 +338,8 @@ void menuPunto8(){
                 int cantidad = *((int*) elem->valor);
                 printf("\nEl valor %d aparece %d veces.",elem->clave,cantidad);        
             }    
+            printf("\nVERIFICACION DE PILA ORIGINAL:\n");
+            p_mostrar(p);            
         }
         printf("\nLa complejidad algoritmica de este ejercicio es de orden cuadratico O(n*n) ya que con un ciclo recorro la pila original y con otro ciclo anidado recorro la segunda pila donde voy viendo si el numero ya estaba contado");
         seguir = preguntarContinuar();
