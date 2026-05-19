@@ -327,7 +327,8 @@ void menuPunto8(){
             while (!p_es_vacia(pres))
             {
                 elem = p_desapilar(pres);
-                printf("\nEl valor %d aparece %d veces.",elem->clave,elem->valor);        
+                int cantidad = *((int*) elem->valor);
+                printf("\nEl valor %d aparece %d veces.",elem->clave,cantidad);        
             }    
         }
         printf("\nLa complejidad algoritmica de este ejercicio es de orden cuadratico O(n*n) ya que con un ciclo recorro la pila original y con otro ciclo anidado recorro la segunda pila donde voy viendo si el numero ya estaba contado");
