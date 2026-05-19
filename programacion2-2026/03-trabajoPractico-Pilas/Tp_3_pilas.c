@@ -174,6 +174,28 @@ int p_ej2_cantidadelementos(Pila p){
     return contador;
 }
 
+//PUNTO 3
+bool p_ej3_iguales(Pila p1, Pila p2){
+    Pila p_aux = p_crear();
+    TipoElemento nodo, nodo2, nodo_aux1, nodo_aux2;
+    bool es_igual = true;
+    while((!p_es_vacia(p1)) && (!p_es_vacia(p2)) && (es_igual == true)){
+        nodo = p_desapilar(p1);
+        nodo2 = p_desapilar(p2);
+        if(nodo->clave != nodo2->clave){
+            es_igual = false;
+        }
+        p_apilar(p_aux, nodo2);
+        p_apilar(p_aux, nodo);
+    }
+    while(!p_es_vacia(p_aux)){
+        nodo = p_desapilar(p_aux);
+        p_apilar(p1, nodo);
+        nodo2 = p_desapilar(p_aux);
+        p_apilar(p2, nodo2);
+    }
+    return es_igual;
+}
 
 //Punto 4
 char*  p_ej4_cambiarbase(int nrobasedecimal, int nrootrabase){
