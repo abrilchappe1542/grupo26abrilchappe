@@ -132,22 +132,33 @@ void menuPunto2(){
 void menuPunto3(){
     Pila p1 = p_crear();
     Pila p2 = p_crear();
-    int cantidad_elementos_p1_y_p2;
+    int cantidad_elementos_p1;
+    int cantidad_elementos_p2;
     int seguir = 1;
     bool resultado;
     while(seguir == 1){
-        printf("Ingrese la cantidad de elementos a cargar en la Pila 1 y Pila 2(max 10) \n");
-        cantidad_elementos_p1_y_p2 = ingresoIntLimitado("Ingrese un valor adecuado!", 0, 10);
+        printf("Ingrese la cantidad de elementos a cargar en la Pila 1 (max 10) \n");
+        cantidad_elementos_p1 = ingresoIntLimitado("Ingrese un valor adecuado!", 0, 10);
         
         printf("\nCargamos Pila 1:\n");
-        p1 = p_cargar(cantidad_elementos_p1_y_p2);
+        p1 = p_cargar(cantidad_elementos_p1);
+
+        printf("\nIngrese la cantidad de elementos a cargar en la Pila 2 (max 10) \n");
+        cantidad_elementos_p1 = ingresoIntLimitado("Ingrese un valor adecuado!", 0, 10);
         printf("\nCargamos Pila 2:\n");
-        p2 = p_cargar(cantidad_elementos_p1_y_p2);
+        p2 = p_cargar(cantidad_elementos_p2);
 
         printf("\nPILA 1: \n");
         p_mostrar(p1);
         printf("\nPILA 2: \n");
         p_mostrar(p2);
+
+        if (cantidad_elementos_p1 != cantidad_elementos_p2)
+        {
+            printf("\nEl tamaño de las listas es distinto, por lo tanto no seran iguales.");
+            return;
+        }
+        
 
         resultado = p_ej3_iguales(p1, p2);
         if(resultado == true){
@@ -277,20 +288,22 @@ void menuPunto6(){
     }
 }
 
-// EJERCICIO 7
-void menuPunto7(){
+// EJERCICIO 7void menuPunto7(){
     Pila pilon1, pilon2, p_resultado;
-    int cantidad;
+    int cantidad, cantidad2;
     bool seguir = 1;
 
     while(seguir == 1){
-        printf("Ingrese la cantidad de elementos a cargar en las pilas (max 10)\n-> ");
+
+        printf("Ingrese la cantidad de elementos a cargar en la Pila 1 (max 10)\n-> ");
         cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, 10);
-        
         printf("\nCargamos pila 1:\n");
         pilon1 = p_cargar(cantidad);
+
+        printf("\nIngrese la cantidad de elementos a cargar en la Pila 2 (max 10)\n-> ");
+        cantidad2 = ingresoIntLimitado("Ingrese un valor adecuado!", 0, 10);
         printf("\nCargamos pila 2:\n");
-        pilon2 = p_cargar(cantidad);
+        pilon2 = p_cargar(cantidad2);
 
         printf("\nPILA 1: \n");
         p_mostrar(pilon1);
