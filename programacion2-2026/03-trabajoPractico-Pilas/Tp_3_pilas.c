@@ -298,7 +298,7 @@ void p_ej6_eliminarclaveRecursivoAux(Pila p, int clave,Pila pres){
     }
 }
 
-Pila p_ej6_eliminarclaveRecursivo(Pila p, int clave){
+Pila p_ej6_eliminarclaverecursiva(Pila p, int clave){
     Pila pres = p_crear();
     p_ej6_eliminarclaveRecursivoAux(p,clave,pres);
     return pres;
