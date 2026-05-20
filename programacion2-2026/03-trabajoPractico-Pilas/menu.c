@@ -298,7 +298,8 @@ void menuPunto6(){
     }
 }
 
-// EJERCICIO 7void menuPunto7(){
+// EJERCICIO 7
+void menuPunto7(){
     Pila pilon1, pilon2, p_resultado;
     int cantidad, cantidad2;
     bool seguir = 1;
@@ -320,6 +321,11 @@ void menuPunto6(){
         printf("\nPILA 2: \n");
         p_mostrar(pilon2);
 
+        if (p_es_vacia(pilon1) || p_es_vacia(pilon2))           
+        {
+            printf("\nNo contienen valores en comun ya que una de las dos pilas esta vacia.\n");
+        }
+
         p_resultado = p_ej7_elementoscomunes(pilon1, pilon2);
         printf("\nELEMENTOS EN COMUN: \n");
         p_mostrar(p_resultado);
@@ -329,7 +335,6 @@ void menuPunto6(){
         system("cls");
     }
 }
-
 // EJERCICIO 8
 void menuPunto8(){
     Pila p, pres;
@@ -355,12 +360,14 @@ void menuPunto8(){
     
             pres = p_ej8_sacarrepetidos(p);
             TipoElemento elem;
+            printf("(");
             while (!p_es_vacia(pres))
             {
                 elem = p_desapilar(pres);
                 int cantidad = *((int*) elem->valor);
-                printf("\nEl valor %d aparece %d veces.",elem->clave,cantidad);        
+                printf(" %d:%d,",elem->clave,cantidad);        //!cambio
             }    
+            printf(")");    
             printf("\nVERIFICACION DE PILA ORIGINAL:\n");
             p_mostrar(p);            
         }
