@@ -21,8 +21,8 @@ void menuPunto2(){
     TipoElemento x;
 
     while(seguir==1){
-        printf("Ingrese la cantidad de elementos a cargar en la pila (max 10)\n-> ");
-        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, 10);
+        printf("Ingrese la cantidad de elementos a cargar en la pila (max %d)\n-> ",TAMANIO_MAXIMO);
+        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
         
         printf("\nCargamos pila original:\n");
         p = p_cargar(cantidad);
@@ -144,26 +144,36 @@ void menuPunto2(){
     }
 }
 
-//EJERCICIO 3
-void menuPunto3(){
+//EJERCICIO 3void menuPunto3(){
     Pila p1 = p_crear();
     Pila p2 = p_crear();
-    int cantidad_elementos_p1_y_p2;
+    int cantidad_elementos_p1;
+    int cantidad_elementos_p2;
     int seguir = 1;
     bool resultado;
     while(seguir == 1){
-        printf("Ingrese la cantidad de elementos a cargar en la Pila 1 y Pila 2(max 10) \n");
-        cantidad_elementos_p1_y_p2 = ingresoIntLimitado("Ingrese un valor adecuado!", 0, 10);
+        printf("Ingrese la cantidad de elementos a cargar en la Pila 1 (max %d) \n",TAMANIO_MAXIMO);
+        cantidad_elementos_p1 = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
         
         printf("\nCargamos Pila 1:\n");
-        p1 = p_cargar(cantidad_elementos_p1_y_p2);
+        p1 = p_cargar(cantidad_elementos_p1);
+
+        printf("\nIngrese la cantidad de elementos a cargar en la Pila 2 (max %d) \n",TAMANIO_MAXIMO);
+        cantidad_elementos_p2 = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
         printf("\nCargamos Pila 2:\n");
-        p2 = p_cargar(cantidad_elementos_p1_y_p2);
+        p2 = p_cargar(cantidad_elementos_p2);
 
         printf("\nPILA 1: \n");
         p_mostrar(p1);
         printf("\nPILA 2: \n");
         p_mostrar(p2);
+
+        if (cantidad_elementos_p1 != cantidad_elementos_p2)
+        {
+            printf("\nEl tamano de las listas es distinto, por lo tanto ambas pilas no seran iguales partiendo desde la base.\n");
+            return;
+        }
+        
 
         resultado = p_ej3_iguales(p1, p2);
         if(resultado == true){
@@ -177,6 +187,7 @@ void menuPunto3(){
         system("cls");
     }
 }
+
 
 //EJERCICIO 4
 void menuPunto4(){
@@ -205,8 +216,8 @@ void menuPunto5() {
     int seguir = 1;
 
     while (seguir == 1) {
-        printf("Ingrese la cantidad de elementos a cargar en la pila (max 10)\n-> ");
-        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, 10);
+        printf("Ingrese la cantidad de elementos a cargar en la pila (max %d)\n-> ",TAMANIO_MAXIMO);
+        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
         
         printf("\nCargamos pila original:\n");
         p = p_cargar(cantidad);
@@ -240,73 +251,81 @@ void menuPunto6(){
     int seguir = 1;
     while (seguir == 1)
     {
-        printf("Ingrese la cantidad de elementos a cargar en las pilas (max 10)\n-> ");
-        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, 10);
+        printf("Ingrese la cantidad de elementos a cargar en las pilas (max %d)\n-> ",TAMANIO_MAXIMO);
+        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
         
         printf("\nCargamos pila 1:\n");
         p = p_cargar(cantidad);
     
     
-    if (p_es_vacia(p))
-    {
-        printf("La pila esta vacia\n");
-    }
-
-    else
-    {
-        Pila pres;
-        printf("\nLa pila original:\n");
-        p_mostrar(p);
-        printf("\nIngrese el valor que quiere eliminar: ");
-        int valor = ingresoDatosNumericos("Ese valor no es posible ingresar. Porfavor ingresa un numero valido");
-     
-        printf("\nIngrese si quiere el caso (1).Iterativo o (2).Recursivo:");
-        int ite_rec = ingresoIntLimitado("Valor invalido, 1. Iteartivo, 2. Recursivo\n",1,2);
-
-        if (ite_rec == 1)
+        if (p_es_vacia(p))
         {
-            pres = p_ej6_eliminarclave(p,valor);
-            printf("\nDe forma iterativa\nLa pila sin el valor %d quedo asi:\n|\n|\n",valor);
-            p_mostrar(pres);
+            printf("La pila esta vacia\n");
         }
+
         else
         {
-            pres = p_ej6_eliminarclaverecursiva(p,valor);
-            printf("\nDe forma recursiva\nLa pila sin el valor %d quedo asi:\n|\n|\n",valor);
-            p_mostrar(pres);
-        }
+            Pila pres;
+            printf("\nLa pila original:\n");
+            p_mostrar(p);
+            printf("\nIngrese el valor que quiere eliminar: ");
+            int valor = ingresoDatosNumericos("Ese valor no es posible ingresar. Porfavor ingresa un numero valido");
+            
+            printf("\nIngrese si quiere el caso (1).Iterativo o (2).Recursivo:");
+            int ite_rec = ingresoIntLimitado("Valor invalido, 1. Iteartivo, 2. Recursivo\n",1,2);
 
-    
+            if (ite_rec == 1){
+                pres = p_ej6_eliminarclave(p,valor);
+
+                printf("\nDe forma iterativa\nLa pila sin el valor %d quedo asi:\n|\n|\n",valor);
+                p_mostrar(pres);
+
+                printf("\nVERIFICACION DE PILA ORIGINAL:\n");
+                p_mostrar(p);
+            }
+            else{
+                pres = p_ej6_eliminarclaverecursiva(p,valor);
+                printf("\nDe forma recursiva\nLa pila sin el valor %d quedo asi:\n|\n|\n",valor);
+                p_mostrar(pres);
+
+                printf("\nVERIFICACION DE PILA ORIGINAL:\n");
+                p_mostrar(p);
+            }
+
+        
         printf("\nLa complejidad algoritmica de la funcion iterativa como de la recursiva es de orden lineal O(n) teniendo en cuenta las tads ya que el tiempo de ejecucion \nse ajustara en base al tamanio del programa");
-    }
-    
-    
-    seguir = preguntarContinuar();
-    system("cls");
+    }   
+
+
+            seguir = preguntarContinuar();
+            system("cls");
     }
 }
 
 // EJERCICIO 7
 void menuPunto7(){
     Pila pilon1, pilon2, p_resultado;
-    int cantidad;
+    int cantidad, cantidad2;
     bool seguir = 1;
 
     while(seguir == 1){
-        printf("Ingrese la cantidad de elementos a cargar en las pilas (max 10)\n-> ");
-        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, 10);
-        
+
+        printf("Ingrese la cantidad de elementos a cargar en la Pila 1 (max %d)\n-> ",TAMANIO_MAXIMO);
+        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
         printf("\nCargamos pila 1:\n");
         pilon1 = p_cargar(cantidad);
+
+        printf("\nIngrese la cantidad de elementos a cargar en la Pila 2 (max %d)\n-> ",TAMANIO_MAXIMO);
+        cantidad2 = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
         printf("\nCargamos pila 2:\n");
-        pilon2 = p_cargar(cantidad);
+        pilon2 = p_cargar(cantidad2);
 
         printf("\nPILA 1: \n");
         p_mostrar(pilon1);
         printf("\nPILA 2: \n");
         p_mostrar(pilon2);
 
-        if (p_es_vacia(pilon1) || p_es_vacia(pilon2))           
+        if (p_es_vacia(pilon1) || p_es_vacia(pilon2))           //!cambio
         {
             printf("\nNo contienen valores en comun ya que una de las dos pilas esta vacia.\n");
         }
@@ -320,6 +339,7 @@ void menuPunto7(){
         system("cls");
     }
 }
+
 // EJERCICIO 8
 void menuPunto8(){
     Pila p, pres;
@@ -327,8 +347,8 @@ void menuPunto8(){
     int cantidad;
     while (seguir == 1)
     {
-        printf("Ingrese la cantidad de elementos a cargar en las pilas (max 10)\n-> ");
-        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, 10);
+        printf("Ingrese la cantidad de elementos a cargar en las pilas (max %d)\n-> ",TAMANIO_MAXIMO);
+        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
 
         if (cantidad == 0)
         {
@@ -349,19 +369,18 @@ void menuPunto8(){
             while (!p_es_vacia(pres))
             {
                 elem = p_desapilar(pres);
-                printf("\nEl valor %d aparece %d veces.",elem->clave,elem->valor);        
-            }    
                 int cantidad = *((int*) elem->valor);
                 printf(" %d:%d,",elem->clave,cantidad);        //!cambio
-             
-            printf(")");    
+            }    
+            printf(")");
             printf("\nVERIFICACION DE PILA ORIGINAL:\n");
-            p_mostrar(p);            
+            p_mostrar(p);
         }
         printf("\nLa complejidad algoritmica de este ejercicio es de orden cuadratico O(n*n) ya que con un ciclo recorro la pila original y con otro ciclo anidado recorro la segunda pila donde voy viendo si el numero ya estaba contado");
         seguir = preguntarContinuar();
         system("cls");        
     }
+    
 }
     
 
