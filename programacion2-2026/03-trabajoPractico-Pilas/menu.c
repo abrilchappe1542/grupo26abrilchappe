@@ -270,7 +270,7 @@ void menuPunto6(){
         }
         else
         {
-            pres = p_ej6_eliminarclaveRecursivo(p,valor);
+            pres = p_ej6_eliminarclaverecursiva(p,valor);
             printf("\nDe forma recursiva\nLa pila sin el valor %d quedo asi:\n|\n|\n",valor);
             p_mostrar(pres);
 
