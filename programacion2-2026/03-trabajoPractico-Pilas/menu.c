@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
+
 //EJERCICIO 2
 void menuPunto2(){
     Pila p;
@@ -58,10 +59,10 @@ void menuPunto2(){
                     break;
 
                 case 2: // punto B
-                    cantidad = p_ej2_cantidadelementos(p);
+                    int cantidad = p_ej2_cantidadelementos(p);
                     
-                    printf("Ingrese la posicion ordinal donde insertar (de 0 a %d): ", cantidad);
-                    pos1 = ingresoIntLimitado("Posicion fuera de rango. Intente de nuevo", 0, cantidad);
+                    printf("Ingrese la posicion ordinal donde insertar (de 1 a %d): ", cantidad + 1);
+                    pos1 = ingresoIntLimitado("Posicion fuera de rango. Intente de nuevo", 1, cantidad + 1);
 
                     printf("Ingrese el valor numerico del nuevo elemento: ");
                     valor = ingresoDatosNumericos("Numero invalido");
@@ -90,12 +91,11 @@ void menuPunto2(){
                     break;
 
                 case 4: // punto D
-                    cantidad = p_ej2_cantidadelementos(p);                
-                    printf("Ingrese la primera posicion ordinal donde intercambiar (de 0 a %d): ", cantidad-1);
-                    pos1 = ingresoIntLimitado("Posicion fuera de rango. Intente de nuevo", 0, cantidad-1);
-                    
-                    printf("Ingrese la segunda posicion ordinal donde intercambiar (de 0 a %d): ", cantidad-1);
-                    pos2 = ingresoIntLimitado("Posicion fuera de rango. Intente de nuevo", 0, cantidad-1);
+                    printf("Ingrese la primera posicion ordinal: ");
+                    pos1 = ingresoDatosNumericos("Numero invalido");
+
+                    printf("Ingrese la segunda posicion ordinal a intercambiar: ");
+                    pos2 = ingresoDatosNumericos("Numero invalido");
                     
                     p_resultado = p_ej2_intercambiarposiciones(p, pos1, pos2);
                     printf("-> RESULTADO DEL INTERCAMBIO:\n");
@@ -132,33 +132,22 @@ void menuPunto2(){
 void menuPunto3(){
     Pila p1 = p_crear();
     Pila p2 = p_crear();
-    int cantidad_elementos_p1;
-    int cantidad_elementos_p2;
+    int cantidad_elementos_p1_y_p2;
     int seguir = 1;
     bool resultado;
     while(seguir == 1){
-        printf("Ingrese la cantidad de elementos a cargar en la Pila 1 (max 10) \n");
-        cantidad_elementos_p1 = ingresoIntLimitado("Ingrese un valor adecuado!", 0, 10);
+        printf("Ingrese la cantidad de elementos a cargar en la Pila 1 y Pila 2(max 10) \n");
+        cantidad_elementos_p1_y_p2 = ingresoIntLimitado("Ingrese un valor adecuado!", 0, 10);
         
         printf("\nCargamos Pila 1:\n");
-        p1 = p_cargar(cantidad_elementos_p1);
-
-        printf("\nIngrese la cantidad de elementos a cargar en la Pila 2 (max 10) \n");
-        cantidad_elementos_p2 = ingresoIntLimitado("Ingrese un valor adecuado!", 0, 10);
+        p1 = p_cargar(cantidad_elementos_p1_y_p2);
         printf("\nCargamos Pila 2:\n");
-        p2 = p_cargar(cantidad_elementos_p2);
+        p2 = p_cargar(cantidad_elementos_p1_y_p2);
 
         printf("\nPILA 1: \n");
         p_mostrar(p1);
         printf("\nPILA 2: \n");
         p_mostrar(p2);
-
-        if (cantidad_elementos_p1 != cantidad_elementos_p2)
-        {
-            printf("\nEl tamano de las listas es distinto, por lo tanto ambas pilas no seran iguales partiendo desde la base.\n");
-            return;
-        }
-        
 
         resultado = p_ej3_iguales(p1, p2);
         if(resultado == true){
@@ -261,21 +250,14 @@ void menuPunto6(){
         if (ite_rec == 1)
         {
             pres = p_ej6_eliminarclave(p,valor);
-            
             printf("\nDe forma iterativa\nLa pila sin el valor %d quedo asi:\n|\n|\n",valor);
             p_mostrar(pres);
-
-            printf("\nVERIFICACION DE PILA ORIGINAL:\n");
-            p_mostrar(p);
         }
         else
         {
             pres = p_ej6_eliminarclaverecursiva(p,valor);
             printf("\nDe forma recursiva\nLa pila sin el valor %d quedo asi:\n|\n|\n",valor);
             p_mostrar(pres);
-
-            printf("\nVERIFICACION DE PILA ORIGINAL:\n");
-            p_mostrar(p);
         }
 
     
@@ -288,22 +270,20 @@ void menuPunto6(){
     }
 }
 
-// EJERCICIO 7void menuPunto7(){
+// EJERCICIO 7
+void menuPunto7(){
     Pila pilon1, pilon2, p_resultado;
-    int cantidad, cantidad2;
+    int cantidad;
     bool seguir = 1;
 
     while(seguir == 1){
-
-        printf("Ingrese la cantidad de elementos a cargar en la Pila 1 (max 10)\n-> ");
+        printf("Ingrese la cantidad de elementos a cargar en las pilas (max 10)\n-> ");
         cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, 10);
+        
         printf("\nCargamos pila 1:\n");
         pilon1 = p_cargar(cantidad);
-
-        printf("\nIngrese la cantidad de elementos a cargar en la Pila 2 (max 10)\n-> ");
-        cantidad2 = ingresoIntLimitado("Ingrese un valor adecuado!", 0, 10);
         printf("\nCargamos pila 2:\n");
-        pilon2 = p_cargar(cantidad2);
+        pilon2 = p_cargar(cantidad);
 
         printf("\nPILA 1: \n");
         p_mostrar(pilon1);
@@ -348,11 +328,8 @@ void menuPunto8(){
             while (!p_es_vacia(pres))
             {
                 elem = p_desapilar(pres);
-                int cantidad = *((int*) elem->valor);
-                printf("\nEl valor %d aparece %d veces.",elem->clave,cantidad);        
+                printf("\nEl valor %d aparece %d veces.",elem->clave,elem->valor);        
             }    
-            printf("\nVERIFICACION DE PILA ORIGINAL:\n");
-            p_mostrar(p);            
         }
         printf("\nLa complejidad algoritmica de este ejercicio es de orden cuadratico O(n*n) ya que con un ciclo recorro la pila original y con otro ciclo anidado recorro la segunda pila donde voy viendo si el numero ya estaba contado");
         seguir = preguntarContinuar();
