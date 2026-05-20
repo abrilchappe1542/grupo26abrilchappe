@@ -25,9 +25,7 @@ void menuPunto2(){
         
         printf("\nCargamos pila original:\n");
         p = p_cargar(cantidad);
-        if (p_es_vacia(p)) {
-            printf("La pila esta vacia.\n");
-        } else {
+        
             printf("\nPILA ORIGINAL: \n");
             p_mostrar(p);
 
@@ -45,6 +43,10 @@ void menuPunto2(){
 
             switch (opcion) {
                 case 1: // punto A
+                    if (p_es_vacia(p)) {
+                        printf("La pila esta vacia, por lo tanto el elemento no se encuentra en la lista.\n");      //!cambiooooo
+                        break;
+                    }
                     printf("Ingrese la clave a buscar: ");
                     clave = ingresoDatosNumericos("Por favor ingresa un numero valido");
                     existe = p_ej2_existeclave(p, clave);
@@ -77,6 +79,10 @@ void menuPunto2(){
                     break;
 
                 case 3: // punto C
+                    if (p_es_vacia(p)) {
+                       printf("La pila esta vacia, no hay valores que eliminar.\n");        //!cambioo
+                        break;
+                    }
                     printf("Ingrese la clave de la cual eliminar su primera ocurrencia: ");
                     clave = ingresoDatosNumericos("Numero invalido");
 
@@ -90,6 +96,10 @@ void menuPunto2(){
                     break;
 
                 case 4: // punto D
+                    if (p_es_vacia(p)) {
+                        printf("La pila esta vacia, no hay valores para intercambiar sus posiciones.\n");        //!cambioo
+                        break;
+                    }
                     cantidad = p_ej2_cantidadelementos(p);                
                     printf("Ingrese la primera posicion ordinal donde intercambiar (de 0 a %d): ", cantidad-1);
                     pos1 = ingresoIntLimitado("Posicion fuera de rango. Intente de nuevo", 0, cantidad-1);
@@ -120,7 +130,7 @@ void menuPunto2(){
                     printf("\nVERIFICACION DE PILA ORIGINAL:\n");
                     p_mostrar(p);
                     break;
-            }
+            
         }
 
         seguir = preguntarContinuar();
