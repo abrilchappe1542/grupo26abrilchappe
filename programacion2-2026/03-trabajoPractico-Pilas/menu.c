@@ -144,7 +144,7 @@ void menuPunto3(){
         p1 = p_cargar(cantidad_elementos_p1);
 
         printf("\nIngrese la cantidad de elementos a cargar en la Pila 2 (max 10) \n");
-        cantidad_elementos_p1 = ingresoIntLimitado("Ingrese un valor adecuado!", 0, 10);
+        cantidad_elementos_p2 = ingresoIntLimitado("Ingrese un valor adecuado!", 0, 10);
         printf("\nCargamos Pila 2:\n");
         p2 = p_cargar(cantidad_elementos_p2);
 
@@ -155,7 +155,7 @@ void menuPunto3(){
 
         if (cantidad_elementos_p1 != cantidad_elementos_p2)
         {
-            printf("\nEl tamaño de las listas es distinto, por lo tanto no seran iguales.");
+            printf("\nEl tamano de las listas es distinto, por lo tanto ambas pilas no seran iguales partiendo desde la base.\n");
             return;
         }
         
