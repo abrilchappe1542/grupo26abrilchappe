@@ -67,6 +67,8 @@ Pila  p_ej5_invertir(Pila p);
 // La definicion vale para ambas resoluciones
 Pila p_ej6_eliminarclave(Pila p, int clave);
 
+Pila p_ej6_eliminarclaverecursiva(Pila p, int clave);
+
 /**
 7.	Dada dos pilas realizar una función que permita determinar los elementos que tienen en común.
 	Debe retornar una nueva pila con esos elementos (que están en ambas pilas) sin perder las pilas originales.
