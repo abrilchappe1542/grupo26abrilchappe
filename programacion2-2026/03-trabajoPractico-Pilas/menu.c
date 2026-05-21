@@ -5,6 +5,7 @@
 #include "tp_pilas.h"
 #include <ctype.h>
 #include <stdbool.h>
+#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
@@ -144,7 +145,8 @@ void menuPunto2(){
     }
 }
 
-//EJERCICIO 3void menuPunto3(){
+//EJERCICIO 3
+void menuPunto3(){
     Pila p1 = p_crear();
     Pila p2 = p_crear();
     int cantidad_elementos_p1;
