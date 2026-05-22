@@ -62,10 +62,10 @@ void menuPunto2(){
                     break;
 
                 case 2: // punto B
-                    int cantidad = p_ej2_cantidadelementos(p);
+                    cantidad = p_ej2_cantidadelementos(p);
                     
-                    printf("Ingrese la posicion ordinal donde insertar (de 1 a %d): ", cantidad + 1);
-                    pos1 = ingresoIntLimitado("Posicion fuera de rango. Intente de nuevo", 1, cantidad + 1);
+                    printf("Ingrese la posicion ordinal donde insertar (de 0 a %d): ", cantidad);
+                    pos1 = ingresoIntLimitado("Posicion fuera de rango. Intente de nuevo", 0, cantidad);
 
                     printf("Ingrese el valor numerico del nuevo elemento: ");
                     valor = ingresoDatosNumericos("Numero invalido");
@@ -98,11 +98,6 @@ void menuPunto2(){
                     break;
 
                 case 4: // punto D
-                    printf("Ingrese la primera posicion ordinal: ");
-                    pos1 = ingresoDatosNumericos("Numero invalido");
-
-                    printf("Ingrese la segunda posicion ordinal a intercambiar: ");
-                    pos2 = ingresoDatosNumericos("Numero invalido");
                     if (p_es_vacia(p)) {
                         printf("La pila esta vacia, no hay valores para intercambiar sus posiciones.\n");        //!cambioo
                         break;
