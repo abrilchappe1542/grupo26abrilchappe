@@ -256,30 +256,30 @@ Pila p_ej5_invertir(Pila p) {
     return p_res;
 }
 
-
-//punto 6
+//punto 6 iterativo
 Pila p_ej6_eliminarclave(Pila p, int clave){
     Pila paux = p_crear();
     Pila pauxres = p_crear();
     Pila paux2 = p_crear();
     TipoElemento elem;
-    while (!p_es_vacia(p))
-    {   
+    while (!p_es_vacia(p)) {
         elem = p_desapilar(p);
-        if (elem->clave != clave)
-        {
-            p_apilar(paux,elem);
+        if (elem->clave != clave) {
+            p_apilar(paux, elem);
         }
-        p_apilar(paux2,elem);       //esto es para no perder la original
+        p_apilar(paux2, elem);
     }
-    
-    while (!p_es_vacia(paux2))
-    {
+    while (!p_es_vacia(paux2)) {
         elem = p_desapilar(paux2);
-        p_apilar(p,elem);
+        p_apilar(p, elem);
     }
-    return paux;
+    while (!p_es_vacia(paux)) {
+        elem = p_desapilar(paux);
+        p_apilar(pauxres, elem);
+    }
+    return pauxres;
 }
+
 
 //---------------------------------------------------DE FORMA RECURSIVA----------------------------------
 
