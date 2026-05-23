@@ -305,29 +305,54 @@ Pila p_ej6_eliminarclaverecursiva(Pila p, int clave){
 }
 
 
+bool existe_en_pila(Pila p, int clave){
+    Pila aux = p_crear();
+    TipoElemento nodo;
+    bool existe = false;
+
+    while(!p_es_vacia(p)){
+        nodo = p_desapilar(p);
+
+        if(nodo->clave == clave){
+            existe = true;
+        }
+
+        p_apilar(aux, nodo);
+    }
+
+    p_intercambio(aux, p);
+
+    return existe;
+}
 
 // 7.
 Pila p_ej7_elementoscomunes(Pila p1, Pila p2){
-    TipoElemento nodo1, nodo2, nodoaux2;
-    Pila aux1=p_crear(), aux2=p_crear(), en_comun=p_crear();
-    bool encontrado=false;
+    TipoElemento nodo1, nodo2;
+    Pila aux1 = p_crear();
+    Pila aux2 = p_crear();
+    Pila en_comun = p_crear();
+    bool encontrado = false;
     while(!p_es_vacia(p1)){
-        nodo1=p_desapilar(p1);
+        nodo1 = p_desapilar(p1);
         while(!p_es_vacia(p2)){
-            nodo2=p_desapilar(p2);
-            if (nodo1->clave==nodo2->clave && !encontrado){
-                nodoaux2 = te_crear(nodo2->clave);
-                encontrado = p_apilar(en_comun, nodoaux2);
+            nodo2 = p_desapilar(p2);
+            if(nodo1->clave == nodo2->clave && !encontrado){
+                if(!existe_en_pila(en_comun, nodo1->clave)){
+                    p_apilar(en_comun, te_crear(nodo1->clave));
+                }
+                encontrado = true;
             }
             p_apilar(aux2, nodo2);
         }
         p_intercambio(aux2, p2);
         p_apilar(aux1, nodo1);
-        encontrado=false;
+        encontrado = false;
     }
-    p_intercambio(aux1,p1);
-    return en_comun;//complejidad cuadratica
+    p_intercambio(aux1, p1);
+    return en_comun;
 }
+
+
 
 //8
 Pila p_ej8_sacarrepetidos(Pila p) {
