@@ -1,6 +1,6 @@
 #ifndef PILAS_H
 #define PILAS_H
-#define TAMANIO_MAXIMO_PILAS 100
+#define TAMANIO_MAXIMO 100
 
 #include <stdbool.h>
 #include "../../tipoElemento/headers/tipo_elemento.h"
