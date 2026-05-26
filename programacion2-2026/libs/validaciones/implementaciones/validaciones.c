@@ -7,6 +7,8 @@
 #include "../../listas/headers/listas.h"
 #include "../../tipoElemento/headers/tipo_elemento.h"
 #include "../headers/validaciones.h"
+#include "../../pilas/headers/pilas.h"
+#include "../../colas/headers/colas.h"
 
 bool esDigito(const char *c){
     if( strlen(c)>1 && (c[0] == '-') ) {
@@ -576,11 +578,6 @@ Lista l_cargar_sin_ceros(int cantidad, int numero_lista) {
     return l;
 }
 
-
-/*-----------------------------------------------------------
-  >>>>>>>>>>>>>>>>>>>>>>     PILAS    <<<<<<<<<<<<<<<<<<<<<
------------------------------------------------------------*/
-
 Pila p_cargar(int cantidad){
     Pila pilon = p_crear();
     int num, guia = 0;
@@ -610,4 +607,22 @@ Pila p_intercambio(Pila auxiliar, Pila p_original){
         p_apilar(p_original,nodo1);
     }
     return p_original;
+}
+
+Cola c_cargar(int cantidad){
+    Cola pilon = c_crear();
+    int num, guia = 0;
+    TipoElemento nodo;
+    if(cantidad == 0){
+        return pilon;
+    }
+    while(!c_es_llena(pilon) && guia<cantidad){
+        printf("  | CLAVE NODO %d | ->\t", guia+1);
+        num = ingresoDatosNumericos("Ingrese una clave valida!");
+        nodo = te_crear(num);
+        c_encolar(pilon, nodo);
+        guia++;
+    }
+
+    return pilon;
 }
