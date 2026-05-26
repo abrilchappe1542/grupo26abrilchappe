@@ -9,9 +9,9 @@
 #include <math.h>
 #include <time.h>
 #include "../../listas/headers/listas.h"
-#include "../../pilas/headers/pilas.h"
 #include "../../tipoElemento/headers/tipo_elemento.h"
-
+#include "../../pilas/headers/pilas.h"
+#include "../../colas/headers/colas.h"
 
 
 /* >>>>> VALIDACIONES DE STRINGS DE NUMEROS <<<<< */
@@ -93,6 +93,7 @@ Lista l_cargar(int nodos); // Carga por teclado la lista según la cantidad reci
 
 Lista l_cargar_con_valores(int nodos, Lista list); // Carga por teclado la lista según la cantidad recibida, pero además de la clave, carga un valor float para cada nodo.
 
+
 /*-----------------------------------------------------------
   >>>>>>>>>>>>>>>>>>>>>>     PILAS    <<<<<<<<<<<<<<<<<<<<<
 -----------------------------------------------------------*/
@@ -102,6 +103,11 @@ Pila p_cargar(int cantidad); // Carga por teclado la pila según la cantidad rec
 Pila p_intercambio(Pila auxiliar, Pila p_original); // recibe pila auxiliar, devuelve pila original.
 
 
+/*-----------------------------------------------------------
+  >>>>>>>>>>>>>>>>>>>>>>     PILAS    <<<<<<<<<<<<<<<<<<<<<
+-----------------------------------------------------------*/
+
+Cola c_cargar(int cantidad);
 
 #endif
 
