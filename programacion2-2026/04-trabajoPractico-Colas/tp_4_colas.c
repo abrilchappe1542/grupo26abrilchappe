@@ -49,22 +49,37 @@ Cola c_ej2_colarelemento(Cola c, int posicionordinal, TipoElemento X){
     Cola cres = c_crear();
     TipoElemento elem;
     int pos = 1;
-    while (!c_es_vacia(c))
+    if (c_es_llena(c))
     {
-        elem = c_desencolar(c);
-        if (pos == posicionordinal)
+        printf("\nLa cola esta llena, se retorna la original\n");   //*cambio
+        return c;
+    }
+    else
+    {
+        while (!c_es_vacia(c))
+        {
+            elem = c_desencolar(c);
+            if (pos == (posicionordinal))
+            {
+                c_encolar(cres,X);
+            }
+            c_encolar(cres,elem);
+            c_encolar(caux,elem);
+            pos++;
+        }
+
+        if (pos+1 == posicionordinal+1)
         {
             c_encolar(cres,X);
         }
-        c_encolar(cres,elem);
-        c_encolar(caux,elem);
-        pos++;
+        
+
+        while (!c_es_vacia(caux))
+        {
+            c_encolar(c,c_desencolar(caux));
+        }
+        return cres;
     }
-    while (!c_es_vacia(caux))
-    {
-        c_encolar(c,c_desencolar(caux));
-    }
-    return cres;
 }
 
 //  c.	Dado un elemento sacarlo de la cola todas las veces que aparezca.
