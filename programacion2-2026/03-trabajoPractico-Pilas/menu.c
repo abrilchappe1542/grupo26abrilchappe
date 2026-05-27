@@ -263,39 +263,28 @@ void menuPunto6(){
         else
         {
             Pila pres;
+            Pila presREC;
             printf("\nLa pila original:\n");
             p_mostrar(p);
             printf("\nIngrese el valor que quiere eliminar: ");
             int valor = ingresoDatosNumericos("Ese valor no es posible ingresar. Porfavor ingresa un numero valido");
             
-            printf("\nIngrese si quiere el caso (1).Iterativo o (2).Recursivo:");
-            int ite_rec = ingresoIntLimitado("Valor invalido, 1. Iteartivo, 2. Recursivo\n",1,2);
-
-            if (ite_rec == 1){
-                pres = p_ej6_eliminarclave(p,valor);
-
-                printf("\nDe forma iterativa\nLa pila sin el valor %d quedo asi:\n|\n|\n",valor);
-                p_mostrar(pres);
-
-                printf("\nVERIFICACION DE PILA ORIGINAL:\n");
-                p_mostrar(p);
-            }
-            else{
-                pres = p_ej6_eliminarclaverecursiva(p,valor);
-                printf("\nDe forma recursiva\nLa pila sin el valor %d quedo asi:\n|\n|\n",valor);
-                p_mostrar(pres);
-
-                printf("\nVERIFICACION DE PILA ORIGINAL:\n");
-                p_mostrar(p);
-            }
-
+            pres = p_ej6_eliminarclave(p,valor);
+            printf("\n-----------------------------------------------\n\nDe forma iterativa\nLa pila sin el valor %d quedo asi:\n|\n|\n",valor);
+            p_mostrar(pres);
+            printf("\nVERIFICACION DE PILA ORIGINAL (Iterativa):\n");
+            p_mostrar(p);
         
-        printf("\nLa complejidad algoritmica de la funcion iterativa como de la recursiva es de orden lineal O(n) teniendo en cuenta las tads ya que el tiempo de ejecucion \nse ajustara en base al tamanio del programa");
-    }   
-
-
-            seguir = preguntarContinuar();
-            system("cls");
+            presREC = p_ej6_eliminarclaverecursiva(p,valor);
+            printf("\n-----------------------------------------------\n\nDe forma Recursiva\nLa pila sin el valor %d quedo asi:\n|\n|\n",valor);
+            p_mostrar(pres);
+            printf("\nVERIFICACION DE PILA ORIGINAL (Recursiva):\n");
+            p_mostrar(p);
+            printf("\nLa complejidad algoritmica de la funcion iterativa como de la recursiva es de orden lineal O(n) teniendo en cuenta las tads ya que el tiempo de ejecucion \nse ajustara en base al tamanio del programa");
+        }   
+        
+        seguir = preguntarContinuar();
+        system("cls");
     }
 }
 
