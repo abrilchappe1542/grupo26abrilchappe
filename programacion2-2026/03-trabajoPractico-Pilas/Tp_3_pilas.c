@@ -177,7 +177,7 @@ int p_ej2_cantidadelementos(Pila p){
 //PUNTO 3
 bool p_ej3_iguales(Pila p1, Pila p2){
     Pila p_aux = p_crear();
-    TipoElemento nodo, nodo2, nodo_aux1, nodo_aux2;
+    TipoElemento nodo, nodo2;
     bool es_igual = true;
     while((!p_es_vacia(p1)) && (!p_es_vacia(p2)) && (es_igual == true)){
         nodo = p_desapilar(p1);
