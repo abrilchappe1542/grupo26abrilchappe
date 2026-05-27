@@ -48,7 +48,7 @@ Cola c_ej2_colarelemento(Cola c, int posicionordinal, TipoElemento X){
     Cola caux = c_crear();
     Cola cres = c_crear();
     TipoElemento elem;
-    int pos = 0;
+    int pos = 1;
     while (!c_es_vacia(c))
     {
         elem = c_desencolar(c);
@@ -66,7 +66,6 @@ Cola c_ej2_colarelemento(Cola c, int posicionordinal, TipoElemento X){
     }
     return cres;
 }
-
 
 //  c.	Dado un elemento sacarlo de la cola todas las veces que aparezca.
 // Retorna la nueva cola sin el/los elemento/s, caso contrario la cola original recibida.
