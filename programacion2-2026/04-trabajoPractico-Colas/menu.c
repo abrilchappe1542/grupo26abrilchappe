@@ -63,8 +63,8 @@ void menuPunto2(){
                 case 2: // punto B
                     cantidad = c_ej2_contarelementos(c);
                     
-                    printf("Ingrese la posicion ordinal donde insertar (de 0 a %d): ", cantidad);
-                    pos1 = ingresoIntLimitado("Posicion fuera de rango. Intente de nuevo", 0, cantidad);
+                    printf("Ingrese la posicion ordinal donde insertar (de 1 a %d): ", cantidad+1);       //*cambio
+                    pos1 = ingresoIntLimitado("Posicion fuera de rango. Intente de nuevo", 1, cantidad+1);
 
                     printf("Ingrese el valor numerico del nuevo elemento: ");
                     valor = ingresoDatosNumericos("Numero invalido");
