@@ -168,18 +168,18 @@ void menuPunto3(){
         if (cantidad_elementos_p1 != cantidad_elementos_p2)
         {
             printf("\nEl tamano de las listas es distinto, por lo tanto ambas pilas no seran iguales partiendo desde la base.\n");
-            return;
         }
-        
-
-        resultado = p_ej3_iguales(p1, p2);
-        if(resultado == true){
-            printf("\nLas dos pilas son iguales\n");
+        else
+        {
+            resultado = p_ej3_iguales(p1, p2);
+            if(resultado == true){
+                printf("\nLas dos pilas son iguales\n");
+            }
+            else{
+                printf("\nLas dos pilas no son iguales\n");
+            }
+            printf("\n\nCOMPLEJIDAD ALGORITMICA:\nEsta funcion es de orden lineal O(n), ya que posee un solo ciclo while el cual depende del tamanio n del problema.\n");
         }
-        else{
-            printf("\nLas dos pilas no son iguales\n");
-        }
-        printf("\n\nCOMPLEJIDAD ALGORITMICA:\nEsta funcion es de orden lineal O(n), ya que posee un solo ciclo while el cual depende del tamanio n del problema.\n");
         seguir = preguntarContinuar();
         system("cls");
     }
