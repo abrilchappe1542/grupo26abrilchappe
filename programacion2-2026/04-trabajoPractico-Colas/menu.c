@@ -239,11 +239,13 @@ void menuPunto6(){
         if (l_es_vacia(resultado)) {
             printf("No hubo coincidencias entre la Pila y la Cola.\n");
         } else {
-            int cant_nodos = l_longitud(resultado); 
+            int cant_nodos = l_longitud(resultado);
+            printf("("); 
             for (int i = 1; i <= cant_nodos; i++) {
                 TipoElemento nodo_lista = l_recuperar(resultado, i);
-                printf("[%s]  ", (char*)nodo_lista->valor);
+                printf(" %s ", (char*)nodo_lista->valor);
             }
+            printf(")");
             printf("\n");
         }
         seguir = preguntarContinuar();
