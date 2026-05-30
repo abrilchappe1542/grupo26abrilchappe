@@ -131,6 +131,32 @@ void menuPunto2(){
     }
 }
 
+//EJERCICIO 4:
+void menuPunto4(){
+    int cantidad;
+    bool seguir = 1;
+    Cola cola, cola_resultado;
+
+    while(seguir == 1){
+        printf("Ingrese la cantidad de elementos a cargar en la cola (max %d)\n-> ",TAMANIO_MAXIMO);
+        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
+        
+        printf("\nCargamos cola original:\n");
+        cola = c_cargar(cantidad);
+        
+        printf("\nCOLA ORIGINAL: \n");
+        c_mostrar(cola);
+
+        cola_resultado = c_ej4_colanorepetidos(cola);
+        printf("\nELEMENTOS NO REPETIDOS:\n");
+        c_mostrar(cola_resultado);
+
+        seguir = preguntarContinuar();
+        system("cls");
+    }    
+}
+
+//EJERCICIO 6
 void menuPunto6(){
     Cola c;
     Pila p;
@@ -181,5 +207,4 @@ void menuPunto6(){
         seguir = preguntarContinuar();
         system("cls");
     }
-
 }

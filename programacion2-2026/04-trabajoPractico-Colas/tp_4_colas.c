@@ -190,6 +190,46 @@ Cola c_ej2_invertir(Cola c){
     return cres;
 }
 
+//punto 4:
+Cola  c_ej4_colanorepetidos(Cola c){
+    TipoElemento elemento1, elemento2;
+    Cola c_aux = c_crear();
+    Cola c_resultado = c_crear();
+    Cola c_copia = c_ej2_copiar(c);
+    bool seguir = true, repite = false;
+
+    if(c_es_vacia(c)){
+        return c_resultado;
+    }
+    while(seguir == true){  
+        elemento1 = c_desencolar(c_copia);
+        while(c_es_vacia(c_copia) == false){
+            elemento2 = c_desencolar(c_copia);
+            
+            if(elemento1->clave != elemento2->clave){   //si son distintos los agrega a la cola auxiliar
+                c_encolar(c_aux,elemento2);
+            }
+            else{
+                repite = true;
+            }
+        }
+        if(repite != true){ //si el elemento a comparar no se repite, lo agrega a la cola de resultado
+            c_encolar(c_resultado,elemento1);   
+        }
+        else{
+            repite = false;
+        }
+        
+        if(c_es_vacia(c_aux)){  //si no se agrega ningun elemento, es porque todos los elementos fueron distintos y sale del while
+            seguir = false; 
+        }
+        else{
+            c_copia = c_ej2_copiar(c_aux);
+            c_aux = c_crear(); // cola auxiliar vuelve a 0
+        }
+    }
+    return c_resultado;
+}
 
 /*
 PUNTO 6.	
@@ -261,3 +301,4 @@ Lista c_ej6_comunesapilaycola(Pila p, Cola c){
 
     return resultado;
 }
+
