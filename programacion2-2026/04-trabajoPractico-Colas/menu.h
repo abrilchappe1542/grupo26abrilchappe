@@ -6,6 +6,6 @@ void menuPunto2();
 // void menuPunto3();
 // void menuPunto4();
 // void menuPunto5();
-// void menuPunto6();
+void menuPunto6();
 // void menuPunto7();
 #endif // MENU_H

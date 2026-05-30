@@ -130,3 +130,56 @@ void menuPunto2(){
         system("cls");
     }
 }
+
+void menuPunto6(){
+    Cola c;
+    Pila p;
+    Lista resultado;
+    int cantidad;
+    int seguir = 1;
+
+    while(seguir == 1){
+        printf("Ingrese la cantidad de elementos a cargar en la Pila (max %d) \n",TAMANIO_MAXIMO);
+        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
+        printf("\nCargando pila original...\n");
+        p = p_cargar(cantidad);
+
+        printf("Ingrese la cantidad de elementos a cargar en la cola (max %d)\n-> ",TAMANIO_MAXIMO);
+        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
+        
+        printf("\nCargando cola original...\n");
+        c = c_cargar(cantidad);
+
+        if (p_es_vacia(p))
+        {
+            printf("La pila esta vacia!\n");
+        }
+        if (c_es_vacia(c))
+        {
+            printf("La cola esta vacia!\n");
+        }
+
+        printf("\nPILA ORIGINAL: \n");
+            p_mostrar(p);
+
+        printf("\nCOLA ORIGINAL: \n");
+            c_mostrar(c);
+
+        resultado = c_ej6_comunesapilaycola(p,c);
+
+        printf("\nLISTA DE RESULTADOS: \n");
+        if (l_es_vacia(resultado)) {
+            printf("No hubo coincidencias entre la Pila y la Cola.\n");
+        } else {
+            int cant_nodos = l_longitud(resultado); 
+            for (int i = 1; i <= cant_nodos; i++) {
+                TipoElemento nodo_lista = l_recuperar(resultado, i);
+                printf("[%s]  ", (char*)nodo_lista->valor);
+            }
+            printf("\n");
+        }
+        seguir = preguntarContinuar();
+        system("cls");
+    }
+
+}

@@ -189,3 +189,75 @@ Cola c_ej2_invertir(Cola c){
     }
     return cres;
 }
+
+
+/*
+PUNTO 6.	
+    Dada una pila y una cola generada con valores al azar retornar en una lista todos los valores comunes a ambas
+    y en qué posición ordinal se encontró cada uno en su estructura.  
+	Si existe mas de una vez la primer posicion encontrada, se retornará cada ocurrencia.
+	No se deben destruir las estructuras originales.
+	Ejemplo: si “P” = (2,5,8,19,3,4,5) y “C” = (4, 18, 12, 5, 4, 6) 
+	la lista tendría L = (5:2:4, 4:6:1, 4:6:5, 5:7:4, ).
+    retornar una lista con los valores comunes segun las especificaciones del ejercicio.
+    Si no existen valores comunes retornar la lista vacia.   
+*/
+
+Lista c_ej6_comunesapilaycola(Pila p, Cola c){
+    Pila p_aux = p_crear();
+    Pila p_clon = p_crear();
+
+    Cola c_aux = c_crear();
+    Cola c_clon = c_crear();
+    while(!p_es_vacia(p)){
+        TipoElemento elem = p_desapilar(p);  
+        p_apilar(p_aux, elem);
+    }
+    while(!p_es_vacia(p_aux)){
+        TipoElemento elem = p_desapilar(p_aux);  
+        p_apilar(p, elem);
+        TipoElemento clon = te_crear(elem->clave); 
+        p_apilar(p_clon, clon);
+    }
+
+    while(!c_es_vacia(c)){
+        TipoElemento elem = c_desencolar(c);
+        c_encolar(c_aux, elem);
+    }
+    while(!c_es_vacia(c_aux)){
+        TipoElemento elem = c_desencolar(c_aux);  
+        c_encolar(c, elem);
+        TipoElemento clon = te_crear(elem->clave);  
+        c_encolar(c_clon, clon);
+    }
+    
+    int pos_pila = 0;
+    int pos_cola = 0;
+    Lista resultado = l_crear();
+    
+    while(!p_es_vacia(p_clon)){
+        TipoElemento elem = p_desapilar(p_clon);
+        pos_pila++;
+        while(!c_es_vacia(c_clon)){
+            TipoElemento elem_c = c_desencolar(c_clon);
+            pos_cola++;
+            if(elem->clave == elem_c->clave){
+                char* formato = malloc(50);
+                sprintf(formato, "%d:%d:%d", elem->clave, pos_pila, pos_cola);
+                TipoElemento match = te_crear(elem->clave);
+                match->valor = formato;
+
+                l_agregar(resultado, match);
+            }
+            c_encolar(c_aux, elem_c);
+        }
+        pos_cola = 0;
+        
+        while(!c_es_vacia(c_aux)){
+            TipoElemento elem_retorno = c_desencolar(c_aux);
+            c_encolar(c_clon, elem_retorno);
+        }
+    }
+
+    return resultado;
+}

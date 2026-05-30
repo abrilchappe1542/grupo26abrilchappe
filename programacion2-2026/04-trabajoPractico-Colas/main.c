@@ -15,7 +15,7 @@ void main() {
         // printf("3. Ejercicio 3 \n");
         // printf("4. Ejercicio 4 \n");
         // printf("5. Ejercicio 5 \n");
-        // printf("6. Ejercicio 6 \n");
+        printf("6. Ejercicio 6 \n");
         // printf("7. Ejercicio 7 \n");
         printf("0. Salir\n");
         printf("> Seleccione una opcion: ");
@@ -35,9 +35,9 @@ void main() {
             // case 5:
             //    menuPunto5();
             //     break;
-            // case 6:
-            //     menuPunto6();
-            //     break;
+            case 6:
+                menuPunto6();
+                break;
             // case 7:
             //     menuPunto7();
             //     break;
