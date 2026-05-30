@@ -12,7 +12,7 @@ void main() {
     do {
         printf("\n=== MENU PRINCIPAL ===\n");
         printf("2. Ejercicio 2 \n");
-        // printf("3. Ejercicio 3 \n");
+        printf("3. Ejercicio 3 \n");
         printf("4. Ejercicio 4 \n");
         // printf("5. Ejercicio 5 \n");
         printf("6. Ejercicio 6 \n");
@@ -26,9 +26,9 @@ void main() {
             case 2:
                 menuPunto2();
                 break;
-            // case 3:
-            //     menuPunto3();
-            //     break;
+            case 3:
+                menuPunto3();
+                break;
             case 4:
                 menuPunto4();
                 break;

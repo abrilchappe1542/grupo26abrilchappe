@@ -131,6 +131,48 @@ void menuPunto2(){
     }
 }
 
+//EJERCICIO 3:
+void menuPunto3(){
+    int cantidad_elementos_c1;
+    int cantidad_elementos_c2;
+    bool seguir = 1;
+    Cola c1, c2;
+    bool resu;
+
+    while(seguir == 1){
+        printf("Ingrese la cantidad de elementos a cargar en la Cola 1(max %d)\n-> ",TAMANIO_MAXIMO);
+        cantidad_elementos_c1 = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
+        printf("Ingrese la cantidad de elementos a cargar en la Cola 1(max %d)\n-> ",TAMANIO_MAXIMO);
+        cantidad_elementos_c2 = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
+
+        printf("\nCargamos Cola 1:\n");
+        c1 = c_cargar(cantidad_elementos_c1);
+        printf("\nCargamos Cola 2:\n");
+        c2 = c_cargar(cantidad_elementos_c2);
+
+        printf("\nCOLA 1 ORIGINAL: \n");
+        c_mostrar(c1);
+         printf("\nCOLA 2 ORIGINAL: \n");
+        c_mostrar(c2);
+
+        if(cantidad_elementos_c1 != cantidad_elementos_c2){
+            printf("El tamaño de ambas colas es distinto, por lo tanto las colas no seran iguales partiendo desde la base.\n");
+        }
+        else{
+            resu = c_ej3_iguales(c1, c2);
+            if(resu == true){
+                printf("\nAmbas colas son iguales.\n");
+            }
+            else{
+                printf("\nLas colas no son iguales.\n");
+            }
+            printf("\nCOMPLEJIDAD ALGORITMICA: La complejidad algoritmica es lineal O(n) ya que posee en while el cual depende del tamanio del problema.\n");
+        }
+        seguir = preguntarContinuar();
+        system("cls");
+    }
+}
+
 //EJERCICIO 4:
 void menuPunto4(){
     int cantidad;

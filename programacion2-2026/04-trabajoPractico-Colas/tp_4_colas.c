@@ -190,6 +190,29 @@ Cola c_ej2_invertir(Cola c){
     return cres;
 }
 
+//PUNTO 3
+bool c_ej3_iguales(Cola c1, Cola c2){
+    Cola aux = c_crear();
+    TipoElemento nodo1, nodo2, nodo_aux;
+    bool esIgual = true;
+    while(!c_es_vacia(c1) && !c_es_vacia(c2) && esIgual == true){
+        nodo1 = c_desencolar(c1);
+        nodo2 = c_desencolar(c2);
+        if(nodo1->clave != nodo2->clave){
+            esIgual = false;
+        }
+        c_encolar(aux, nodo2);
+        c_encolar(aux, nodo1);
+    }
+    while(!c_es_vacia(aux)){
+        nodo_aux = c_desencolar(aux);
+        c_encolar(c1, nodo_aux);
+        nodo_aux = c_desencolar(aux);
+        c_encolar(c2, nodo_aux);
+    }
+    return esIgual;
+}
+
 //punto 4:
 Cola  c_ej4_colanorepetidos(Cola c){
     TipoElemento elemento1, elemento2;
