@@ -254,6 +254,59 @@ Cola  c_ej4_colanorepetidos(Cola c){
     return c_resultado;
 }
 
+// PUNTO 5
+Cola c_ej5_divisortotal(Cola c){
+    Cola c_res = c_crear();
+    
+    if (c_es_vacia(c)) {
+        return c_res;
+    }
+
+    int n = 0;
+    Cola c_aux = c_crear();
+    while (!c_es_vacia(c)) {
+        TipoElemento elem = c_desencolar(c);
+        c_encolar(c_aux, elem);
+        n++;
+    }
+    while (!c_es_vacia(c_aux)) {
+        c_encolar(c, c_desencolar(c_aux));
+    }
+
+    for (int i = 0; i < n; i++) {
+        TipoElemento elemX = c_desencolar(c);
+        c_encolar(c, elemX);
+
+        int count_divisibles = 0;
+        
+        for (int j = 0; j < n; j++) {
+            TipoElemento elemY = c_desencolar(c);
+            
+            if (elemY->clave % elemX->clave == 0) {
+                count_divisibles++;
+            }
+            c_encolar(c, elemY);
+        }
+
+        if (count_divisibles == n) {
+            TipoElemento nuevo = te_crear(elemX->clave);
+            bool* esTotal = (bool*)malloc(sizeof(bool));
+            *esTotal = true;
+            nuevo->valor = esTotal;
+            c_encolar(c_res, nuevo);
+        } 
+        else if (count_divisibles * 2 >= n) {
+            TipoElemento nuevo = te_crear(elemX->clave);
+            bool* esTotal = (bool*)malloc(sizeof(bool));
+            *esTotal = false;
+            nuevo->valor = esTotal;
+            c_encolar(c_res, nuevo);
+        }
+    }
+
+    return c_res;
+}
+
 /*
 PUNTO 6.	
     Dada una pila y una cola generada con valores al azar retornar en una lista todos los valores comunes a ambas
