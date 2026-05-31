@@ -198,6 +198,53 @@ void menuPunto4(){
     }    
 }
 
+// EJERCICIO 5:
+void menuPunto5(){
+    int cantidad;
+    bool seguir = 1;
+    Cola cola, cola_resultado;
+
+    while(seguir == 1){
+        printf("Ingrese la cantidad de elementos a cargar en la cola (max %d)\n-> ", TAMANIO_MAXIMO);
+        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
+        
+        printf("\nCargamos cola original (recuerde: valores no repetidos y >= 2):\n");
+        cola = c_cargar(cantidad);
+        
+        printf("\nCOLA ORIGINAL: \n");
+        c_mostrar(cola);
+
+        cola_resultado = c_ej5_divisortotal(cola);
+
+        printf("\nRESULTADO (Divisores Totales y Parciales):\n");
+        if(c_es_vacia(cola_resultado)){
+            printf("No se encontraron divisores totales ni parciales.\n");
+        } else {
+            Cola c_aux = c_crear();
+            while(!c_es_vacia(cola_resultado)){
+                TipoElemento elem = c_desencolar(cola_resultado);
+                bool* esTotal = (bool*)elem->valor;
+                
+                if(*esTotal == true){
+                    printf("Clave %d: Divisor Total\n", elem->clave);
+                } else {
+                    printf("Clave %d: Divisor Parcial\n", elem->clave);
+                }
+                c_encolar(c_aux, elem);
+            }
+
+            while(!c_es_vacia(c_aux)){
+                c_encolar(cola_resultado, c_desencolar(c_aux));
+            }
+        }
+
+        printf("\nCOMPLEJIDAD ALGORITMICA: O(n^2). El algoritmo cuenta con dos bucles anidados.\n");
+
+        seguir = preguntarContinuar();
+        system("cls");
+    }    
+}
+
 //EJERCICIO 6
 void menuPunto6(){
     Cola c;
