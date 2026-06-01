@@ -208,8 +208,8 @@ void menuPunto5(){
         printf("Ingrese la cantidad de elementos a cargar en la cola (max %d)\n-> ", TAMANIO_MAXIMO);
         cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
         
-        printf("\nCargamos cola original (recuerde: valores no repetidos y >= 2):\n");
-        cola = c_cargar(cantidad);
+        printf("\nCargamos cola original (valores >= 2 y no repetidos):\n");
+        cola = c_cargar_ej5(cantidad); //funcion nueva de valores mayores a 2
         
         printf("\nCOLA ORIGINAL: \n");
         c_mostrar(cola);
@@ -232,14 +232,12 @@ void menuPunto5(){
                 }
                 c_encolar(c_aux, elem);
             }
-
             while(!c_es_vacia(c_aux)){
                 c_encolar(cola_resultado, c_desencolar(c_aux));
             }
+            
         }
-
-        printf("\nCOMPLEJIDAD ALGORITMICA: O(n^2). El algoritmo cuenta con dos bucles anidados.\n");
-
+        printf("Complejidad algorítmica: es cuadrática O(n^2) ya que posee dos bucles anidados);
         seguir = preguntarContinuar();
         system("cls");
     }    
