@@ -60,6 +60,8 @@ Cola  c_ej4_colanorepetidos(Cola c);
 // retorna la clave de/los divisor/es total/es o parcial/es en la función.   
 // Si no hay ni divisor total ni parcial retornar cola vacia.
 // En el atributo valor debe venir un "bool" en TRUE cuando el divisor es total, caso contrario false.
+// Carga especifica para el Ejercicio 5 (valores >= 2 y no repetidos)
+Cola c_cargar_ej5(int cantidad);
 Cola c_ej5_divisortotal(Cola c);
 
 
