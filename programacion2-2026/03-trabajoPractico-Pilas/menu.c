@@ -22,8 +22,8 @@ void menuPunto2(){
     TipoElemento x;
 
     while(seguir==1){
-        printf("Ingrese la cantidad de elementos a cargar en la pila (max %d)\n-> ",TAMANIO_MAXIMO);
-        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
+        printf("Ingrese la cantidad de elementos a cargar en la pila (max %d)\n-> ",TAMANIO_MAXIMO_PILAS);
+        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO_PILAS);
         
         printf("\nCargamos pila original:\n");
         p = p_cargar(cantidad);
@@ -149,14 +149,14 @@ void menuPunto3(){
     int seguir = 1;
     bool resultado;
     while(seguir == 1){
-        printf("Ingrese la cantidad de elementos a cargar en la Pila 1 (max %d) \n",TAMANIO_MAXIMO);
-        cantidad_elementos_p1 = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
+        printf("Ingrese la cantidad de elementos a cargar en la Pila 1 (max %d) \n",TAMANIO_MAXIMO_PILAS);
+        cantidad_elementos_p1 = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO_PILAS);
         
         printf("\nCargamos Pila 1:\n");
         p1 = p_cargar(cantidad_elementos_p1);
 
-        printf("\nIngrese la cantidad de elementos a cargar en la Pila 2 (max %d) \n",TAMANIO_MAXIMO);
-        cantidad_elementos_p2 = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
+        printf("\nIngrese la cantidad de elementos a cargar en la Pila 2 (max %d) \n",TAMANIO_MAXIMO_PILAS);
+        cantidad_elementos_p2 = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO_PILAS);
         printf("\nCargamos Pila 2:\n");
         p2 = p_cargar(cantidad_elementos_p2);
 
@@ -213,8 +213,8 @@ void menuPunto5() {
     int seguir = 1;
 
     while (seguir == 1) {
-        printf("Ingrese la cantidad de elementos a cargar en la pila (max %d)\n-> ",TAMANIO_MAXIMO);
-        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
+        printf("Ingrese la cantidad de elementos a cargar en la pila (max %d)\n-> ",TAMANIO_MAXIMO_PILAS);
+        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO_PILAS);
         
         printf("\nCargamos pila original:\n");
         p = p_cargar(cantidad);
@@ -248,8 +248,8 @@ void menuPunto6(){
     int seguir = 1;
     while (seguir == 1)
     {
-        printf("Ingrese la cantidad de elementos a cargar en las pilas (max %d)\n-> ",TAMANIO_MAXIMO);
-        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
+        printf("Ingrese la cantidad de elementos a cargar en las pilas (max %d)\n-> ",TAMANIO_MAXIMO_PILAS);
+        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO_PILAS);
         
         printf("\nCargamos pila 1:\n");
         p = p_cargar(cantidad);
@@ -296,13 +296,13 @@ void menuPunto7(){
 
     while(seguir == 1){
 
-        printf("Ingrese la cantidad de elementos a cargar en la Pila 1 (max %d)\n-> ",TAMANIO_MAXIMO);
-        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
+        printf("Ingrese la cantidad de elementos a cargar en la Pila 1 (max %d)\n-> ",TAMANIO_MAXIMO_PILAS);
+        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO_PILAS);
         printf("\nCargamos pila 1:\n");
         pilon1 = p_cargar(cantidad);
 
-        printf("\nIngrese la cantidad de elementos a cargar en la Pila 2 (max %d)\n-> ",TAMANIO_MAXIMO);
-        cantidad2 = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
+        printf("\nIngrese la cantidad de elementos a cargar en la Pila 2 (max %d)\n-> ",TAMANIO_MAXIMO_PILAS);
+        cantidad2 = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO_PILAS);
         printf("\nCargamos pila 2:\n");
         pilon2 = p_cargar(cantidad2);
 
@@ -333,8 +333,8 @@ void menuPunto8(){
     int cantidad;
     while (seguir == 1)
     {
-        printf("Ingrese la cantidad de elementos a cargar en las pilas (max %d)\n-> ",TAMANIO_MAXIMO);
-        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
+        printf("Ingrese la cantidad de elementos a cargar en las pilas (max %d)\n-> ",TAMANIO_MAXIMO_PILAS);
+        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO_PILAS);
 
         if (cantidad == 0)
         {
