@@ -238,7 +238,7 @@ void menuPunto5(){
             }
             
         }
-        printf("Complejidad algorítmica: es cuadrática O(n^2) ya que posee dos bucles anidados);
+        printf("Complejidad algorítmica: es cuadrática O(n^2) ya que posee dos bucles anidados");
         seguir = preguntarContinuar();
         system("cls");
     }    
