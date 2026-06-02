@@ -307,36 +307,7 @@ Cola c_ej5_divisortotal(Cola c){
     return c_res;
 }
 
-Cola c_cargar_ej5(int cantidad) {
-    Cola pilon = c_crear();
-    int num, guia = 0;
-    TipoElemento nodo;
-    bool repetido;
 
-    if(cantidad == 0){
-        return pilon;
-    }
-
-    while(!c_es_llena(pilon) && guia < cantidad){
-        do {
-            repetido = false;
-            printf(" | CLAVE NODO %d | ->\t", guia + 1);
-            
-            num = ingresoIntMinimo("El valor debe ser mayor o igual a 2. Intente de nuevo: ", 2);
-
-            if (c_ej2_existeclave(pilon, num)) {
-                printf("AVISO: El numero %d ya fue ingresado. Ingrese un valor no repetido.\n", num);
-                repetido = true;
-            }
-        } while (repetido);
-
-        nodo = te_crear(num);
-        c_encolar(pilon, nodo);
-        guia++;
-    }
-    
-    return pilon;
-}
 
 /*
 PUNTO 6.	
