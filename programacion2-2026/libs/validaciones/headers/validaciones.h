@@ -109,5 +109,7 @@ Pila p_intercambio(Pila auxiliar, Pila p_original); // recibe pila auxiliar, dev
 
 Cola c_cargar(int cantidad);
 
+Cola c_cargar_ej5(int cantidad);
+
 #endif
 
