@@ -45,7 +45,7 @@ Pila p_ej2_colocarelemento(Pila p, int posicionordinal, TipoElemento x){
     }
 
     Pila p_aux_insercion = p_crear();
-    int pos_actual = 0;
+    int pos_actual = 1;
     
     while(!p_es_vacia(p_res) && pos_actual < posicionordinal){
         TipoElemento elem_res = p_desapilar(p_res);
@@ -112,7 +112,7 @@ Pila p_ej2_intercambiarposiciones(Pila p, int pos1, int pos2){
         p_apilar(p_res, clon); 
     }
     Pila p_aux_int = p_crear(); 
-    int pos_actual = 0;
+    int pos_actual = 1;
     TipoElemento e1 = NULL;
     TipoElemento e2 = NULL;
     while(!p_es_vacia(p_res)){
