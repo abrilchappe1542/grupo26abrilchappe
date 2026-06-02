@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
+#include <limits.h>
 //EJERCICIO 2
 void menuPunto2(){
     Cola c;
@@ -297,3 +298,63 @@ void menuPunto6(){
         system("cls");
     }
 }
+
+
+// EJERCICIO 7
+void menuPunto7(){
+    Cola c1, c2, c3, resultado;
+    int cantidad;
+    int tiempoatencion;
+    int seguir = 1;
+
+    while(seguir == 1){
+        printf("Ingrese la cantidad de elementos a cargar en la Cola 1(max %d)\n-> ",TAMANIO_MAXIMO);
+        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
+        printf("\nCargamos Cola 1:\n");
+        c1 = c_cargar(cantidad);
+
+        printf("Ingrese la cantidad de elementos a cargar en la Cola 2(max %d)\n-> ",TAMANIO_MAXIMO);
+        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
+        printf("\nCargamos Cola 2:\n");
+        c2 = c_cargar(cantidad);
+
+        printf("Ingrese la cantidad de elementos a cargar en la Cola 3(max %d)\n-> ",TAMANIO_MAXIMO);
+        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
+        printf("\nCargamos Cola 3:\n");
+        c3 = c_cargar(cantidad);
+
+        printf("\nCOLA 1 ORIGINAL: \n");
+        c_mostrar(c1);
+         printf("\nCOLA 2 ORIGINAL: \n");
+        c_mostrar(c2);
+         printf("\nCOLA 3 ORIGINAL: \n");
+        c_mostrar(c3);
+
+        printf("\nIngrese el tiempo de atencion para cada cliente: ");
+        tiempoatencion = ingresoIntLimitado("Ingrese un valor adecuado!", 0, INT_MAX);
+
+        resultado = c_ej7_atenderclientes(c1, c2, c3, tiempoatencion);
+
+        printf("\nRESULTADO DE ATENCION DE CLIENTES:\n");
+        if (c_es_vacia(resultado)) {
+            printf("No se atendieron clientes.\n");} 
+        
+        else {Cola c_aux = c_crear();
+            while (!c_es_vacia(resultado)) {
+                TipoElemento elem = c_desencolar(resultado);
+                printf("%s\n", (char*)elem->valor);
+                c_encolar(c_aux, elem);}
+            while (!c_es_vacia(c_aux)) {
+                c_encolar(resultado, c_desencolar(c_aux));}
+            }
+
+        
+        seguir = preguntarContinuar();
+        system("cls");
+    }
+}
+
+
+
+
+
