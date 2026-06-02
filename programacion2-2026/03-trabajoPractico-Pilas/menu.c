@@ -46,7 +46,7 @@ void menuPunto2(){
             switch (opcion) {
                 case 1: // punto A
                     if (p_es_vacia(p)) {
-                        printf("La pila esta vacia, por lo tanto el elemento no se encuentra en la lista.\n");      //!cambiooooo
+                        printf("La pila esta vacia, por lo tanto el elemento no se encuentra en la lista.\n");    
                         break;
                     }
                     printf("Ingrese la clave a buscar: ");
@@ -64,8 +64,8 @@ void menuPunto2(){
                 case 2: // punto B
                     cantidad = p_ej2_cantidadelementos(p);
                     
-                    printf("Ingrese la posicion ordinal donde insertar (de 0 a %d): ", cantidad);
-                    pos1 = ingresoIntLimitado("Posicion fuera de rango. Intente de nuevo", 0, cantidad);
+                    printf("Ingrese la posicion ordinal donde insertar (de 1 a %d): ", cantidad+1);
+                    pos1 = ingresoIntLimitado("Posicion fuera de rango. Intente de nuevo", 1, cantidad+1);
 
                     printf("Ingrese el valor numerico del nuevo elemento: ");
                     valor = ingresoDatosNumericos("Numero invalido");
@@ -82,7 +82,7 @@ void menuPunto2(){
 
                 case 3: // punto C
                     if (p_es_vacia(p)) {
-                       printf("La pila esta vacia, no hay valores que eliminar.\n");        //!cambioo
+                       printf("La pila esta vacia, no hay valores que eliminar.\n");       
                         break;
                     }
                     printf("Ingrese la clave de la cual eliminar su primera ocurrencia: ");
@@ -99,15 +99,15 @@ void menuPunto2(){
 
                 case 4: // punto D
                     if (p_es_vacia(p)) {
-                        printf("La pila esta vacia, no hay valores para intercambiar sus posiciones.\n");        //!cambioo
+                        printf("La pila esta vacia, no hay valores para intercambiar sus posiciones.\n");       
                         break;
                     }
                     cantidad = p_ej2_cantidadelementos(p);                
-                    printf("Ingrese la primera posicion ordinal donde intercambiar (de 0 a %d): ", cantidad-1);
-                    pos1 = ingresoIntLimitado("Posicion fuera de rango. Intente de nuevo", 0, cantidad-1);
+                    printf("Ingrese la primera posicion ordinal donde intercambiar (de 1 a %d): ", cantidad);
+                    pos1 = ingresoIntLimitado("Posicion fuera de rango. Intente de nuevo", 1, cantidad);
                     
-                    printf("Ingrese la segunda posicion ordinal donde intercambiar (de 0 a %d): ", cantidad-1);
-                    pos2 = ingresoIntLimitado("Posicion fuera de rango. Intente de nuevo", 0, cantidad-1);
+                    printf("Ingrese la segunda posicion ordinal donde intercambiar (de 1 a %d): ", cantidad);
+                    pos2 = ingresoIntLimitado("Posicion fuera de rango. Intente de nuevo", 1, cantidad);
                     
                     p_resultado = p_ej2_intercambiarposiciones(p, pos1, pos2);
                     printf("-> RESULTADO DEL INTERCAMBIO:\n");
@@ -311,7 +311,7 @@ void menuPunto7(){
         printf("\nPILA 2: \n");
         p_mostrar(pilon2);
 
-        if (p_es_vacia(pilon1) || p_es_vacia(pilon2))           //!cambio
+        if (p_es_vacia(pilon1) || p_es_vacia(pilon2))          
         {
             printf("\nNo contienen valores en comun ya que una de las dos pilas esta vacia.\n");
         }
@@ -356,7 +356,7 @@ void menuPunto8(){
             {
                 elem = p_desapilar(pres);
                 int cantidad = *((int*) elem->valor);
-                printf(" %d:%d,",elem->clave,cantidad);        //!cambio
+                printf(" %d:%d,",elem->clave,cantidad);       
             }    
             printf(")");
             printf("\nVERIFICACION DE PILA ORIGINAL:\n");
