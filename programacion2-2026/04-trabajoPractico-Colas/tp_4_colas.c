@@ -380,3 +380,104 @@ Lista c_ej6_comunesapilaycola(Pila p, Cola c){
     return resultado;
 }
 
+//EJERCICIO 7
+
+void swing (int xi, int yi, int zi, bool flag1, bool flag2, bool flag3, int tiempoatencion, Cola c1, Cola c2, Cola c3, Cola R, Cola aux1, Cola aux2, Cola aux3, int a, int b, int c, TipoElemento x, TipoElemento y, TipoElemento z){
+    
+
+    if (!c_es_vacia(c1)) {
+        if (flag1) {
+            x = c_recuperar(c1);
+            xi = x->clave;
+            a++;}
+    
+        if (xi<=tiempoatencion)
+            {char texto[100];
+            sprintf(texto, "Cliente %d cola 1", a);
+            x = c_desencolar(c1);
+            TipoElemento elem = te_crear_con_valor(1, strdup(texto));
+            c_encolar(R, elem);
+            c_encolar(aux1, x);
+            flag1 = true;}
+
+        if (xi> tiempoatencion ){ xi = xi - tiempoatencion;
+            flag1 = false;}}
+
+    if (!c_es_vacia(c2)) {
+        if (flag2) {
+            y = c_recuperar(c2);
+            yi = y->clave;
+            b++;}
+        if (yi<=tiempoatencion)
+            {char texto[100];
+            sprintf(texto, "Cliente %d cola 2", b);
+            y = c_desencolar(c2);
+            TipoElemento elem = te_crear_con_valor(2, strdup(texto));
+            c_encolar(R, elem);
+            c_encolar(aux2, y);
+            flag2 = true;}
+
+        if (yi> tiempoatencion){ yi = yi - tiempoatencion;
+            flag2 = false;}}
+    
+    if (!c_es_vacia(c3)){
+        if (flag3) {
+            z = c_recuperar(c3);
+            zi = z->clave;
+            c++;}
+        if (zi<=tiempoatencion )
+                {char texto[100];
+                sprintf(texto, "Cliente %d cola 3", c);
+                z = c_desencolar(c3);
+                TipoElemento elem = te_crear_con_valor(3, strdup(texto));
+                c_encolar(R, elem);
+                c_encolar(aux3, z);
+                flag3 = true;}
+        if (zi> tiempoatencion){ zi =  zi - tiempoatencion;
+            flag3 = false;}}
+    
+    if (!c_es_vacia(c1) || !c_es_vacia(c2)|| !c_es_vacia(c3)) {
+        swing(xi, yi, zi, flag1, flag2, flag3, tiempoatencion, c1, c2, c3, R, aux1, aux2, aux3, a, b, c, x, y, z);
+    }
+}
+  
+
+
+Cola c_ej7_atenderclientes(Cola c1, Cola c2, Cola c3, int tiempoatencion) {
+    if  (c_es_vacia(c1) && c_es_vacia(c2) && c_es_vacia(c3))
+    {
+        return c_crear();
+    };
+    Cola aux1, aux2, aux3, R;
+    TipoElemento x, y, z;
+    bool flag1,flag2,flag3;
+    flag1 = flag2 = flag3 = true;
+    int a, b, c;
+    a=b=c=0;
+    int xi, yi, zi;
+    xi = yi = zi = 0;
+    aux1 = c_crear();
+    aux2 = c_crear();
+    aux3 = c_crear();
+    R = c_crear();
+
+swing(xi, yi, zi, flag1, flag2, flag3, tiempoatencion, c1, c2, c3, R, aux1, aux2, aux3, a, b, c, x, y, z);
+while (!c_es_vacia(aux1))
+    {
+        TipoElemento elem = c_desencolar(aux1);
+        c_encolar(c1, elem);
+    }
+while (!c_es_vacia(aux2))
+    {
+        TipoElemento elem = c_desencolar(aux2);
+        c_encolar(c2, elem);
+    }
+while (!c_es_vacia(aux3))
+    {
+        TipoElemento elem = c_desencolar(aux3);
+        c_encolar(c3, elem);
+    }    
+
+    return R;       
+
+}
