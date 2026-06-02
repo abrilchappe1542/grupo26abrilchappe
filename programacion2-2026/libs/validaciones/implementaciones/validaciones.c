@@ -9,6 +9,7 @@
 #include "../headers/validaciones.h"
 #include "../../pilas/headers/pilas.h"
 #include "../../colas/headers/colas.h"
+#include "../../../04-trabajoPractico-Colas/tp_colas.h"
 
 bool esDigito(const char *c){
     if( strlen(c)>1 && (c[0] == '-') ) {
