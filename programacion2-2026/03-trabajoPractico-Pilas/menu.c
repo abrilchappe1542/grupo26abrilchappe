@@ -178,7 +178,7 @@ void menuPunto3(){
             else{
                 printf("\nLas dos pilas no son iguales\n");
             }
-            printf("\n\nCOMPLEJIDAD ALGORITMICA:\nEsta funcion es de orden lineal O(n), ya que posee un solo ciclo while el cual depende del tamanio n del problema.\n");
+            printf("\n\nCOMPLEJIDAD ALGORITMICA:\nEsta funcion es de orden lineal O(n), ya que posee dos ciclos while separados los cuales dependen del tamanio n del problema.\n");
         }
         seguir = preguntarContinuar();
         system("cls");
