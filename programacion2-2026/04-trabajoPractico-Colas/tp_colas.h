@@ -90,5 +90,6 @@ Lista c_ej6_comunesapilaycola(Pila p, Cola c);
 // Segun el ejemplo el primer item de la cola seria clave: 3, void* "Cliente 1 Cola 3".
 // Si las colas estan vacias, retornar cola vacia.
 Cola c_ej7_atenderclientes(Cola c1, Cola c2, Cola c3, int tiempoatencion);
+void swing (int xi, int yi, int zi, bool flag1, bool flag2, bool flag3, int tiempoatencion, Cola c1, Cola c2, Cola c3, Cola R, Cola aux1, Cola aux2, Cola aux3, int a, int b, int c, TipoElemento x, TipoElemento y, TipoElemento z);//funcion recursiva para el punto 7 (auxiliar)
 
 #endif // TP_COLAS_H
