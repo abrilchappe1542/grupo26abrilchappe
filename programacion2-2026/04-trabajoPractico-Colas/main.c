@@ -16,7 +16,7 @@ void main() {
         printf("4. Ejercicio 4 \n");
         printf("5. Ejercicio 5 \n");
         printf("6. Ejercicio 6 \n");
-        // printf("7. Ejercicio 7 \n");
+        printf("7. Ejercicio 7 \n");
         printf("0. Salir\n");
         printf("> Seleccione una opcion: ");
         opcion = ingresoIntLimitado("\nEntrada erronea.\n->",0,7);
@@ -38,9 +38,9 @@ void main() {
             case 6:
                 menuPunto6();
                 break;
-            // case 7:
-            //     menuPunto7();
-            //     break;
+            case 7:
+                 menuPunto7();
+                 break;
             case 0:
                 printf("Saliendo...\n");
                 system("pause");
