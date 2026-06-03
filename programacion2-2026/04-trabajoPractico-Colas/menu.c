@@ -1,7 +1,7 @@
 #include "menu.h"
-#include "..\libs\colas\headers\colas.h"
-#include "..\libs\tipoElemento\headers\tipo_elemento.h"
-#include "..\libs\validaciones\headers\validaciones.h"
+#include "../libs/colas/headers/colas.h"
+#include "../libs/tipoElemento/headers/tipo_elemento.h"
+#include "../libs/validaciones/headers/validaciones.h"
 #include "tp_colas.h"
 #include <ctype.h>
 #include <stdbool.h>

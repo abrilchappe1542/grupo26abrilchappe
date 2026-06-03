@@ -277,11 +277,11 @@ void menuPunto6(){
         
             presREC = p_ej6_eliminarclaverecursiva(p,valor);
             printf("\n-----------------------------------------------\n\nDe forma Recursiva\nLa pila sin el valor %d quedo asi:\n|\n|\n",valor);
-            p_mostrar(pres);
+            p_mostrar(presREC);
             printf("\nVERIFICACION DE PILA ORIGINAL (Recursiva):\n");
             p_mostrar(p);
             printf("\nLa complejidad algoritmica de la funcion iterativa como de la recursiva es de orden lineal O(n) teniendo en cuenta las tads ya que el tiempo de ejecucion \nse ajustara en base al tamanio del programa");
-        }   
+        }
         
         seguir = preguntarContinuar();
         system("cls");

@@ -1,6 +1,6 @@
-#include "..\libs\colas\headers\colas.h"
-#include "..\libs\tipoElemento\headers\tipo_elemento.h"
-#include "..\libs\validaciones\headers\validaciones.h"
+#include "../libs/colas/headers/colas.h"
+#include "../libs/tipoElemento/headers/tipo_elemento.h"
+#include "../libs/validaciones/headers/validaciones.h"
 #include "tp_colas.h"
 #include <ctype.h>
 #include <stdbool.h>
@@ -449,7 +449,7 @@ Cola c_ej7_atenderclientes(Cola c1, Cola c2, Cola c3, int tiempoatencion) {
         return c_crear();
     };
     Cola aux1, aux2, aux3, R;
-    TipoElemento x, y, z;
+    TipoElemento x = NULL, y = NULL, z = NULL;
     bool flag1,flag2,flag3;
     flag1 = flag2 = flag3 = true;
     int a, b, c;

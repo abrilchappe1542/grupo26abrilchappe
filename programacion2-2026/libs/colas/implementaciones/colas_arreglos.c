@@ -21,7 +21,7 @@ Cola c_crear() {
 
 
 bool c_es_llena(Cola cola) {
-    return (cola->final == (TAMANIO_MAXIMO_COLAS));
+    return (cola->final == (unsigned int)(TAMANIO_MAXIMO_COLAS));
 }
 
 
@@ -47,7 +47,7 @@ TipoElemento c_desencolar(Cola cola) {
 
     TipoElemento elemento = cola->valores[cola->frente];
 
-    for (i=cola->frente; i<=(cola->final-1); ++i) {
+    for (i=(int)cola->frente; i<=(int)(cola->final-1); ++i) {
         cola->valores[i] = cola->valores[i + 1];
     }
     cola->final--;

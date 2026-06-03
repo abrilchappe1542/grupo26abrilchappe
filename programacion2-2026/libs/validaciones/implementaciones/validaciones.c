@@ -553,9 +553,9 @@ Lista l_cargar_con_valores(int cantidad, Lista list){//Carga una lista con clave
 }
 
 Lista l_cargar_sin_ceros(int cantidad, int numero_lista) {
+    (void)numero_lista;  // parámetro no utilizado
     Lista l = l_crear(); 
     int valor;
-    TipoElemento te; 
     
     for (int i = 0; i < cantidad; i++) {
         int numero_valido = 0;

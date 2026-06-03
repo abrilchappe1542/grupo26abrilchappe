@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "../libs/validaciones/headers/validaciones.h"
 
-void main() {
+int main() {
     int opcion;
 
     do {
@@ -52,5 +52,6 @@ void main() {
         }
 
     } while (opcion != 0);
-
+    
+    return 0;
 }
