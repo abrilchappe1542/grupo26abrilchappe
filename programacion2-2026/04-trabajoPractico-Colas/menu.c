@@ -21,8 +21,8 @@ void menuPunto2(){
     TipoElemento x;
 
     while(seguir==1){
-        printf("Ingrese la cantidad de elementos a cargar en la cola (max %d)\n-> ",TAMANIO_MAXIMO);
-        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
+        printf("Ingrese la cantidad de elementos a cargar en la cola (max %d)\n-> ",TAMANIO_MAXIMO_COLAS);
+        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO_COLAS);
         
         printf("\nCargamos cola original:\n");
         c = c_cargar(cantidad);
@@ -141,10 +141,10 @@ void menuPunto3(){
     bool resu;
 
     while(seguir == 1){
-        printf("Ingrese la cantidad de elementos a cargar en la Cola 1(max %d)\n-> ",TAMANIO_MAXIMO);
-        cantidad_elementos_c1 = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
-        printf("Ingrese la cantidad de elementos a cargar en la Cola 1(max %d)\n-> ",TAMANIO_MAXIMO);
-        cantidad_elementos_c2 = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
+        printf("Ingrese la cantidad de elementos a cargar en la Cola 1(max %d)\n-> ",TAMANIO_MAXIMO_COLAS);
+        cantidad_elementos_c1 = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO_COLAS);
+        printf("Ingrese la cantidad de elementos a cargar en la Cola 1(max %d)\n-> ",TAMANIO_MAXIMO_COLAS);
+        cantidad_elementos_c2 = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO_COLAS);
 
         printf("\nCargamos Cola 1:\n");
         c1 = c_cargar(cantidad_elementos_c1);
@@ -181,8 +181,8 @@ void menuPunto4(){
     Cola cola, cola_resultado;
 
     while(seguir == 1){
-        printf("Ingrese la cantidad de elementos a cargar en la cola (max %d)\n-> ",TAMANIO_MAXIMO);
-        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
+        printf("Ingrese la cantidad de elementos a cargar en la cola (max %d)\n-> ",TAMANIO_MAXIMO_COLAS);
+        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO_COLAS);
         
         printf("\nCargamos cola original:\n");
         cola = c_cargar(cantidad);
@@ -206,8 +206,8 @@ void menuPunto5(){
     Cola cola, cola_resultado;
 
     while(seguir == 1){
-        printf("Ingrese la cantidad de elementos a cargar en la cola (max %d)\n-> ", TAMANIO_MAXIMO);
-        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
+        printf("Ingrese la cantidad de elementos a cargar en la cola (max %d)\n-> ", TAMANIO_MAXIMO_COLAS);
+        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO_COLAS);
         
         printf("\nCargamos cola original (valores >= 2 y no repetidos):\n");
         cola = c_cargar_ej5(cantidad); //funcion nueva de valores mayores a 2
@@ -253,13 +253,13 @@ void menuPunto6(){
     int seguir = 1;
 
     while(seguir == 1){
-        printf("Ingrese la cantidad de elementos a cargar en la Pila (max %d) \n",TAMANIO_MAXIMO);
-        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
+        printf("Ingrese la cantidad de elementos a cargar en la Pila (max %d) \n",TAMANIO_MAXIMO_COLAS);
+        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO_COLAS);
         printf("\nCargando pila original...\n");
         p = p_cargar(cantidad);
 
-        printf("Ingrese la cantidad de elementos a cargar en la cola (max %d)\n-> ",TAMANIO_MAXIMO);
-        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
+        printf("Ingrese la cantidad de elementos a cargar en la cola (max %d)\n-> ",TAMANIO_MAXIMO_COLAS);
+        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO_COLAS);
         
         printf("\nCargando cola original...\n");
         c = c_cargar(cantidad);
@@ -308,18 +308,18 @@ void menuPunto7(){
     int seguir = 1;
 
     while(seguir == 1){
-        printf("Ingrese la cantidad de elementos a cargar en la Cola 1(max %d)\n-> ",TAMANIO_MAXIMO);
-        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
+        printf("Ingrese la cantidad de elementos a cargar en la Cola 1(max %d)\n-> ",TAMANIO_MAXIMO_COLAS);
+        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO_COLAS);
         printf("\nCargamos Cola 1:\n");
         c1 = c_cargar(cantidad);
 
-        printf("Ingrese la cantidad de elementos a cargar en la Cola 2(max %d)\n-> ",TAMANIO_MAXIMO);
-        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
+        printf("Ingrese la cantidad de elementos a cargar en la Cola 2(max %d)\n-> ",TAMANIO_MAXIMO_COLAS);
+        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO_COLAS);
         printf("\nCargamos Cola 2:\n");
         c2 = c_cargar(cantidad);
 
-        printf("Ingrese la cantidad de elementos a cargar en la Cola 3(max %d)\n-> ",TAMANIO_MAXIMO);
-        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO);
+        printf("Ingrese la cantidad de elementos a cargar en la Cola 3(max %d)\n-> ",TAMANIO_MAXIMO_COLAS);
+        cantidad = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO_COLAS);
         printf("\nCargamos Cola 3:\n");
         c3 = c_cargar(cantidad);
 
