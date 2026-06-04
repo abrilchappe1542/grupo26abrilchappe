@@ -157,7 +157,7 @@ void menuPunto3(){
         c_mostrar(c2);
 
         if(cantidad_elementos_c1 != cantidad_elementos_c2){
-            printf("El tamaño de ambas colas es distinto, por lo tanto las colas no seran iguales partiendo desde la base.\n");
+            printf("El tamanio de ambas colas es distinto, por lo tanto las colas no seran iguales partiendo desde la base.\n");
         }
         else{
             resu = c_ej3_iguales(c1, c2);
