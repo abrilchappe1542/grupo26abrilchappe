@@ -143,7 +143,7 @@ void menuPunto3(){
     while(seguir == 1){
         printf("Ingrese la cantidad de elementos a cargar en la Cola 1(max %d)\n-> ",TAMANIO_MAXIMO_COLAS);
         cantidad_elementos_c1 = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO_COLAS);
-        printf("Ingrese la cantidad de elementos a cargar en la Cola 1(max %d)\n-> ",TAMANIO_MAXIMO_COLAS);
+        printf("Ingrese la cantidad de elementos a cargar en la Cola 2(max %d)\n-> ",TAMANIO_MAXIMO_COLAS);
         cantidad_elementos_c2 = ingresoIntLimitado("Ingrese un valor adecuado!", 0, TAMANIO_MAXIMO_COLAS);
 
         printf("\nCargamos Cola 1:\n");
