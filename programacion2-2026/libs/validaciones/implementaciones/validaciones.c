@@ -628,7 +628,7 @@ Cola c_cargar(int cantidad){
     return pilon;
 }
 
-Cola c_cargar_ej5(int cantidad) {
+/*Cola c_cargar_ej5(int cantidad) {
     Cola pilon = c_crear();
     int num, guia = 0;
     TipoElemento nodo;
@@ -657,5 +657,243 @@ Cola c_cargar_ej5(int cantidad) {
     }
     
     return pilon;
+}*/
+
+
+/*-----------------------------------------------------------
+  >>>>>>>>>>>>>>>>>>>>>     arboles    <<<<<<<<<<<<<<<<<<<<<
+-----------------------------------------------------------*/
+
+
+ArbolBinario a_modo_carga(){
+    int opcion, cant_nodo;
+    ArbolBinario arbolito;
+
+    printf("Seleccione el modo de carga del arbol binario:\n");
+    printf("  1. Carga manual por anchura\n");
+    printf("  2. Carga al azar con valores unicos\n");
+    printf("  3. Carga al azar con valores que pueden repetirse\n");
+    printf("> Seleccione una opcion: ");
+    opcion = ingresoIntLimitado("Ingrese 1, 2 o 3", 1, 3);
+    if (opcion == 1){
+        printf("\n\n");
+        arbolito = a_cargar_anchura();
+        system("cls");
+    }
+    else if (opcion == 2){
+        printf("\n\n");
+        printf("Ingrese la cantidad de nodos que desea cargar en el arbol o <=0 para cargarlo vacio\n-> ");
+        cant_nodo = ingresoDatosNumericosPositivos("Ingrese un valor adecuado!");
+        printf("\n\n");
+        arbolito = a_cargar_azar(cant_nodo);
+    }
+    else{
+        printf("\n\n");
+        printf("Ingrese la cantidad de nodos que desea cargar en el arbol o <=0 para cargarlo vacio\n-> ");
+        cant_nodo = ingresoDatosNumericosPositivos("Ingrese un valor adecuado!");
+        printf("\n\n");
+        arbolito = a_cargar_azar_rep(cant_nodo);
+    }
+    
+    return arbolito;
+}
+
+
+
+ArbolBinario a_cargar_anchura(){
+    ArbolBinario arbol = a_crear();
+    int clave, clave_hi, clave_hd;
+    char buffer[32];
+
+    printf("Ingrese la clave de la raiz (enter para arbol vacio): ");
+    if(!ingresoDatosNumericosEnter("Ingrese un valor adecuado!", &clave)){
+        return arbol;
+    }
+    NodoArbol raiz = a_establecer_raiz(arbol, te_crear(clave));
+
+    Cola cola = c_crear();
+    c_encolar(cola, (TipoElemento)raiz);
+
+    while (!c_es_vacia(cola)) {
+        NodoArbol actual = (NodoArbol)c_desencolar(cola);
+        printf("\nNodo %d:\n", actual->datos->clave);
+
+        // Hijo izquierdo
+        printf("  Clave hijo izquierdo de %d (enter para NULL): ", actual->datos->clave);
+        if (ingresoDatosNumericosEnter("Ingrese un valor adecuado!", &clave_hi)) {
+            NodoArbol hi = a_conectar_hi(arbol, actual, te_crear(clave_hi));
+            c_encolar(cola, (TipoElemento)hi);
+        }
+
+        // Hijo derecho
+        printf("  Clave hijo derecho de %d (enter para NULL): ", actual->datos->clave);
+        if (ingresoDatosNumericosEnter("Ingrese un valor adecuado!", &clave_hd)) {
+            NodoArbol hd = a_conectar_hd(arbol, actual, te_crear(clave_hd));
+            c_encolar(cola, (TipoElemento)hd);
+        }
+        printf("\n\n");
+        a_mostrar_normal(arbol);
+        printf("\n\n");
+    }
+    system("cls");
+    return arbol;
+}
+
+
+ArbolBinario a_cargar_azar(int cantidad_nodos) {
+    if (cantidad_nodos <= 0) return a_crear();
+
+    ArbolBinario arbol = a_crear();
+    NodoArbol* nodos = malloc(sizeof(NodoArbol) * cantidad_nodos);
+    int claves[cantidad_nodos];
+    int usados = 0;
+    srand(time(NULL));
+
+    // Generar claves únicas aleatorias
+    for (int i = 0; i < cantidad_nodos; ++i) {
+        int clave;
+        int unico;
+        do {
+            clave = 1 + rand() % (100 - 1 + 1);
+            unico = 1;
+            for (int j = 0; j < i; ++j) {
+                if (claves[j] == clave) {
+                    unico = 0;
+                    break;
+                }
+            }
+        } while (!unico);
+        claves[i] = clave;
+    }
+
+    // Insertar la raíz
+    nodos[0] = a_establecer_raiz(arbol, te_crear(claves[0]));
+    usados = 1;
+
+    int insertados = 1;
+    while (insertados < cantidad_nodos) {
+        // Elegir nodo padre al azar entre los ya insertados
+        int padre_idx = rand() % usados;
+        NodoArbol padre = nodos[padre_idx];
+
+        // Decidir aleatoriamente si insertar hijo izquierdo o derecho
+        int lado = rand() % 2 ? 1 : -1; // 1: derecho, -1: izquierdo
+
+        // Si ambos hijos están ocupados, buscar otro padre
+        if (n_hijoizquierdo(padre) != NULL && n_hijoderecho(padre) != NULL) {
+            continue;
+        }
+
+        // Si el lado elegido está ocupado, usar el otro si está libre
+        if (lado == -1 && n_hijoizquierdo(padre) != NULL) lado = 1;
+        if (lado == 1 && n_hijoderecho(padre) != NULL) lado = -1;
+
+        NodoArbol nuevo = NULL;
+        if (lado == -1 && n_hijoizquierdo(padre) == NULL) {
+            nuevo = a_conectar_hi(arbol, padre, te_crear(claves[insertados]));
+        } else if (lado == 1 && n_hijoderecho(padre) == NULL) {
+            nuevo = a_conectar_hd(arbol, padre, te_crear(claves[insertados]));
+        }
+        if (nuevo != NULL) {
+            nodos[usados++] = nuevo;
+            insertados++;
+        }
+    }
+
+    free(nodos);
+    return arbol;
+}
+
+
+ArbolBinario a_cargar_azar_rep(int cantidad_nodos){
+    if (cantidad_nodos <= 0) return a_crear();
+
+    ArbolBinario arbol = a_crear();
+    NodoArbol* nodos = malloc(sizeof(NodoArbol) * cantidad_nodos);
+    int claves[cantidad_nodos];
+    int usados = 0;
+    srand(time(NULL));
+
+    // Generar claves aleatorias
+    for (int i = 0; i < cantidad_nodos; ++i) {
+        int clave = 1 + rand() % (100 - 1 + 1);
+        claves[i] = clave;
+    }
+
+    // Insertar la raíz
+    nodos[0] = a_establecer_raiz(arbol, te_crear(claves[0]));
+    usados = 1;
+
+    int insertados = 1;
+    while (insertados < cantidad_nodos) {
+        // Elegir nodo padre al azar entre los ya insertados
+        int padre_idx = rand() % usados;
+        NodoArbol padre = nodos[padre_idx];
+
+        // Decidir aleatoriamente si insertar hijo izquierdo o derecho
+        int lado = rand() % 2 ? 1 : -1; // 1: derecho, -1: izquierdo
+
+        // Si ambos hijos están ocupados, buscar otro padre
+        if (n_hijoizquierdo(padre) != NULL && n_hijoderecho(padre) != NULL) {
+            continue;
+        }
+
+        // Si el lado elegido está ocupado, usar el otro si está libre
+        if (lado == -1 && n_hijoizquierdo(padre) != NULL) lado = 1;
+        if (lado == 1 && n_hijoderecho(padre) != NULL) lado = -1;
+
+        NodoArbol nuevo = NULL;
+        if (lado == -1 && n_hijoizquierdo(padre) == NULL) {
+            nuevo = a_conectar_hi(arbol, padre, te_crear(claves[insertados]));
+        } else if (lado == 1 && n_hijoderecho(padre) == NULL) {
+            nuevo = a_conectar_hd(arbol, padre, te_crear(claves[insertados]));
+        }
+        if (nuevo != NULL) {
+            nodos[usados++] = nuevo;
+            insertados++;
+        }
+    }
+
+    free(nodos);
+    return arbol;
+}
+
+
+void mostrarArbolBinRec(NodoArbol nodo, char cad[]){
+    printf("%d\n", nodo->datos->clave);
+
+    //Para el hijo derecho
+    if (nodo->hd!=NULL){
+        char cad2 [1000]; 
+        strcpy(cad2,cad);
+        if (nodo->hi!=NULL){
+            printf("%s%c%c%c%c%c", cad, 195, 196, 196, 196,196);
+            char simb = 179, aux [2];
+            aux[0] = simb; aux[1]= '\0'; strcat(cad2, aux);
+            strcat(cad2,"    "); 
+            mostrarArbolBinRec (nodo->hd, cad2);
+        }
+        else{
+            printf("%s%c%c%c%c%c%c", cad, 192, 196,68, 196,196,196); 
+            strcat(cad2,"    ");
+            mostrarArbolBinRec (nodo->hd, cad2);
+        }
+    }
+    //Para el hijo izquierdo
+    if (nodo->hi != NULL){
+        char cad3[1000];
+        strcpy(cad3, cad);
+        printf("%s%c%c%c%c%c", cad, 192, 196, 73, 196,196); 
+        strcat(cad3,"     ");
+        mostrarArbolBinRec (nodo->hi, cad3);
+    }
+}
+
+
+void a_mostrar_normal(ArbolBinario arb){
+    if (a_raiz(arb) == NULL) printf("El arbol esta vacio.");
+    else{
+        mostrarArbolBinRec(a_raiz(arb),"");
+    }
 }
 

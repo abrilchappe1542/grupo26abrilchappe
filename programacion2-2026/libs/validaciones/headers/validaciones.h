@@ -12,6 +12,9 @@
 #include "../../tipoElemento/headers/tipo_elemento.h"
 #include "../../pilas/headers/pilas.h"
 #include "../../colas/headers/colas.h"
+#include "../../arboles/headers/arbol-binario.h"
+#include "../../arboles/headers/arbol-binario-busqueda.h"
+#include "../../arboles/headers/arbol-avl.h"
 
 
 /* >>>>> VALIDACIONES DE STRINGS DE NUMEROS <<<<< */
@@ -112,4 +115,20 @@ Cola c_cargar(int cantidad);
 Cola c_cargar_ej5(int cantidad);
 
 #endif
+
+
+/*-------------------------------------------------------------
+  >>>>>>>>>>>>>>>>>>>>>     ARBOLES      <<<<<<<<<<<<<<<<<<<<<
+---------------------------------------------------------------*/
+
+
+void a_mostrar_normal(ArbolBinario arbol);
+
+ArbolBinario a_modo_carga();
+
+ArbolBinario a_cargar_azar(int cantidad_nodos); // carga un arbol con valores 'X' UNICOS, NO REPETIDOS X=[1-100]
+
+ArbolBinario a_cargar_anchura();
+
+ArbolBinario a_cargar_azar_rep(int cantidad_nodos); // carga un arbol con valores 'X' que PUEDEN SER REPETIDOS X=[1-100]
 
