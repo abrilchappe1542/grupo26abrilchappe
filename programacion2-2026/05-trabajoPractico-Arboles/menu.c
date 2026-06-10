@@ -78,6 +78,47 @@ void menuPunto2(){
     }
 }
 
+//PUNTO 4
+void menuPunto4() {
+    bool seguir = true;
+    while (seguir) {
+        printf("\n=== PUNTO 4 (N-arios) ===\n");
+        printf("\n--- Cargando el Arbol Principal ---\n");
+        ArbolBinario arbol = a_modo_carga();
+        system("cls");
+        
+        printf("\na. Recorrido en Anchura:\n");
+        Lista anchura = a_ej4_anchura(arbol);
+        l_mostrar(anchura);
+        
+        printf("\nb. Cantidad de hojas N-arias: %d\n", a_ej4_q_hojas(arbol));
+        
+        printf("\nIngrese una clave para ver su padre y hermanos: ");
+        int clave = ingresoDatosNumericos("Invalido.\n");
+        TipoElemento padre = a_ej4_padre(arbol, clave);
+        if (padre) printf("d. Padre: %d\n", padre->clave); else printf("d. No tiene padre.\n");
+        
+        Lista hermanos = a_ej4_hermanos(arbol, clave);
+        printf("e. Hermanos: ");
+        if (!l_es_vacia(hermanos)) l_mostrar(hermanos); else printf("Ninguno\n");
+
+        printf("\n------------------------------------------------\n");
+        printf("c. Comprobacion de Arboles Similares\n");
+        printf("Vamos a cargar un segundo arbol para comparar su estructura.\n");
+        printf("Cargamos segundo arbol:\n\n");
+        ArbolBinario arbol2 = a_modo_carga();
+        
+        if (a_ej4_similares(arbol, arbol2)) {
+            printf("\n=> RESULTADO: Los arboles SON similares en estructura.\n");
+        } else {
+            printf("\n=> RESULTADO: Los arboles NO son similares en estructura.\n");
+        }
+
+        seguir = preguntarContinuar();
+        system("cls");
+    }
+}
+
 // EJERCICIO 7
 void menuPunto7(){
     int opcion, cant_nodo;
