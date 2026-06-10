@@ -5,7 +5,8 @@ void main() {
 
     do {
         printf("\n=== MENU PRINCIPAL ===\n");
-        printf("7. Ejercicio 2 \n");
+        printf("2. Ejercicio 2 \n");
+        printf("4. Ejercicio 4 \n");
         printf("7. Ejercicio 7 \n");
         printf("0. Salir\n");
         printf("> Seleccione una opcion: ");
@@ -15,6 +16,9 @@ void main() {
         switch (opcion) {
             case 2:
                 menuPunto2();
+                break;
+            case 4:
+                menuPunto4();
                 break;
             case 7:
                 menuPunto7();
@@ -29,5 +33,4 @@ void main() {
         }
 
     } while (opcion != 0);
-
 }
