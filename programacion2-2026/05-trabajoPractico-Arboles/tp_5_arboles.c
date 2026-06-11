@@ -307,6 +307,22 @@ ArbolAVL a_ej10_crearAVL(Lista L) {
     return avl;
 }
 
+int calcular_altura_nodo(NodoArbol nodo) {
+    if (nodo == NULL) {
+        return -1; 
+    }
+    int alt_izq = calcular_altura_nodo(n_hijoizquierdo(nodo));
+    int alt_der = calcular_altura_nodo(n_hijoderecho(nodo));
+    
+    return (alt_izq > alt_der ? alt_izq : alt_der) + 1;
+}
+
+int a_ej10_difalturas(ArbolBinarioBusqueda ABB, ArbolAVL AVL) {
+    int altura_abb = calcular_altura_nodo(abb_raiz(ABB));
+    int altura_avl = calcular_altura_nodo(avl_raiz(AVL));
+    return altura_abb - altura_avl;
+}
+
 Lista a_ej10_comparacionarboles(int N_repeticiones, int valorminimo, int valormaximo, int cantidaclavesagenerar) {
     Lista resultados_diferencias = l_crear();
 

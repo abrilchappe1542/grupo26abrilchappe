@@ -162,3 +162,44 @@ void menuPunto7(){
         system("cls");
     }
 }
+
+//EJERCICIO 9
+void menuPunto9() {
+    bool seguir = true;
+    while (seguir) {
+        printf("\n=== PUNTO 9 ===\n");
+        printf("\n");
+        printf("Ingrese la cantidad de repeticiones del proceso (N): ");
+        int repeticiones = ingresoDatosNumericos("Invalido.\n");
+        
+        printf("Ingrese la cantidad de claves aleatorias a generar por arbol: ");
+        int cantidad = ingresoDatosNumericos("Invalido.\n");
+        
+        printf("Ingrese el valor minimo del rango aleatorio: ");
+        int minimo = ingresoDatosNumericos("Invalido.\n");
+        
+        printf("Ingrese el valor maximo del rango aleatorio: ");
+        int maximo = ingresoDatosNumericos("Invalido.\n");
+
+        system("cls");
+        
+        printf("\n=== RESULTADOS DE LA COMPARACION ===\n");
+        printf("Generando %d rondas de arboles con %d claves unicas...\n", repeticiones, cantidad);
+        
+        Lista resultados = a_ej10_comparacionarboles(repeticiones, minimo, maximo, cantidad);
+        
+        printf("\nLista de diferencias de altura:\n");
+        if (!l_es_vacia(resultados)) {
+            l_mostrar(resultados);
+        } else {
+            printf("No se generaron resultados.\n");
+        }
+        
+        printf("CONCLUSION ESPERADA:\n");
+        printf("La diferencia suele ser >= 0. El arbol AVL, al estar balanceado, \n");
+        printf("siempre tendra una altura menor o igual a la de un ABB con los mismos datos.\n");
+
+        seguir = preguntarContinuar();
+        system("cls");
+    }
+}

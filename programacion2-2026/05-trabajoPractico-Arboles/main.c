@@ -8,6 +8,7 @@ void main() {
         printf("2. Ejercicio 2 \n");
         printf("4. Ejercicio 4 \n");
         printf("7. Ejercicio 7 \n");
+        printf("9. Ejercicio 9 \n");
         printf("0. Salir\n");
         printf("> Seleccione una opcion: ");
         opcion = ingresoDatosNumericosPositivos("\nEntrada erronea.\n-> ");
@@ -22,6 +23,9 @@ void main() {
                 break;
             case 7:
                 menuPunto7();
+                break;
+            case 9:
+                menuPunto9();
                 break;
             case 0:
                 printf("Saliendo...\n");
