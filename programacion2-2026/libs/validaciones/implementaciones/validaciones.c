@@ -628,7 +628,7 @@ Cola c_cargar(int cantidad){
     return pilon;
 }
 
-/*Cola c_cargar_ej5(int cantidad) {
+Cola c_cargar_ej5(int cantidad) {
     Cola pilon = c_crear();
     int num, guia = 0;
     TipoElemento nodo;
@@ -657,7 +657,7 @@ Cola c_cargar(int cantidad){
     }
     
     return pilon;
-}*/
+}
 
 
 /*-----------------------------------------------------------
