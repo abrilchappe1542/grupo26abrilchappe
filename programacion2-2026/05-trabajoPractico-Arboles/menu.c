@@ -122,7 +122,7 @@ void menuPunto3(){
 
             case 0:
                 printf("Seguro que desea salir?");
-                seguir = !preguntarContinuar();   
+                seguir = preguntarContinuar();   
                 break;
 
             case 1: // ejercicio a
@@ -408,7 +408,7 @@ void menuPunto8(){
             
             case 0:
                 printf("Seguro que desea salir?");
-                seguir = !preguntarContinuar();   
+                seguir = preguntarContinuar();   
                 break;
 
             case -1:
