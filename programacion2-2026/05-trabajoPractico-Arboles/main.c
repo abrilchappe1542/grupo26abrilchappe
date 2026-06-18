@@ -6,8 +6,8 @@ void main() {
     do {
         printf("\n=== MENU PRINCIPAL ===\n");
         printf("2. Ejercicio 2 \n");
-        printf("4. Ejercicio 4 \n");
         printf("3. Ejercicio 3 \n");
+        printf("4. Ejercicio 4 \n");
         printf("7. Ejercicio 7 \n");
         printf("8. Ejercicio 8 \n");
         printf("9. Ejercicio 9 \n");
