@@ -33,6 +33,7 @@ void menuPunto2(){
                 {
                     printf("Los nodos terminales/hojas son:\n");
                     l_mostrar(lres1);
+                    printf("La complejidad algoritmica de este ejercicio es de orden lineal O(n), debido a que depende del tamaño(n) del arbol.\n");                    
                 }
                 break;                
             case 2:
@@ -46,6 +47,7 @@ void menuPunto2(){
                 {
                     printf("Los nodos internos son:\n");
                     l_mostrar(lres2);
+                    printf("La complejidad algoritmica de este ejercicio es de orden lineal O(n), debido a que depende del tamaño(n) del arbol.\n");
                 }
                 break;
             case 3:
@@ -70,6 +72,7 @@ void menuPunto2(){
                         printf("Ocurrencia %d -> Clave: %d (Direccion del Nodo: %p)\n", contador, clave, (void*)nodoGuardado);
                         contador++;
                     }
+                    printf("La complejidad algoritmica de este ejercicio es de orden lineal O(n), debido a que depende del tamaño(n) del arbol.\n");
                 break;
                 }
             }
