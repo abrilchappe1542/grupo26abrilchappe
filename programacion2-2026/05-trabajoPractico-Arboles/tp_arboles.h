@@ -8,9 +8,9 @@
 #include <stdbool.h>
 #include "../libs/tipoElemento/headers/tipo_elemento.h"
 #include "../libs/validaciones/headers/validaciones.h"
-#include "../libs/arboles/headers/arbol-binario.h"
-#include "../libs/arboles/headers/arbol-avl.h"
-#include "../libs/arboles/headers/arbol-binario-busqueda.h"
+#include "../libs/arboles/headers/arbol_binario.h"
+#include "../libs/arboles/headers/arbol_avl.h"
+#include "../libs/arboles/headers/arbol_binario_busqueda.h"
 #include "../libs/listas/headers/listas.h"
 
 /**
