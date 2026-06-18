@@ -78,6 +78,155 @@ void menuPunto2(){
     }
 }
 
+// EJERCICIO 3
+void menuPunto3(){
+    int opcion, cant_nodo;
+    bool seguir = true;
+    int clave1, clave2;
+    Lista l;
+    Iterador iter;
+    TipoElemento te;
+
+    ArbolBinario arbolito = a_modo_carga();
+    system("cls");
+    printf("\n|| GRAFICO DEL ARBOL ||\n\n");
+    a_mostrar_normal(arbolito);
+    if(a_es_vacio(arbolito)) printf("\n\n");
+    
+    while (seguir == 1){
+        printf("\n=== MENU DEL PUNTO 3 ===\n");
+        printf("1. Ejercicio A  (Indicar el nombre del nodo padre (clave))\n");
+        printf("2. Ejercicio B (Listar los hijos (solo las clave/s)) \n");
+        printf("3. Ejercicio C (Listar el hermano (solo la clave)) \n");
+        printf("4. Ejercicio D (Calcular el nivel en el que se encuentra.) \n");
+        printf("5. Ejercicio E (Calcular la altura de su rama (Altura del Subárbol)) \n");
+        printf("6. Ejercicio F (Listar todos los nodos que estan en el mismo nivel (solo la clave)) \n");
+        printf("0. Salir \n");
+        printf("-1. Cargar nuevo arbol \n");
+        printf("> Seleccione una opcion: ");
+        opcion = ingresoIntLimitado("Ingrese un valor adecuado!", -1, 6);
+        system("cls");
+        
+        l = l_crear();
+        switch (opcion){
+            case -1:
+                arbolito = a_modo_carga();
+                system("cls");
+                printf("\n|| GRAFICO DEL ARBOL ||\n\n");
+                a_mostrar_normal(arbolito);
+                if(a_es_vacio(arbolito)) printf("\n\n"); 
+                break;
+
+            case 0:
+                printf("Seguro que desea salir?");
+                seguir = !preguntarContinuar();   
+                break;
+
+            case 1: // ejercicio a
+                printf("\n|| GRAFICO DEL ARBOL ||\n\n");
+                a_mostrar_normal(arbolito);
+                if(a_es_vacio(arbolito)) printf("\n\n");
+                printf("\nIngrese un nodo que desee averiguar su padre... ");
+                clave1 = ingresoDatosNumericos("Ingrese un valor adecuado!");
+                clave2 = a_ej3_clavepadre(arbolito, clave1);
+                if(clave2 == -1){
+                    printf("\nLa raiz no tiene padre o el arbol estaba vacio");
+                }
+                else if(clave2 == clave1){
+                    printf("\nNo se encontro la clave esperada...");
+                }
+                else{
+                    printf("\nEL NODO %d ES PADRE DE %d\n", clave2, clave1);
+                }
+                break;
+
+            case 2:
+                printf("\n|| GRAFICO DEL ARBOL ||\n\n");
+                a_mostrar_normal(arbolito);
+                if(a_es_vacio(arbolito)) printf("\n\n");
+                printf("\nIngrese un nodo que desee averiguar sus hijos... ");
+                clave2 = ingresoDatosNumericos("Ingrese un valor adecuado!");
+                l = a_ej3_hijos(arbolito, clave2);
+                if(l_es_vacia(l)){
+                    printf("\nNo se encontraron hijos de la clave...");
+                }
+                else{
+                    l_mostrar(l);
+                }
+                break;
+
+            case 3:
+                printf("\n|| GRAFICO DEL ARBOL ||\n\n");
+                a_mostrar_normal(arbolito);
+                if(a_es_vacio(arbolito)) printf("\n\n");
+                printf("\nIngrese un nodo que desee averiguar su hermano... ");
+                clave1 = ingresoDatosNumericos("Ingrese un valor adecuado!");
+                clave2 = a_ej3_hermano(arbolito, clave1);
+                if(clave2 == -1){
+                     printf("\nEste nodo no tiene hermano\n");
+                }
+                else{
+                    printf("\nEl hermano de %d es %d\n", clave1, clave2);
+                }
+                break;
+
+            case 4:
+                printf("\n|| GRAFICO DEL ARBOL ||\n\n");
+                a_mostrar_normal(arbolito);
+                if(a_es_vacio(arbolito)) printf("\n\n");
+                printf("\nIngrese un nodo al que desee averiguar el nivel al que se encuentra... ");
+                clave1 = ingresoDatosNumericos("Ingrese un valor adecuado!");
+                clave2 = a_ej3_nivel(arbolito, clave1);
+                if(clave2 == -1){
+                    printf("\nNo se encontro la clave...\n"); 
+                }
+                else{
+                    printf("\nEl nivel del nodo %d es %d\n", clave1, clave2);
+                }
+                break;
+
+            case 5:
+                printf("\n|| GRAFICO DEL ARBOL ||\n\n");
+                a_mostrar_normal(arbolito);
+                if(a_es_vacio(arbolito)) printf("\n\n");
+                printf("\nIngrese un nodo el cual desee averiguar la altura de su rama... ");
+                clave1 = ingresoDatosNumericos("Ingrese un valor adecuado!");
+                clave2 = a_ej3_alturarama(arbolito, clave1);
+                if(clave2 == -1){
+                    printf("\nNo se encontro la clave...\n"); 
+                }
+                else{
+                    printf("\nLa altura de la rama del nodo %d es %d\n", clave1, clave2);
+                }
+                break;
+
+            case 6:
+                printf("\n|| GRAFICO DEL ARBOL ||\n\n");
+                a_mostrar_normal(arbolito);
+                if(a_es_vacio(arbolito)) printf("\n\n");
+                printf("\nIngrese el nivel que desee averiguar todo los nodos... ");
+                clave1 = ingresoDatosNumericos("Ingrese un valor adecuado!");
+                l = a_ej3_clavesmismonivel(arbolito, clave1);
+                if(l_es_vacia(l)){
+                    printf("\n\nNo se encontraron nodos en ese nivel o el arbol estaba vacio");
+                }
+                else{
+                    printf("\nLos nodos en el nivel %d son...", clave1);
+                    l_mostrar(l);
+                }
+                break;
+            
+            default:
+                printf("AVISO: Ingrese un numero parte de las opciones.\n");
+                break;
+        }
+        printf("\n\n");
+        system("pause");
+        system("cls");
+    }
+}
+
+
 //PUNTO 4
 void menuPunto4() {
     bool seguir = true;
@@ -162,6 +311,122 @@ void menuPunto7(){
         system("cls");
     }
 }
+
+// EJERCICIO 8
+void menuPunto8(){
+    int opcion, cant_nodo, altura, nivel, clave;
+    Lista l_res;
+    bool seguir = true;
+
+    ArbolBinario arbolito = nArio_modo_carga();
+    system("cls");
+    printf("\n|| GRAFICO DEL ARBOL ||\n\n");
+    a_mostrar_normal(arbolito);
+    if(a_es_vacio(arbolito)) printf("\n\n"); 
+
+    while (seguir == 1){
+        printf("\n=== MENU DEL PUNTO 8 ===\n");
+        printf("1. Ejercicio A (Determinar la altura del n-ario)\n");
+        printf("2. Ejercicio B (Determinar el nivel de un nodo)\n");
+        printf("3. Ejercicio C (Listar todos los nodos internos (solo las claves))\n");
+        printf("4. Ejercicio D (Determinar si todas las hojas estan al mismo nivel)\n");
+        printf("0. Salir \n");
+        printf("-1. Cargar nuevo arbol \n");
+        printf("> Seleccione una opcion: ");
+        opcion = ingresoIntLimitado("Ingrese un valor adecuado!", -1, 4);
+        system("cls");
+
+        switch (opcion){
+            case 1: // ejercicio a
+                printf("\n|| GRAFICO DEL ARBOL ||\n\n");
+                a_mostrar_normal(arbolito);
+                if(a_es_vacio(arbolito)) printf("\n\n");
+                altura = a_ej8_altura(arbolito);
+                if(altura == 0){
+                    printf("\n\nEl arbol ingresado estaba vacio...");
+                }
+                else if(altura == 1){
+                    printf("\n\nEl arbol ingresado solo tenia la raiz...");
+                }
+                printf("\nALTURA DEL ARBOL N-ARIO: %d\n", altura);
+                break;
+            
+            case 2: // ejercicio b
+                printf("\n|| GRAFICO DEL ARBOL ||\n\n");
+                a_mostrar_normal(arbolito);
+                if(a_es_vacio(arbolito)) printf("\n\n");
+
+                printf("\n\nIngrese la clave del nodo que desea saber su nivel\n-> ");
+                clave = ingresoDatosNumericos("Ingrese un valor adecuado!");
+
+                nivel = a_ej8_nivel(arbolito, clave);
+                if(nivel == -1){
+                    printf("\n\nNo se encontro el nodo...");
+                }
+                else{
+                    if(nivel == 0){
+                        printf("\n\nEl nodo era la raiz...");
+                    }
+                    printf("\nNIVEL DEL NODO %d EN EL ARBOL N-ARIO: %d\n", clave, nivel);
+                }
+                break;
+
+            case 3: // ejercicio c
+                printf("\n|| GRAFICO DEL ARBOL ||\n\n");
+                a_mostrar_normal(arbolito);
+                if(a_es_vacio(arbolito)) printf("\n\n");
+
+                l_res = a_ej8_internos(arbolito);
+                if(l_es_vacia(l_res)){
+                    printf("\nNODOS INTERIORES DEL N-ARIO:\n");
+                    printf("\nLa lista esta vacia...");
+                }
+                else{
+                    printf("\nNODOS INTERIORES DEL N-ARIO:\n");
+                    l_mostrar(l_res);
+                } 
+
+                break;
+
+            case 4: // ejercicio d
+                printf("\n|| GRAFICO DEL ARBOL ||\n\n");
+                a_mostrar_normal(arbolito);
+                if(a_es_vacio(arbolito)) printf("\n\n");
+
+                bool res = a_ej8_hojasmismonivel(arbolito);
+                if(!a_es_vacio(arbolito)){
+                    printf(res ? "\nLas hojas son del mismo nivel" : "\nLas hojas NO son del mismo nivel");
+                }
+                else{
+                    printf("\nEl arbol ingresado estaba vacio...");
+                }
+
+                break;
+            
+            case 0:
+                printf("Seguro que desea salir?");
+                seguir = !preguntarContinuar();   
+                break;
+
+            case -1:
+                arbolito = nArio_modo_carga();
+                system("cls");
+                printf("\n|| GRAFICO DEL ARBOL ||\n\n");
+                a_mostrar_normal(arbolito);
+                if(a_es_vacio(arbolito)) printf("\n\n"); 
+                break;
+
+            default:
+                printf("AVISO: Ingrese un numero parte de las opciones.\n");
+                break;
+        }
+        printf("\n\n");
+        system("pause");
+        system("cls");
+    }
+}
+
+
 
 //EJERCICIO 9
 void menuPunto9() {

@@ -132,3 +132,11 @@ ArbolBinario a_cargar_anchura();
 
 ArbolBinario a_cargar_azar_rep(int cantidad_nodos); // carga un arbol con valores 'X' que PUEDEN SER REPETIDOS X=[1-100]
 
+ArbolBinario nArio_modo_carga();
+
+ArbolBinario nArio_cargar_anchura();
+
+ArbolBinario nArio_cargar_azar(int cantidad_nodos);
+
+ArbolBinario nArio_cargar_azar_rep(int cantidad_nodos);
+

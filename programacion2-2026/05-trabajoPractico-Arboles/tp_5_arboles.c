@@ -97,6 +97,184 @@ Lista a_ej2_buscarclave(ArbolBinario A, int clave){
     return lres;
 }
 
+
+//  EJERCICIO 3
+//  A
+NodoArbol buscarpadre(NodoArbol nodo, int clavehijo){
+    if(a_es_rama_nula(nodo)){
+        return NULL;
+    }
+    NodoArbol nhi = n_hijoizquierdo(nodo);
+    NodoArbol nhd = n_hijoderecho(nodo);
+
+    if((!a_es_rama_nula(nhi) && n_recuperar(nhi)->clave == clavehijo)
+    || (!a_es_rama_nula(nhd) && n_recuperar(nhd)->clave == clavehijo)){
+        return nodo;
+    } // si alguna de las claves de los hijo del nodo es la clavehijo, retorno el nodo
+
+    NodoArbol padre = buscarpadre(nhi, clavehijo);                      // busco al padre por los hijos izquierdos,
+    return a_es_rama_nula(padre) ? buscarpadre(nhd, clavehijo) : padre; // si padre == NULL, por los hijos derechos.
+}                                                                       // y padre se encontró (!=NULL), lo retorno
+
+int a_ej3_clavepadre(ArbolBinario A, int clavehijo){
+    NodoArbol raiz = a_raiz(A);
+    if(a_es_vacio(A)){
+        return -1;
+    }
+    if(n_recuperar(raiz)->clave == clavehijo){
+        return -1;
+    }else{
+        NodoArbol res = buscarpadre(raiz, clavehijo);
+    // si res = NULL porque no encontró la clave retorna la clave hijo y sino la clave padre
+        return a_es_rama_nula(res) ? clavehijo : n_recuperar(res)->clave;
+    }
+    
+}
+
+//  B
+void buscarhijos(NodoArbol nodo, int clave, Lista l_hijos){
+    if(a_es_rama_nula(nodo)){
+        return;
+    }
+    if(n_recuperar(nodo)->clave == clave){
+        if(n_recuperar(n_hijoizquierdo(nodo)) != NULL){
+            l_agregar(l_hijos, n_recuperar(n_hijoizquierdo(nodo)));
+        }
+        if(n_recuperar(n_hijoderecho(nodo)) != NULL){
+            l_agregar(l_hijos, n_recuperar(n_hijoderecho(nodo)));
+        }
+        
+    }
+    else{
+        buscarhijos(n_hijoizquierdo(nodo), clave, l_hijos);
+        buscarhijos(n_hijoderecho(nodo), clave, l_hijos);
+    }
+}
+
+Lista a_ej3_hijos(ArbolBinario A, int clavepadre){
+    Lista l_resultados = l_crear();
+    NodoArbol raiz = a_raiz(A);
+    buscarhijos(raiz, clavepadre, l_resultados);
+    return l_resultados;
+}
+
+//  C   Listar el hermano (solo la clave)
+
+void buscarhermano(NodoArbol nodo, int clave, int* hermano){
+    TipoElemento te;
+    if(a_es_rama_nula(nodo)){
+        return;    //NULL
+    }
+    te = n_recuperar(n_hijoizquierdo(nodo));
+    if(te != NULL){
+        if(te->clave == clave){ //error
+            te = n_recuperar(n_hijoderecho(nodo));
+            if(te != NULL){
+                *hermano = te->clave;
+            }
+        }
+    }
+    te = n_recuperar(n_hijoderecho(nodo));
+    if(te != NULL){
+        if(te->clave == clave){ 
+            te = n_recuperar(n_hijoizquierdo(nodo));
+            if(te != NULL){
+                *hermano = te->clave;
+            }
+        }
+    }
+    buscarhermano(n_hijoizquierdo(nodo),clave, hermano); 
+    buscarhermano(n_hijoderecho(nodo),clave, hermano);
+    
+}
+int a_ej3_hermano(ArbolBinario A, int clave){
+    NodoArbol nodo = a_raiz(A);
+    int hermano = -1;
+    buscarhermano(nodo, clave, &hermano);
+    return hermano;
+}
+
+//  D  
+int calcularnivel(NodoArbol nodo, int clave, int nivel){
+    if(a_es_rama_nula(nodo)){
+        return -1;  //ojo aca
+    }
+    if(n_recuperar(nodo)->clave == clave){
+        return nivel;
+    }
+    int resp = calcularnivel(n_hijoizquierdo(nodo), clave, (nivel+1)); // busco al padre por los hijos izquierdos,
+    return (resp != -1) ? resp : calcularnivel(n_hijoderecho(nodo), clave, (nivel+1));
+}
+int a_ej3_nivel(ArbolBinario A, int clave){
+    NodoArbol raiz = a_raiz(A);
+    return calcularnivel(raiz, clave, 0);
+}
+
+//  E 
+
+void nodoABuscar(NodoArbol nodo, int clave, NodoArbol *resultado){  //busca un nodo por la clave
+    TipoElemento te;
+
+    if(!a_es_rama_nula(nodo)){
+        te = n_recuperar(nodo);
+        if(te->clave == clave){
+            *resultado = nodo;
+        }
+
+        nodoABuscar(n_hijoizquierdo(nodo), clave, resultado);
+        nodoABuscar(n_hijoderecho(nodo), clave, resultado);
+    }
+}
+
+void calcularRama(NodoArbol nodo, int *altura, int nivel){
+    if (a_es_rama_nula(nodo)) {
+        if (nivel > *altura){
+            *altura = nivel;
+        }
+    }
+    else{
+        calcularRama(n_hijoizquierdo(nodo), altura, nivel+1);
+        calcularRama(n_hijoderecho(nodo), altura, nivel+1);
+    }
+}
+
+int a_ej3_alturarama(ArbolBinario A, int clave){
+    int resultado = 0;
+    NodoArbol nodoActual = NULL;
+
+    nodoABuscar(a_raiz(A), clave, &nodoActual);
+    if(nodoActual == NULL){
+        return -1;
+    }
+    else{
+        calcularRama(nodoActual, &resultado, 0);
+    }
+    
+    return resultado;
+}
+
+// F Listar todos los nodos que están en el mismo nivel (solo la clave).
+void mismonivel(NodoArbol nodo, int nivel, int nivelactual, Lista l_resultado){
+    if(a_es_rama_nula(nodo) || nivelactual > nivel){
+        return;
+    }   //ojo con este
+    if(nivel == nivelactual){
+        l_agregar(l_resultado, n_recuperar(nodo));
+    }
+    mismonivel(n_hijoizquierdo(nodo), nivel, nivelactual+1,l_resultado);
+    mismonivel(n_hijoderecho(nodo), nivel, nivelactual+1,l_resultado);
+}
+
+
+Lista a_ej3_clavesmismonivel(ArbolBinario A, int nivel){
+    Lista l_resultados = l_crear();
+    NodoArbol raiz = a_raiz(A);
+    mismonivel(raiz, nivel, 0, l_resultados);
+    return l_resultados;
+
+}
+
+
 // =====================================================================
 //                           EJERCICIO 4 (N-arios en LCRS)
 // Transformacion de Knuth: Primer hijo = Hijo Izquierdo,
@@ -268,6 +446,107 @@ bool a_ej7_equivalente(ArbolBinario A, ArbolBinario B){
 
     return equivalencia;
 }
+
+
+
+// EJERCICIO 8
+// A
+void alturaN_ario(NodoArbol nodo, int *altura, int *contador){
+    if(a_es_rama_nula(nodo)) return;
+
+    NodoArbol nhi = n_hijoizquierdo(nodo);
+    NodoArbol nhd = n_hijoderecho(nodo);
+    if(!a_es_rama_nula(nhi)){
+        (*contador)++;
+        alturaN_ario(nhi, altura, contador);
+    }
+    else if((*contador) > (*altura) && a_es_rama_nula(nhd)){
+        *altura = (*contador);
+        *contador = 2; // raiz + hijo extremo izquierdo
+    }
+    
+    alturaN_ario(nhd, altura, contador);
+}
+int a_ej8_altura(ArbolBinario A){
+    NodoArbol raiz = a_raiz(A);
+    int altura = 0; // preguntar cómo se van a cargar los n-arios. 
+    int contador = 1; // raiz
+
+    alturaN_ario(raiz, &altura, &contador);
+
+    return altura;
+}
+
+// B
+int nivelN_ario(NodoArbol nodo, int clave, int nivel_actual){
+    if(a_es_rama_nula(nodo)) return -1; // no se encontró
+    
+    if(n_recuperar(nodo)->clave == clave) return nivel_actual;
+    
+    int nivel = nivelN_ario(n_hijoizquierdo(nodo), clave, nivel_actual+1);
+    if (nivel != -1) return nivel;
+    
+    return nivelN_ario(n_hijoderecho(nodo), clave, nivel_actual);
+}
+int a_ej8_nivel(ArbolBinario A, int clave){
+    NodoArbol raiz = a_raiz(A);
+    return nivelN_ario(raiz, clave, 0);
+}
+
+// C
+void internosN_ario(NodoArbol nodo1, Lista l_res){
+    if(a_es_rama_nula(nodo1)) return;
+
+    if(!a_es_rama_nula(n_hijoizquierdo(nodo1))){
+        TipoElemento te = te_crear(n_recuperar(nodo1)->clave);
+        l_agregar(l_res, te);
+    }
+    internosN_ario(n_hijoizquierdo(nodo1), l_res);
+    internosN_ario(n_hijoderecho(nodo1), l_res);
+}
+Lista a_ej8_internos(ArbolBinario A){
+    NodoArbol raiz = a_raiz(A);
+    NodoArbol nhi = n_hijoizquierdo(raiz);
+    Lista l_resultado = l_crear();
+    internosN_ario(nhi, l_resultado);
+
+    if(l_es_vacia(l_resultado)){
+        printf("\nEl arbol no tiene nodos interiores...\n");
+    }
+    return l_resultado;
+}
+
+// D
+bool mismo_nivelhojasN_ario(ArbolBinario A, NodoArbol nodo, int *nivel_primera_hoja){
+    if(a_es_rama_nula(nodo)) return true;
+
+    // Si es hoja
+    if(a_es_rama_nula(n_hijoizquierdo(nodo))){
+        int nivel_actual = a_ej8_nivel(A, n_recuperar(nodo)->clave);
+        if(*nivel_primera_hoja == -1){
+            *nivel_primera_hoja = nivel_actual;
+        }
+        else if(nivel_actual != *nivel_primera_hoja){
+            return false;
+        }
+        return true;
+    }
+
+    // Recorrer hijos y hermanos
+    if(!mismo_nivelhojasN_ario(A, n_hijoizquierdo(nodo), nivel_primera_hoja)) return false;
+    if(!mismo_nivelhojasN_ario(A, n_hijoderecho(nodo), nivel_primera_hoja)) return false;
+
+    return true; // Ensure a return value for all paths
+}
+
+bool a_ej8_hojasmismonivel(ArbolBinario A){
+    int mismo_nivel = -1;
+    NodoArbol raiz = a_raiz(A);
+
+    return mismo_nivelhojasN_ario(A, raiz, &mismo_nivel);
+}
+
+
 
 //EJERCICIO 9
 Lista a_ej10_generarlistaclaves(int cantidadclavesagenerar, int valorminimo, int valormaximo) {

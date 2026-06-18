@@ -632,30 +632,26 @@ Cola c_cargar_ej5(int cantidad) {
     Cola pilon = c_crear();
     int num, guia = 0;
     TipoElemento nodo;
-    bool repetido;
 
     if(cantidad == 0){
         return pilon;
     }
 
     while(!c_es_llena(pilon) && guia < cantidad){
-        do {
-            repetido = false;
-            printf(" | CLAVE NODO %d | ->\t", guia + 1);
-            
-            num = ingresoIntMinimo("El valor debe ser mayor o igual a 2. Intente de nuevo: ", 2);
 
-            if (c_ej2_existeclave(pilon, num)) {
-                printf("AVISO: El numero %d ya fue ingresado. Ingrese un valor no repetido.\n", num);
-                repetido = true;
-            }
-        } while (repetido);
+        printf(" | CLAVE NODO %d | ->\t", guia + 1);
+
+        num = ingresoIntMinimo(
+            "El valor debe ser mayor o igual a 2. Intente de nuevo: ",
+            2
+        );
 
         nodo = te_crear(num);
         c_encolar(pilon, nodo);
+
         guia++;
     }
-    
+
     return pilon;
 }
 
@@ -895,5 +891,187 @@ void a_mostrar_normal(ArbolBinario arb){
     else{
         mostrarArbolBinRec(a_raiz(arb),"");
     }
+}
+
+
+ArbolBinario nArio_modo_carga(){
+    int opcion, cant_nodo;
+    ArbolBinario arbolito;
+
+    printf("Seleccione el modo de carga del arbol binario transformado:\n");
+    printf("  1. Carga manual por anchura\n");
+    printf("  2. Carga al azar con valores unicos\n");
+    printf("  3. Carga al azar con valores que pueden repetirse\n");
+    printf("> Seleccione una opcion: ");
+    opcion = ingresoIntLimitado("Ingrese 1, 2 o 3", 1, 3);
+    if (opcion == 1){
+        printf("\n\n");
+        arbolito = nArio_cargar_anchura();
+        system("cls");
+    }
+    else if (opcion == 2){
+        printf("\n\n");
+        printf("Ingrese la cantidad de nodos que desea cargar en el arbol o <=0 para cargarlo vacio\n-> ");
+        cant_nodo = ingresoDatosNumericosPositivos("Ingrese un valor adecuado!");
+        printf("\n\n");
+        arbolito = nArio_cargar_azar(cant_nodo);
+    }
+    else{
+        printf("\n\n");
+        printf("Ingrese la cantidad de nodos que desea cargar en el arbol o <=0 para cargarlo vacio\n-> ");
+        cant_nodo = ingresoDatosNumericosPositivos("Ingrese un valor adecuado!");
+        printf("\n\n");
+        arbolito = nArio_cargar_azar_rep(cant_nodo);
+    }
+    
+    return arbolito;
+}
+
+
+ArbolBinario nArio_cargar_azar_rep(int cantidad_nodos){
+    if (cantidad_nodos <= 0) return a_crear();
+
+    ArbolBinario arbol = a_crear();
+    NodoArbol* nodos = malloc(sizeof(NodoArbol) * cantidad_nodos);
+    int claves[cantidad_nodos];
+    int usados = 0;
+    srand((unsigned int)time(NULL));
+
+    // Generar claves aleatorias
+    for (int i = 0; i < cantidad_nodos; ++i) {
+        int clave = 1 + rand() % (100 - 1 + 1);
+        claves[i] = clave;
+    }
+
+    // Insertar la raíz
+    nodos[0] = a_establecer_raiz(arbol, te_crear(claves[0]));
+    usados = 1;
+
+    int insertados = 1;
+    while (insertados < cantidad_nodos) {
+        // Elegir nodo padre al azar entre los ya insertados
+        int padre_idx = rand() % usados;
+        NodoArbol padre = nodos[padre_idx];
+
+        // Insertar como hijo izquierdo si no tiene, sino como hermano derecho del último hijo
+        if (n_hijoizquierdo(padre) == NULL) {
+            nodos[usados++] = a_conectar_hi(arbol, padre, te_crear(claves[insertados]));
+        } else {
+            NodoArbol ultimo = n_hijoizquierdo(padre);
+            // Buscar el último hermano derecho del hijo izquierdo
+            while (n_hijoderecho(ultimo) != NULL) {
+                ultimo = n_hijoderecho(ultimo);
+            }
+            nodos[usados++] = a_conectar_hd(arbol, ultimo, te_crear(claves[insertados]));
+        }
+        insertados++;
+    }
+
+    free(nodos);
+    return arbol;
+}
+
+
+ArbolBinario nArio_cargar_azar(int cantidad_nodos){
+    if (cantidad_nodos <= 0) return a_crear();
+
+    ArbolBinario arbol = a_crear();
+    NodoArbol* nodos = malloc(sizeof(NodoArbol) * cantidad_nodos);
+    int claves[cantidad_nodos];
+    int usados = 0;
+    srand((unsigned int)time(NULL));
+
+    // Generar claves únicas aleatorias
+    for (int i = 0; i < cantidad_nodos; ++i) {
+        int clave, unico;
+        do {
+            clave = 1 + rand() % (100 - 1 + 1);
+            unico = 1;
+            for (int j = 0; j < i; ++j) {
+                if (claves[j] == clave) {
+                    unico = 0;
+                    break;
+                }
+            }
+        } while (!unico);
+        claves[i] = clave;
+    }
+
+    // Insertar la raíz
+    nodos[0] = a_establecer_raiz(arbol, te_crear(claves[0]));
+    usados = 1;
+
+    int insertados = 1;
+    while (insertados < cantidad_nodos) {
+        // Elegir nodo padre al azar entre los ya insertados
+        int padre_idx = rand() % usados;
+        NodoArbol padre = nodos[padre_idx];
+
+        // Insertar como hijo izquierdo si no tiene, sino como hermano derecho del último hijo
+        if (n_hijoizquierdo(padre) == NULL) {
+            nodos[usados++] = a_conectar_hi(arbol, padre, te_crear(claves[insertados]));
+        } else {
+            NodoArbol ultimo = n_hijoizquierdo(padre);
+            // Buscar el último hermano derecho del hijo izquierdo
+            while (n_hijoderecho(ultimo) != NULL) {
+                ultimo = n_hijoderecho(ultimo);
+            }
+            nodos[usados++] = a_conectar_hd(arbol, ultimo, te_crear(claves[insertados]));
+        }
+        insertados++;
+    }
+
+    free(nodos);
+    return arbol;
+}
+
+
+ArbolBinario nArio_cargar_anchura(){
+    ArbolBinario arbol = a_crear();
+    int clave, clave_hi, clave_hd;
+    char buffer[32];
+
+    printf("Ingrese la clave de la raiz (enter para arbol vacio): ");
+    if(!ingresoDatosNumericosEnter("Ingrese un valor adecuado!", &clave)){
+        return arbol;
+    }
+    NodoArbol raiz = a_establecer_raiz(arbol, te_crear(clave));
+
+    Cola cola = c_crear();
+    c_encolar(cola, (TipoElemento)raiz);
+
+    NodoArbol actual = (NodoArbol)c_desencolar(cola);
+    printf("\nNodo %d:\n", actual->datos->clave);
+
+    // Hijo izquierdo
+    printf("  Clave hijo izquierdo de %d (enter para NULL): ", actual->datos->clave);
+    if (ingresoDatosNumericosEnter("Ingrese un valor adecuado!", &clave_hi)) {
+        NodoArbol hi = a_conectar_hi(arbol, actual, te_crear(clave_hi));
+        c_encolar(cola, (TipoElemento)hi);
+    }
+    
+    while (!c_es_vacia(cola)) {
+        NodoArbol actual = (NodoArbol)c_desencolar(cola);
+        printf("\nNodo %d:\n", actual->datos->clave);
+
+        // Hijo izquierdo
+        printf("  Clave hijo izquierdo de %d (enter para NULL): ", actual->datos->clave);
+        if (ingresoDatosNumericosEnter("Ingrese un valor adecuado!", &clave_hi)) {
+            NodoArbol hi = a_conectar_hi(arbol, actual, te_crear(clave_hi));
+            c_encolar(cola, (TipoElemento)hi);
+        }
+
+        // Hijo derecho
+        printf("  Clave hijo derecho de %d (enter para NULL): ", actual->datos->clave);
+        if (ingresoDatosNumericosEnter("Ingrese un valor adecuado!", &clave_hd)) {
+            NodoArbol hd = a_conectar_hd(arbol, actual, te_crear(clave_hd));
+            c_encolar(cola, (TipoElemento)hd);
+        }
+        printf("\n\n");
+        a_mostrar_normal(arbol);
+        printf("\n\n");
+    }
+    system("cls");
+    return arbol;
 }
 
