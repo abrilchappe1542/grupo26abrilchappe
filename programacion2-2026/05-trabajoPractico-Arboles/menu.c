@@ -99,7 +99,7 @@ void menuPunto3(){
         printf("2. Ejercicio B (Listar los hijos (solo las clave/s)) \n");
         printf("3. Ejercicio C (Listar el hermano (solo la clave)) \n");
         printf("4. Ejercicio D (Calcular el nivel en el que se encuentra.) \n");
-        printf("5. Ejercicio E (Calcular la altura de su rama (Altura del Subárbol)) \n");
+        printf("5. Ejercicio E (Calcular la altura de su rama (Altura del Subarbol)) \n");
         printf("6. Ejercicio F (Listar todos los nodos que estan en el mismo nivel (solo la clave)) \n");
         printf("0. Salir \n");
         printf("-1. Cargar nuevo arbol \n");
