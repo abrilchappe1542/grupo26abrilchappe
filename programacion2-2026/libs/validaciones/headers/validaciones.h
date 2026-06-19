@@ -12,10 +12,9 @@
 #include "../../tipoElemento/headers/tipo_elemento.h"
 #include "../../pilas/headers/pilas.h"
 #include "../../colas/headers/colas.h"
-#include "../../arboles/headers/arbol-binario.h"
-#include "../../arboles/headers/arbol-binario-busqueda.h"
-#include "../../arboles/headers/arbol-avl.h"
-
+#include "../../arboles/headers/arbol_binario.h"
+#include "../../arboles/headers/arbol_binario_busqueda.h"
+#include "../../arboles/headers/arbol_avl.h"
 
 /* >>>>> VALIDACIONES DE STRINGS DE NUMEROS <<<<< */
 

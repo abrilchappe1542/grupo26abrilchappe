@@ -39,7 +39,7 @@ TipoElemento n_recuperar(NodoArbol N) {
         return NULL;
     }
     else {
-        TipoElemento x = N->datos;
+	TipoElemento x = N->datos;
         return x;
     }
 };
