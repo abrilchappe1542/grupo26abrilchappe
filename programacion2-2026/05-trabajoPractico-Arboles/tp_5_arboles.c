@@ -340,7 +340,6 @@ Lista a_ej4_anchura(ArbolBinario A) {
             hijo = n_hijoderecho(hijo); // Pasamos al siguiente hermano
         }
     }
-    l_destruir(cola);
     return lres;
 }
 
