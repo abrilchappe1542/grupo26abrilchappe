@@ -17,7 +17,9 @@ void menuPunto2(){
         printf("\n|| GRAFICO DEL ARBOL 1 ||\n\n");
         a_mostrar_normal(arbolito1);
         if(a_es_vacio(arbolito1)) printf("\n\n"); 
-        
+        printf("1. Retornar una lista con todos los nodos terminales u hojas. \n");
+        printf("2. Retornar en una estructura todos los nodos interiores (los que no son ni hojas ni raíz). \n");
+        printf("3. Buscar todas las ocurrencias de una clave dentro del árbol y retornar la posición de cada ocurrencia (puntero al nodo). \n");
         printf("\nIngrese el punto que quiera ejecutar (1,2 o 3):");
         opcion = ingresoIntLimitado("Opcion invalida, ingrese entre 1 y 3", 1, 3);
         printf("\n");
