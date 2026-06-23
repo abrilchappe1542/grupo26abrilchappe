@@ -1075,3 +1075,128 @@ ArbolBinario nArio_cargar_anchura(){
     return arbol;
 }
 
+
+
+/*-------------------------------------------------------------
+  >>>>>>>>>>>>>>>>>>>>>    TABLAS HASH    <<<<<<<<<<<<<<<<<<<<<
+---------------------------------------------------------------*/
+
+
+int ingresando_Legajo_alumno(){
+    bool seguir = true;
+    int legajo;
+    while (seguir){
+        printf("\nIngrese el legajo del alumno (maximo 6 digitos): ");
+        legajo = ingresoDatosNumericosPositivos("Error al ingresar legajo\nVuelva a intentarlo\n");
+        if(legajo <= 999999){
+            seguir = false;
+        }
+        else{
+        printf("Error al ingresar legajo\nVuelva a intentarlo\n");
+        system("pause");
+        }
+    }
+    return legajo;
+}
+void ingresarString_char_y_numeros(char *mensaje, char buffer[], int Max){
+    int valido;
+    bool chequeo = false;
+
+    while (!chequeo){
+        printf("%s", mensaje);
+        //buffer = ingresa_palabra("");
+        char *tmp = ingresa_palabra("");
+        chequeo = (soloEspacios(tmp) && (strlen(tmp) < Max));
+        if(!chequeo){
+            if(strlen(tmp) > Max){
+                printf(">> No supere los %d caracteres!\n", Max);
+            }
+            else{
+                printf(">> Ingrese un valor adecuado!\n");
+            }
+            free(tmp);
+            //buffer = NULL;
+        }else{
+            strcpy(buffer, tmp);
+            free(tmp);
+        }
+    }
+    chequeo = false;
+}
+
+void ingresarString_noEspaciado(char *mensaje, char* buffer, int Max) {
+    int valido;
+    bool chequeo = false;
+
+    while (!chequeo){
+        printf("%s", mensaje);
+        //buffer = ingresa_palabra("");
+        char *tmp = ingresa_palabra("");
+        chequeo = (soloEspacios(tmp) && esAlfabetico(tmp) && (strlen(tmp) < Max));
+        if(!chequeo){
+            if(strlen(tmp) > Max){
+                printf(">> No supere los %d caracteres!\n", Max);
+            }
+            else{
+                printf(">> Ingrese un valor adecuado!\n");
+            }
+            free(tmp);
+            //buffer = NULL;
+        }else{
+            strcpy(buffer, tmp);
+        }
+    }
+    chequeo = false;
+}
+
+void ingresarString_Espaciado(char *mensaje, char buffer[], int Max) {
+   int valido;
+    bool chequeo = false;
+
+    while (!chequeo){
+        printf("%s", mensaje);
+        //buffer = ingresa_palabra("");
+        char *tmp = ingresa_palabra("");
+        chequeo = (soloEspacios(tmp) && esAlfabetico(tmp) && (strlen(tmp) < Max));
+        if(!chequeo){
+            if(strlen(tmp) > Max){
+                printf(">> No supere los %d caracteres!\n", Max);
+            }
+            else{
+                printf(">> Ingrese un valor adecuado!\n");
+            }
+            free(tmp);
+            //buffer = NULL;
+        }else{
+            strcpy(buffer, tmp);
+            free(tmp);
+        }
+    }
+    chequeo = false;
+}
+
+void ingresarEnteros_char(char *mensaje, char buffer[], int Max) {
+    int valido;
+    bool chequeo = false;
+    while (!chequeo){
+        printf("%s", mensaje);
+        //buffer = ingresa_palabra("");
+        char *tmp = ingresa_palabra("");            
+        chequeo = (esDigito(tmp) && soloEspacios(tmp) && (strlen(tmp) < Max));
+        if(!chequeo){
+            if(strlen(tmp) > Max){
+                printf(">> No supere los %d caracteres!\n", Max);
+            }
+            else{
+                printf(">> Ingrese un valor adecuado!\n");
+            }
+            free(tmp);
+            //buffer = NULL;
+        }
+        else{
+            strcpy(buffer, tmp);
+            free(tmp);
+        }
+    }
+        chequeo = false;
+}
