@@ -78,7 +78,7 @@ void menuPunto4(){
                 mostrar_alumnos_activos(tabla, archivo);
                 break;
             case 6:
-                printf("\n=== TABLA HASH DE ALUMNOS ===\n");
+                printf("\n=== ESTRUCTURA INTERNA DE LA TABLA HASH DE ALUMNOS ===\n");
                 th_mostrar(tabla);
                 break;
             default:
@@ -157,7 +157,7 @@ void menuPunto6_v2(){
                 mostrar_vacunados(tabla);
                 break;
             case 5:
-                printf("\n=== TABLA HASH DE VACUNADOS ===\n");
+                printf("\n=== ESTRUCTURA INTERNA DE LA TABLA HASH DE VACUNADOS ===\n");
                 th_mostrar(tabla);
                 break;
             default:
