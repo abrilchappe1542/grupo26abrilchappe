@@ -15,18 +15,28 @@ int funcion_hash_mod(int clave){
     return clave % 997;
 }
 
-int cargarTabla(TablaHash tabla, FILE* archivo){ //retorna el indice de la ultima posicion a cargar
+int cargarTabla(TablaHash tabla, FILE* archivo){
+
     Alumnos alumno;
-    int contador = 0; //indice inicial
-    
-    while(fread(&alumno, sizeof(Alumnos), 1, archivo) != 0){
-        int* contador2 = malloc(sizeof(int));
-        *contador2 = contador;  //actualiza el indice en un puntero para que coincida con los parametros de th_insetar
-        th_insertar(tabla, te_crear_con_valor(alumno.legajo, contador2));
+    int contador = 0;
+    rewind(archivo);
+    while(fread(&alumno,sizeof(Alumnos),1,archivo)==1){
+        int* contador2=malloc(sizeof(int));
+        *contador2=contador;
+        th_insertar(
+            tabla,
+            te_crear_con_valor(
+                alumno.legajo,
+                contador2
+            )
+        );
+
         contador++;
     }
     return contador;
 }
+
+
 
 void cargando_alumno(Alumnos* alumno){
     char *nombre, *apellido, *domicilio, *telefono;
@@ -129,7 +139,10 @@ void buscar_alumno(int indice, FILE* archivo){
         return;
     }
 
-    fread(&alumno, sizeof(Alumnos), 1, archivo);
+    if(fread(&alumno,sizeof(Alumnos),1,archivo)!=1){
+    printf("Error al leer archivo\n");
+    return;
+    }
     if(!alumno.Estado){
         printf("No se encontro el alumno dentro del archivo\n");
         return;
@@ -281,33 +294,39 @@ void modificar_alumno_telefono(FILE* archivo, int indice){
 void carga_archivo(Alumnos* alumno){
     int clave = funcion_hash_mod(alumno->legajo);
     alumno->Estado=true;
-    FILE* archivo=fopen("Alumnos.dat","rb+"); //abre el archivo, lo crea en caso de que no exista
-    fseek(archivo,clave * sizeof(alumno),SEEK_SET); //pos 0, hasta la pos de la clave
-    fwrite(alumno,sizeof(alumno),1,archivo);    //escribe la linea
+    FILE* archivo=fopen("Alumnos.dat","rb+");
+    if(archivo==NULL){
+        archivo=fopen("Alumnos.dat","wb+");
+    }
+    fseek(archivo, clave*sizeof(Alumnos), SEEK_SET);
+    fwrite(alumno,sizeof(Alumnos),1,archivo);
     fclose(archivo);
 }
 
-void mostrar_alumnos_activos(TablaHash tabla, FILE* archivo) {
+
+void mostrar_alumnos_activos(TablaHash tabla, FILE* archivo){
+
+    Alumnos alumno;
+
     printf("\n=========== Alumnos Activos ===========\n");
-    for (int i=0; i<TAMANO; i++) {
-        TipoElemento te = th_recuperar(tabla,i);
-        if(te != NULL){
-            int pos = *((int*)te->valor);
-            Alumnos alumno;
-            if (fseek(archivo, sizeof(Alumnos) * pos, SEEK_SET) == 0 &&
-                fread(&alumno, sizeof(Alumnos), 1, archivo) == 1){
-                if(alumno.Estado){
-                    printf("Legajo: %d\n",alumno.legajo);
-                    printf("Apellido: %s\n", alumno.apellido);
-                    printf("Nombre: %s\n", alumno.nombre);
-                    printf("Domicilio: %s\n", alumno.domicilio);
-                    printf("Telefono: %s\n", alumno.TE);
-                    printf("\n\n");
-                }
-            }
+
+    rewind(archivo);
+
+    while(fread(&alumno,sizeof(Alumnos),1,archivo)==1){
+
+        if(alumno.Estado){
+
+            printf("Legajo: %d\n", alumno.legajo);
+            printf("Apellido: %s\n", alumno.apellido);
+            printf("Nombre: %s\n", alumno.nombre);
+            printf("Domicilio: %s\n", alumno.domicilio);
+            printf("Telefono: %s\n", alumno.TE);
+
+            printf("\n");
         }
     }
-    printf("\n=======================================\n");
+
+    printf("=======================================\n");
 }
 
 void th_ej4_abm(){

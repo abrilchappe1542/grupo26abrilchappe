@@ -1,5 +1,3 @@
-#ifndef VALIDACIONES_H
-#define VALIDACIONES_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -15,6 +13,11 @@
 #include "../../arboles/headers/arbol_binario.h"
 #include "../../arboles/headers/arbol_binario_busqueda.h"
 #include "../../arboles/headers/arbol_avl.h"
+#include "../../tablashash/headers/tabla_hash.h"
+#include "../../../06-trabajoPractico_TablasHash\tp_thash.h"
+
+#ifndef VALIDACIONES_H
+#define VALIDACIONES_H
 
 /* >>>>> VALIDACIONES DE STRINGS DE NUMEROS <<<<< */
 
@@ -138,4 +141,18 @@ ArbolBinario nArio_cargar_anchura();
 ArbolBinario nArio_cargar_azar(int cantidad_nodos);
 
 ArbolBinario nArio_cargar_azar_rep(int cantidad_nodos);
+
+/*-------------------------------------------------------------
+  >>>>>>>>>>>>>>>>>>>>>    TABLAS HASH    <<<<<<<<<<<<<<<<<<<<<
+---------------------------------------------------------------*/
+
+int ingresando_Legajo_alumno();
+
+void ingresarString_char_y_numeros(char *mensaje, char buffer[], int Max);
+
+void ingresarString_noEspaciado(char *mensaje, char buffer[], int Max);
+
+void ingresarString_Espaciado(char *mensaje, char buffer[], int Max);
+
+void ingresarEnteros_char(char *mensaje, char buffer[], int Max);
 

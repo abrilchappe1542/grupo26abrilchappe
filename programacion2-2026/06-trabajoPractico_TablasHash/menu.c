@@ -24,9 +24,10 @@ void menuPunto4(){
         printf("3. Modificar datos de un alumno\n");
         printf("4. Buscar un alumno\n");
         printf("5. Mostrar alumnos\n");
+        printf("6. Mostrar tabla hash \n");
         printf("0. Salir \n");
         printf("> Seleccione una opcion: ");
-        opcion = ingresoIntLimitado("Ingrese un valor adecuado!", 0, 5);
+        opcion = ingresoIntLimitado("Ingrese un valor adecuado!", 0, 6);
         system("cls");
 
         switch (opcion){    
@@ -75,6 +76,10 @@ void menuPunto4(){
                 break;
             case 5:
                 mostrar_alumnos_activos(tabla, archivo);
+                break;
+            case 6:
+                printf("\n=== TABLA HASH DE ALUMNOS ===\n");
+                th_mostrar(tabla);
                 break;
             default:
                 printf("AVISO: Ingrese un numero parte de las opciones.\n");
@@ -128,9 +133,10 @@ void menuPunto6_v2(){
         printf("2. Eliminar persona de ficha de vacunacion. datos necesario: fecha y dni\n");
         printf("3. Modificar datos de una persona de vacunacion por fecha. datos necesario: fecha y dni\n");
         printf("4. Mostrar ficha de vacunacion por fecha\n");
+        printf("5. Mostrar tabla hash \n");
         printf("0. Salir \n");
         printf("> Seleccione una opcion: ");
-        opcion = ingresoIntLimitado("Ingrese un valor adecuado!", 0, 4);
+        opcion = ingresoIntLimitado("Ingrese un valor adecuado!", 0, 5);
         system("cls");
 
         switch (opcion){
@@ -149,6 +155,10 @@ void menuPunto6_v2(){
                 break;
             case 4: 
                 mostrar_vacunados(tabla);
+                break;
+            case 5:
+                printf("\n=== TABLA HASH DE VACUNADOS ===\n");
+                th_mostrar(tabla);
                 break;
             default:
                 printf("AVISO: Ingrese un numero parte de las opciones.\n");
