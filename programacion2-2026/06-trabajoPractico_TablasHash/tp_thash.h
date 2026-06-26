@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <time.h>
 #include "../libs/listas/headers/listas.h"
-#include "../libs/TablaHash/headers/tabla_hash.h"
+#include "../libs/tablashash/headers/tabla_hash.h"
 #include "../libs/tipoElemento/headers/tipo_elemento.h"
 #include "../libs/validaciones/headers/validaciones.h"
 #include "../libs/arboles/headers/arbol_binario.h"
