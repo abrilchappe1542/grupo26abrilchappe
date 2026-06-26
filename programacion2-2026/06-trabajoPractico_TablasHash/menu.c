@@ -142,7 +142,7 @@ void menuPunto6_v2(){
         switch (opcion){
             case 0:
                 printf("Seguro que desea salir?");
-                seguir = !preguntarContinuar();   
+                seguir = preguntarContinuar();   
                 break;
             case 1:
                 cargar_vacunados(tabla);
