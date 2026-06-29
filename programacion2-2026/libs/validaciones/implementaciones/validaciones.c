@@ -1200,3 +1200,257 @@ void ingresarEnteros_char(char *mensaje, char buffer[], int Max) {
     }
         chequeo = false;
 }
+
+
+/*
+    =============================
+              CONJUNTOS
+    =============================
+*/
+
+Conjunto cto_cargar_manual(int cant_claves){
+    Conjunto cto = cto_crear();
+
+    for(int i = 1; i <= cant_claves; i++){
+
+        if(cto_es_lleno(cto)){
+            printf("El conjunto está lleno. No se pueden agregar más claves.\n");
+            break;
+        }
+
+        printf("\nClave %d: ", i);
+        int clave = ingresoDatosNumericos("Clave invalida!");
+        TipoElemento te = te_crear(clave);
+
+        if(!cto_agregar(cto, te)){
+            printf("Clave repetida, intente otra clave.\n");
+            i--; // repetir este intento
+        }
+    }
+
+    return cto;
+}
+
+Conjunto cto_cargar_aleatorio(int cant_claves, int clave_min, int clave_max){
+    Conjunto cto = cto_crear();
+    int clave;
+
+    if (clave_min > clave_max) {
+        int temp = clave_min;
+        clave_min = clave_max;
+        clave_max = temp;
+    }
+    
+    for(int i = 1; i <= cant_claves; i++){
+
+        if(cto_es_lleno(cto)){
+            break;
+        }
+
+        clave = clave_min + rand() % (clave_max - clave_min + 1);
+        TipoElemento te = te_crear(clave);
+
+        if(!cto_agregar(cto, te)){
+            i--; // repetir este intento
+        }
+    }
+
+    return cto;
+}
+
+void cto_aniadir(Conjunto origen, Conjunto destino){
+    if(cto_es_lleno(destino)){
+        printf("\nEl conjunto destino esta lleno\n");
+        return;
+    }
+    for(int i = 1; i <= cto_cantidad_elementos(origen); i++){
+        cto_agregar(destino, cto_recuperar(origen, i));
+    }
+}
+
+Conjunto cto_modo_carga(){
+    int opcion, cant_claves, valorminimo, valormaximo;
+    Conjunto conjuntocargar;
+
+    printf("Seleccione el modo de carga del conjunto:\n");
+    printf("  1. Carga manual\n");
+    printf("  2. Carga al azar\n");
+    printf("> Seleccione una opcion: ");
+    opcion = ingresoIntLimitado("Ingrese 1 o 2", 1, 2);
+
+    if (opcion == 1){
+        printf("\n\n");
+        printf("Ingrese la cantidad de claves para el conjunto o <=0 para cargarlo vacio\n-> ");
+        cant_claves = ingresoDatosNumericos("Ingrese un valor adecuado!");
+        conjuntocargar = cto_cargar_manual(cant_claves);
+        system("cls");
+    }
+    else{
+        printf("\n\n");
+        printf("Ingrese la cantidad de claves para el conjunto o <=0 para cargarlo vacio\n-> ");
+        cant_claves = ingresoDatosNumericos("Ingrese un valor adecuado!");
+        if(cant_claves <= 0){
+            system("cls");
+            return cto_crear();
+        }
+
+        printf("Ingrese el valor minimo generado al azar\n-> ");
+        valorminimo = ingresoDatosNumericos("Ingrese un valor adecuado!");
+
+        printf("Ingrese el valor maximo generado al azar\n-> ");                    
+        valormaximo = ingresoIntMinimo("Ingrese un valor adecuado!", (valorminimo + (cant_claves-1)));
+        
+        conjuntocargar = cto_cargar_aleatorio(cant_claves, valorminimo, valormaximo);
+        system("cls");
+    }
+    
+    return conjuntocargar;
+}
+
+Lista l_cargar_ctos_rand(int cant_conjuntos, int cant_elem_x_cto, int clave_min, int clave_max){
+    Lista l_ctos = l_crear();
+
+    for(int i = 1; i<=cant_conjuntos; i++){
+        Conjunto ctoaux = cto_cargar_aleatorio(cant_elem_x_cto, clave_min, clave_max);
+        TipoElemento te = te_crear_con_valor(i, ctoaux);
+        l_agregar(l_ctos, te);
+    }
+
+    return l_ctos;
+}
+
+Lista l_cargar_ctos_manual(int cant_conjuntos){
+    Lista l_ctos = l_crear();
+    int cant_claves_x_ctos;
+
+    for(int i = 1; i <= cant_conjuntos; i++){
+        Conjunto ctoaux;
+
+        printf("\nConjunto %d\n", i);
+        printf("Ingrese la cantidad de claves para el conjunto %d o <=0 para cargarlo vacio\n-> ", i);
+        cant_claves_x_ctos = ingresoDatosNumericos("Ingrese un valor adecuado!");
+
+        ctoaux = cto_cargar_manual(cant_claves_x_ctos);
+
+        TipoElemento te_cto = te_crear_con_valor(i, ctoaux);
+        l_agregar(l_ctos, te_cto);
+    }
+
+    return l_ctos;
+}
+
+Lista ej3cto_modo_carga(){
+    int opcion, cant_ctos, cant_elem_x_cto, valorminimo, valormaximo;
+    Lista l_conjuntos;
+
+    printf("Seleccione el modo de carga de la lista de conjuntos:\n");
+    printf("  1. Carga manual\n");
+    printf("  2. Carga al azar\n");
+    printf("> Seleccione una opcion: ");
+    opcion = ingresoIntLimitado("Ingrese 1 o 2", 1, 2);
+
+    if (opcion == 1){
+        printf("\n\n");
+        printf("Ingrese la cantidad de conjuntos que desea cargar en la lista o <=0 para cargarla vacia\n-> ");
+        cant_ctos = ingresoDatosNumericos("Ingrese un valor adecuado!");
+        if(cant_ctos <= 0){
+            system("cls");
+            return l_crear();
+        }
+        l_conjuntos = l_cargar_ctos_manual(cant_ctos);
+        system("cls");
+    }
+    else{
+        printf("\n\n");
+        printf("Ingrese la cantidad de conjuntos que desea cargar en la lista o <=0 para cargarla vacia\n-> ");
+        cant_ctos = ingresoDatosNumericos("Ingrese un valor adecuado!");
+        if(cant_ctos <= 0){
+            system("cls");
+            return l_crear();
+        }
+
+        printf("\nIngrese la cantidad de claves para los conjuntos o <=0 para cargarlos vacios\n-> ");
+        cant_elem_x_cto = ingresoDatosNumericos("Ingrese un valor adecuado!");
+        if(cant_elem_x_cto <= 0){
+            l_conjuntos = l_cargar_ctos_rand(cant_ctos, 0, 0, 0);
+            return l_conjuntos;
+        }
+
+        printf("Ingrese el valor minimo generado al azar\n-> ");
+        valorminimo = ingresoDatosNumericos("Ingrese un valor adecuado!");
+
+        printf("Ingrese el valor maximo generado al azar\n-> ");                    
+        valormaximo = ingresoIntMinimo("Ingrese un valor adecuado!", (valorminimo + (cant_elem_x_cto-1)));
+
+        l_conjuntos = l_cargar_ctos_rand(cant_ctos, cant_elem_x_cto, valorminimo, valormaximo);
+        system("cls");
+    }
+    
+    return l_conjuntos;
+}
+
+/*
+========== EJERCICIOS 6 Y 8 QUE PERMITEN SOLO NATURALES
+*/
+
+Conjunto cto_cargar_manual_naturales(int cant_claves){
+    Conjunto cto = cto_crear();
+
+    for(int i = 1; i <= cant_claves; i++){
+        if(cto_es_lleno(cto)){
+            printf("El conjunto está lleno. No se pueden agregar más claves.\n");
+            break;
+        }
+
+        printf("\nClave %d: ", i);
+        int clave = ingresoDatosNumericosNoCero("Clave invalida! Numeros naturales");
+        TipoElemento te = te_crear(clave);
+
+        if(!cto_agregar(cto, te)){
+            printf("Clave repetida, intente otra clave.\n");
+            i--; // repetir este intento
+        }
+    }
+
+    return cto;
+}
+
+Conjunto cto_modo_carga_ej6yej8(){
+    int opcion, cant_claves, valorminimo, valormaximo;
+    Conjunto conjuntocargar;
+
+    printf("Seleccione el modo de carga del conjunto:\n");
+    printf("  1. Carga manual\n");
+    printf("  2. Carga al azar\n");
+    printf("> Seleccione una opcion: ");
+    opcion = ingresoIntLimitado("Ingrese 1 o 2", 1, 2);
+
+    if (opcion == 1){
+        printf("\n\n");
+        printf("Ingrese la cantidad de claves para el conjunto o <=0 para cargarlo vacio\n-> ");
+        cant_claves = ingresoDatosNumericos("Ingrese un valor adecuado!");
+        conjuntocargar = cto_cargar_manual_naturales(cant_claves);
+        system("cls");
+    }
+    else{
+        printf("\n\n");
+        printf("Ingrese la cantidad de claves para el conjunto o <=0 para cargarlo vacio\n-> ");
+        cant_claves = ingresoDatosNumericos("Ingrese un valor adecuado!");
+        if(cant_claves <= 0){
+            system("cls");
+            return cto_crear();
+        }
+
+        printf("Ingrese el valor minimo generado al azar\n-> ");
+        valorminimo = ingresoDatosNumericosNoCero("Ingrese un valor adecuado! Numeros naturales");
+
+        printf("Ingrese el valor maximo generado al azar\n-> ");                    
+        valormaximo = ingresoIntMinimo("Ingrese un valor adecuado! Numeros naturales", (valorminimo + (cant_claves-1)));
+        
+        conjuntocargar = cto_cargar_aleatorio(cant_claves, valorminimo, valormaximo);
+        system("cls");
+    }
+    
+    return conjuntocargar;
+}
+

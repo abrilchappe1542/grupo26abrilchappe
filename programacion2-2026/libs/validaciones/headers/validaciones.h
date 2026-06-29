@@ -15,6 +15,7 @@
 #include "../../arboles/headers/arbol_avl.h"
 #include "../../tablashash/headers/tabla_hash.h"
 #include "../../../06-trabajoPractico_TablasHash\tp_thash.h"
+#include "../../conjuntos/headers/conjuntos.h"
 
 #ifndef VALIDACIONES_H
 #define VALIDACIONES_H
@@ -116,7 +117,6 @@ Cola c_cargar(int cantidad);
 
 Cola c_cargar_ej5(int cantidad);
 
-#endif
 
 
 /*-------------------------------------------------------------
@@ -155,4 +155,28 @@ void ingresarString_noEspaciado(char *mensaje, char buffer[], int Max);
 void ingresarString_Espaciado(char *mensaje, char buffer[], int Max);
 
 void ingresarEnteros_char(char *mensaje, char buffer[], int Max);
+
+/*-----------------------------------------------------------
+  >>>>>>>>>>>>>>>>>>>>>    conjuntos    <<<<<<<<<<<<<<<<<<<<<
+-----------------------------------------------------------*/
+
+Conjunto cto_cargar_manual(int cant_claves);
+
+Conjunto cto_cargar_aleatorio(int cant_claves, int clave_min, int clave_max);
+
+void cto_aniadir(Conjunto origen, Conjunto destino); // copia el contenido de un conjunto hacia otro de destino, sin importar si este no está vacío
+
+Lista l_cargar_ctos_rand(int cant_conjuntos, int cant_te_x_cto, int clave_min, int clave_max); // lista con x cantidad de conjuntos cargados aleatoriamente
+
+Lista l_cargar_ctos_manual(int cant_conjuntos);
+
+Conjunto cto_modo_carga();
+
+Lista ej3cto_modo_carga();
+
+Conjunto cto_modo_carga_ej6yej8();
+
+bool c_ej2_pertenencia(Conjunto A, int clave);
+
+#endif // VALIDACIONES_H
 
